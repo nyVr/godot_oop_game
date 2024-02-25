@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b7atxuaof20fe"]
+[gd_scene load_steps=8 format=3 uid="uid://b7atxuaof20fe"]
 
 [ext_resource type="PackedScene" uid="uid://dvxedggvkby4l" path="res://scenes/block.tscn" id="1_k8bqx"]
 [ext_resource type="PackedScene" uid="uid://dqr54dd08lhks" path="res://scenes/joe.tscn" id="2_76w2n"]
 [ext_resource type="PackedScene" uid="uid://dde3hpdyxsg0n" path="res://scenes/dolls.tscn" id="3_aal3e"]
+[ext_resource type="PackedScene" uid="uid://d2lr7ndyoi0x0" path="res://blender/plainWall.dae" id="4_rkueh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ptbd4"]
 albedo_color = Color(0.121569, 0.176471, 0.101961, 1)
@@ -15,9 +16,6 @@ size = Vector3(50, 0.5, 50)
 size = Vector3(50, 0.5, 50)
 
 [node name="level1" type="Node3D"]
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.928724, 0.123976, -0.34943, 0.0167214, 0.927477, 0.373506, 0.370394, -0.352727, 0.859297, -9.58289, 6.9464, 14.5341)
 
 [node name="floor" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0123701, -0.259782, 0)
@@ -45,13 +43,20 @@ transform = Transform3D(-0.752541, 0.236227, -0.614718, 0, 0.933449, 0.35871, 0.
 transform = Transform3D(0.652204, -0.271918, 0.707595, 0, 0.933449, 0.35871, -0.758043, -0.233952, 0.608799, -1.77109, 3.54068, 1.0475)
 
 [node name="block4" parent="blocks" instance=ExtResource("1_k8bqx")]
-transform = Transform3D(0.652204, -0.271918, 0.707595, 0, 0.933449, 0.35871, -0.758043, -0.233952, 0.608799, -9.42306, 3.54068, 0.787333)
+transform = Transform3D(0.630069, -0.021567, 0.776239, 0.0155557, 0.999764, 0.0151509, -0.776383, 0.0025287, 0.630256, -10.5951, 0.519241, -0.833072)
 
 [node name="block5" parent="blocks" instance=ExtResource("1_k8bqx")]
 transform = Transform3D(0.652204, -0.271918, 0.707595, 0, 0.933449, 0.35871, -0.758043, -0.233952, 0.608799, -1.77109, 3.54068, 5.8929)
 
 [node name="joe" parent="." instance=ExtResource("2_76w2n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.619872, 0.432967, 5.16175)
 
 [node name="dolls" parent="." instance=ExtResource("3_aal3e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0241737, 1.07537, 10.1309)
+
+[node name="walls" type="Node3D" parent="."]
+transform = Transform3D(0.399987, 0, 0.0032463, 0, 0.28, 0, -0.0032463, 0, 0.399987, -4.95561, -1.00989, -40.6485)
+metadata/_edit_group_ = true
+
+[node name="plainWall" parent="walls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(2.49992, 0, -0.0202894, 0, 3.57143, 0, 0.0202894, 0, 2.49992, -13.0892, 1.33547, 57.9094)

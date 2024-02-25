@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://stfpqwav4cl2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_daq72"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_lxhqh"]
+
+[node name="brickBlock" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_daq72")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_lxhqh")
+skeleton = NodePath("../CollisionShape3D")
