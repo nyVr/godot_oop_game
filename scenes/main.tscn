@@ -43,7 +43,7 @@ transform = Transform3D(-0.752541, 0.236227, -0.614718, 0, 0.933449, 0.35871, 0.
 transform = Transform3D(0.652204, -0.271918, 0.707595, 0, 0.933449, 0.35871, -0.758043, -0.233952, 0.608799, -1.77109, 3.54068, 1.0475)
 
 [node name="block4" parent="blocks" instance=ExtResource("1_k8bqx")]
-transform = Transform3D(0.630069, -0.021567, 0.776239, 0.0155557, 0.999764, 0.0151509, -0.776383, 0.0025287, 0.630256, -10.5951, 0.519241, -0.833072)
+transform = Transform3D(-0.849816, 0.00530222, 0.662506, 0.0166581, 1.69549, 0.0164966, -0.651376, 0.036442, -0.863913, -13.0958, -0.838818, -1.86502)
 
 [node name="block5" parent="blocks" instance=ExtResource("1_k8bqx")]
 transform = Transform3D(0.652204, -0.271918, 0.707595, 0, 0.933449, 0.35871, -0.758043, -0.233952, 0.608799, -1.77109, 3.54068, 5.8929)
@@ -55,8 +55,51 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.619872, 0.432967, 5.16175)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0241737, 1.07537, 10.1309)
 
 [node name="walls" type="Node3D" parent="."]
-transform = Transform3D(0.399987, 0, 0.0032463, 0, 0.28, 0, -0.0032463, 0, 0.399987, -4.95561, -1.00989, -40.6485)
-metadata/_edit_group_ = true
 
-[node name="plainWall" parent="walls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(2.49992, 0, -0.0202894, 0, 3.57143, 0, 0.0202894, 0, 2.49992, -13.0892, 1.33547, 57.9094)
+[node name="plainWall1" parent="walls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 6.17914, 0, -23.813)
+
+[node name="plainWall2" parent="walls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -5.9392, 0, -23.813)
+
+[node name="plainWall3" parent="walls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -18.1408, 0, -23.813)
+
+[node name="plainWall4" parent="walls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 18.443, 0, -23.813)
+
+[node name="plainWall5" parent="walls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(-0.0149392, 0, 0.666152, 0, 0.551292, 0, -0.822857, 0, -0.0283067, -25.37, 0.120051, -8.81662)
+
+[node name="plainWall6" parent="walls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(-0.0149392, 0, 0.666152, 0, 0.551292, 0, -0.822857, 0, -0.0283067, -25.1467, 0.120051, 1.15443)
+
+[node name="plainWall7" parent="walls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(-0.0216651, 0, 0.671593, 0, 0.551292, 0, -1.19332, 0, -0.0285379, -24.9218, 0.120051, 11.194)
+
+[node name="plainWall8" parent="walls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(-0.0149392, 0, 0.666152, 0, 0.551292, 0, -0.822857, 0, -0.0283067, -25.5959, 0.120051, -18.9074)
+
+[node name="plainWall9" parent="walls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(-0.0153086, 0, 0.999728, 0, 0.565216, 0, -0.653472, 0, -0.0234202, 23.3464, 0, -5.24103)
+
+[node name="plainWall10" parent="walls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(-0.0153086, 0, 0.999728, 0, 0.565216, 0, -0.653472, 0, -0.0234202, 23.6302, 0, 6.87398)
+
+[node name="plainWall11" parent="walls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(-0.0153086, 0, 0.999728, 0, 0.565216, 0, -0.653472, 0, -0.0234202, 23.916, 0, 19.0723)
+
+[node name="plainWall12" parent="walls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(-0.0153086, 0, 0.999728, 0, 0.565216, 0, -0.653472, 0, -0.0234202, 23.0592, 0, -17.5015)
+
+[node name="plainWall1" parent="." instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 6.17914, 0, 24.8723)
+
+[node name="plainWall2" parent="." instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -5.9392, 0, 24.8723)
+
+[node name="plainWall3" parent="." instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -18.1408, 0, 24.8723)
+
+[node name="plainWall4" parent="." instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 18.443, 0, 24.8723)

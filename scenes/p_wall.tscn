@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3b1wgvv1obvi"]
-
-[ext_resource type="PackedScene" uid="uid://d2lr7ndyoi0x0" path="res://blender/plainWall.dae" id="1_mtyf3"]
-
-[node name="pWall" type="Node3D"]
-
-[node name="plainWall" parent="." instance=ExtResource("1_mtyf3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 1)
