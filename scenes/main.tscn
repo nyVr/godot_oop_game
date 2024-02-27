@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dde3hpdyxsg0n" path="res://scenes/dolls.tscn" id="3_aal3e"]
 [ext_resource type="PackedScene" uid="uid://d2lr7ndyoi0x0" path="res://blender/plainWall.dae" id="4_rkueh"]
 
-[sub_resource type="Shader" id="Shader_jrvam"]
+[sub_resource type="Shader" id="Shader_qayms"]
 code = "
 // NOTE: Shader automatically converted from Godot Engine 4.2.1.stable's ProceduralSkyMaterial.
 
@@ -83,7 +83,7 @@ void sky() {
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xm622"]
-shader = SubResource("Shader_jrvam")
+shader = SubResource("Shader_qayms")
 shader_parameter/sky_top_color = Color(0.109804, 0.0745098, 0.0352941, 1)
 shader_parameter/sky_horizon_color = Color(0.152941, 0.109804, 0.0705882, 1)
 shader_parameter/sky_curve = 0.15
@@ -96,12 +96,12 @@ shader_parameter/ground_energy = 1.0
 shader_parameter/sun_angle_max = 0.523599
 shader_parameter/sun_curve = 0.15
 
-[sub_resource type="Sky" id="Sky_k0e3x"]
+[sub_resource type="Sky" id="Sky_smafh"]
 sky_material = SubResource("ShaderMaterial_xm622")
 
 [sub_resource type="Environment" id="Environment_bl2h8"]
 background_mode = 2
-sky = SubResource("Sky_k0e3x")
+sky = SubResource("Sky_smafh")
 ambient_light_source = 3
 reflected_light_source = 2
 volumetric_fog_enabled = true
@@ -118,7 +118,8 @@ size = Vector3(50, 0.5, 50)
 size = Vector3(50, 0.5, 50)
 
 [sub_resource type="FogMaterial" id="FogMaterial_uxno1"]
-albedo = Color(0.345098, 0.313726, 0.196078, 1)
+albedo = Color(0.243137, 0.0941176, 0.0431373, 1)
+emission = Color(0.152941, 0.0509804, 0.0117647, 1)
 
 [node name="level1" type="Node3D"]
 
@@ -126,7 +127,7 @@ albedo = Color(0.345098, 0.313726, 0.196078, 1)
 environment = SubResource("Environment_bl2h8")
 
 [node name="floor" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0123701, -0.259782, 0)
+transform = Transform3D(1.84057, 0, 0, 0, 1, 0, 0, 0, 1, -0.0123701, -0.259782, 0)
 metadata/_edit_group_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="floor"]
@@ -164,17 +165,14 @@ transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -18.1408, 0, -2
 [node name="plainWall4" parent="walls" instance=ExtResource("4_rkueh")]
 transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 18.443, 0, -23.813)
 
-[node name="plainWall5" parent="walls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(-0.0149392, 0, 0.666152, 0, 0.551292, 0, -0.822857, 0, -0.0283067, -25.37, 0.120051, -8.81662)
-
 [node name="plainWall6" parent="walls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(-0.0149392, 0, 0.666152, 0, 0.551292, 0, -0.822857, 0, -0.0283067, -25.1467, 0.120051, 1.15443)
+transform = Transform3D(-0.0149392, 0, 0.666152, 0, 0.551292, 0, -0.822857, 0, -0.0283067, -44.2678, 0.120051, -0.68946)
 
 [node name="plainWall7" parent="walls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(-0.0216651, 0, 0.671593, 0, 0.551292, 0, -1.19332, 0, -0.0285379, -24.9218, 0.120051, 11.194)
+transform = Transform3D(-0.0216651, 0, 0.671593, 0, 0.551292, 0, -1.19332, 0, -0.0285379, -44.0429, 0.120051, 11.194)
 
 [node name="plainWall8" parent="walls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(-0.0149392, 0, 0.666152, 0, 0.551292, 0, -0.822857, 0, -0.0283067, -25.5959, 0.120051, -18.9074)
+transform = Transform3D(-0.0149392, 0, 0.666152, 0, 0.551292, 0, -0.822857, 0, -0.0283067, -44.717, 0.120051, -18.9074)
 
 [node name="plainWall9" parent="walls" instance=ExtResource("4_rkueh")]
 transform = Transform3D(-0.0153086, 0, 0.999728, 0, 0.565216, 0, -0.653472, 0, -0.0234202, 23.3464, 0, -5.24103)
@@ -201,7 +199,31 @@ transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -18.1408, 0, 24
 transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 18.443, 0, 24.8723)
 
 [node name="plainWall17" parent="walls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(-0.65306, 0, -0.0387183, 0, 0.319469, 0, 0.0253082, 0, -0.652746, 14.027, -0.203265, -13.8407)
+transform = Transform3D(-0.65306, 0, -0.0387183, 0, 0.319469, 0, 0.0253082, 0, -0.652746, 14.027, -0.203265, 10.1519)
+
+[node name="plainWall18" parent="walls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 6.17914, 7.25718, -23.813)
+
+[node name="plainWall19" parent="walls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -5.9392, 7.25718, -23.813)
+
+[node name="plainWall20" parent="walls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -18.1408, 7.25718, -23.813)
+
+[node name="plainWall21" parent="walls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 18.443, 7.25718, -23.813)
+
+[node name="plainWall22" parent="walls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 6.17914, 14.3347, -23.813)
+
+[node name="plainWall23" parent="walls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -5.9392, 14.3347, -23.813)
+
+[node name="plainWall24" parent="walls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -18.1408, 14.3347, -23.813)
+
+[node name="plainWall25" parent="walls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 18.443, 14.3347, -23.813)
 
 [node name="FogVolume" type="FogVolume" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.06673, 1.18452)

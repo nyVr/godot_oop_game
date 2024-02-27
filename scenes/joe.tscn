@@ -20,9 +20,9 @@ mesh = SubResource("BoxMesh_7ue4k")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_16lxf")
 
-[node name="hPivot" type="Node3D" parent="."]
+[node name="tripod" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 4, 0)
+spring_length = 7.0
+margin = 0.2
 
-[node name="vPivot" type="Node3D" parent="hPivot"]
-
-[node name="playerCam" type="Camera3D" parent="hPivot/vPivot"]
-transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 2, 4)
+[node name="playerCam" type="Camera3D" parent="tripod"]
