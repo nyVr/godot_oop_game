@@ -15,9 +15,11 @@ script = ExtResource("1_a5mng")
 metadata/_edit_group_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("BoxMesh_7ue4k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 shape = SubResource("BoxShape3D_16lxf")
 
 [node name="tripod" type="SpringArm3D" parent="."]

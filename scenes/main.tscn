@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://b7atxuaof20fe"]
+[gd_scene load_steps=14 format=3 uid="uid://b7atxuaof20fe"]
 
 [ext_resource type="PackedScene" uid="uid://dvxedggvkby4l" path="res://scenes/block.tscn" id="1_k8bqx"]
 [ext_resource type="PackedScene" uid="uid://dqr54dd08lhks" path="res://scenes/joe.tscn" id="2_76w2n"]
 [ext_resource type="PackedScene" uid="uid://dde3hpdyxsg0n" path="res://scenes/dolls.tscn" id="3_aal3e"]
 [ext_resource type="PackedScene" uid="uid://d2lr7ndyoi0x0" path="res://blender/plainWall.dae" id="4_rkueh"]
+[ext_resource type="PackedScene" uid="uid://hna6y2qyem3t" path="res://blender/doorWall.dae" id="5_ktfd3"]
 
 [sub_resource type="Shader" id="Shader_qayms"]
 code = "
@@ -127,7 +128,7 @@ emission = Color(0.152941, 0.0509804, 0.0117647, 1)
 environment = SubResource("Environment_bl2h8")
 
 [node name="floor" type="StaticBody3D" parent="."]
-transform = Transform3D(1.84057, 0, 0, 0, 1, 0, 0, 0, 1, -0.0123701, -0.259782, 0)
+transform = Transform3D(3.04, 0, 0, 0, 1.651, 0, 0, 0, 10, 0, 0, 0)
 metadata/_edit_group_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="floor"]
@@ -137,7 +138,8 @@ mesh = SubResource("BoxMesh_uo6qh")
 shape = SubResource("BoxShape3D_odway")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.737018, -0.527549, -0.422488, -0.543007, 0.0899886, 0.834893, -0.402428, 0.844745, -0.352786, -3.08914, 6.59591, 0)
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, -3.089, 100, 0)
+light_color = Color(0.964706, 0.776471, 0.890196, 1)
 shadow_enabled = true
 
 [node name="blocks" type="Node3D" parent="."]
@@ -151,81 +153,70 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.635171, 0.432967, 5.1471)
 [node name="dolls" parent="." instance=ExtResource("3_aal3e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0241737, 1.07537, 10.1309)
 
-[node name="walls" type="Node3D" parent="."]
+[node name="boundaryWalls" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="plainWall1" parent="walls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 6.17914, 0, -23.813)
+[node name="plainWall1" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 2.30307, 0, -23.813)
 
-[node name="plainWall2" parent="walls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -5.9392, 0, -23.813)
+[node name="plainWall2" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -9.81527, 0, -23.813)
 
-[node name="plainWall3" parent="walls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -18.1408, 0, -23.813)
+[node name="plainWall3" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -22.5947, 0, -23.813)
 
-[node name="plainWall4" parent="walls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 18.443, 0, -23.813)
+[node name="plainWall4" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 14.5669, 0, -23.813)
 
-[node name="plainWall6" parent="walls" instance=ExtResource("4_rkueh")]
+[node name="plainWall6" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
 transform = Transform3D(-0.0149392, 0, 0.666152, 0, 0.551292, 0, -0.822857, 0, -0.0283067, -44.2678, 0.120051, -0.68946)
 
-[node name="plainWall7" parent="walls" instance=ExtResource("4_rkueh")]
+[node name="plainWall7" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
 transform = Transform3D(-0.0216651, 0, 0.671593, 0, 0.551292, 0, -1.19332, 0, -0.0285379, -44.0429, 0.120051, 11.194)
 
-[node name="plainWall8" parent="walls" instance=ExtResource("4_rkueh")]
+[node name="plainWall8" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
 transform = Transform3D(-0.0149392, 0, 0.666152, 0, 0.551292, 0, -0.822857, 0, -0.0283067, -44.717, 0.120051, -18.9074)
 
-[node name="plainWall9" parent="walls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(-0.0153086, 0, 0.999728, 0, 0.565216, 0, -0.653472, 0, -0.0234202, 23.3464, 0, -5.24103)
+[node name="plainWall9" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(-0.0153086, 0, 0.999728, 0, 0.565216, 0, -0.653472, 0, -0.0234202, 44.3428, 0, -5.24103)
 
-[node name="plainWall10" parent="walls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(-0.0153086, 0, 0.999728, 0, 0.565216, 0, -0.653472, 0, -0.0234202, 23.6302, 0, 6.87398)
+[node name="plainWall10" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(-0.0153086, 0, 0.999728, 0, 0.565216, 0, -0.653472, 0, -0.0234202, 44.6266, 0, 6.87398)
 
-[node name="plainWall11" parent="walls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(-0.0153086, 0, 0.999728, 0, 0.565216, 0, -0.653472, 0, -0.0234202, 23.916, 0, 19.0723)
+[node name="plainWall11" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(-0.0153086, 0, 0.999728, 0, 0.565216, 0, -0.653472, 0, -0.0234202, 44.9124, 0, 19.0723)
 
-[node name="plainWall12" parent="walls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(-0.0153086, 0, 0.999728, 0, 0.565216, 0, -0.653472, 0, -0.0234202, 23.0592, 0, -17.5015)
+[node name="plainWall12" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(-0.0153086, 0, 0.999728, 0, 0.565216, 0, -0.653472, 0, -0.0234202, 44.0556, 0, -17.5015)
 
-[node name="plainWall13" parent="walls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 6.17914, 0, 24.8723)
+[node name="plainWall14" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -20.8187, 0, 24.8723)
 
-[node name="plainWall14" parent="walls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -5.9392, 0, 24.8723)
+[node name="plainWall15" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -35.2173, 0, 24.8723)
 
-[node name="plainWall15" parent="walls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -18.1408, 0, 24.8723)
+[node name="plainWall16" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 7.96618, 0, 24.8723)
 
-[node name="plainWall16" parent="walls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 18.443, 0, 24.8723)
+[node name="plainWall5" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -37.4666, 0, -23.813)
 
-[node name="plainWall17" parent="walls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(-0.65306, 0, -0.0387183, 0, 0.319469, 0, 0.0253082, 0, -0.652746, 14.027, -0.203265, 10.1519)
+[node name="plainWall28" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 25.8498, 0, -23.813)
 
-[node name="plainWall18" parent="walls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 6.17914, 7.25718, -23.813)
+[node name="plainWall31" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 37.0359, 0, -23.813)
 
-[node name="plainWall19" parent="walls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -5.9392, 7.25718, -23.813)
+[node name="plainWall34" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 22.4842, 0, 24.8723)
 
-[node name="plainWall20" parent="walls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -18.1408, 7.25718, -23.813)
-
-[node name="plainWall21" parent="walls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 18.443, 7.25718, -23.813)
-
-[node name="plainWall22" parent="walls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 6.17914, 14.3347, -23.813)
-
-[node name="plainWall23" parent="walls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -5.9392, 14.3347, -23.813)
-
-[node name="plainWall24" parent="walls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -18.1408, 14.3347, -23.813)
-
-[node name="plainWall25" parent="walls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 18.443, 14.3347, -23.813)
+[node name="plainWall35" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 37.4098, 0, 24.8723)
 
 [node name="FogVolume" type="FogVolume" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.06673, 1.18452)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.85996, 1.06673, 1.18452)
 size = Vector3(100, 1, 100)
 material = SubResource("FogMaterial_uxno1")
+
+[node name="doorWall" parent="." instance=ExtResource("5_ktfd3")]
+transform = Transform3D(0.820971, 0, 0, 0, 0.565068, 0, 0, 0, 1.28408, 7.2353, 0.390994, -24.8234)
