@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtfuxlkwcfsrt"]
+
+[ext_resource type="Script" path="res://scripts/bibz.gd" id="1_1b1sm"]
+[ext_resource type="PackedScene" uid="uid://b6ufdc23p5n7w" path="res://interaction/interactionArea/interactionArea.tscn" id="1_ys8mk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1j8e4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7so44"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ij6jh"]
+
+[node name="bibz" type="Node3D"]
+script = ExtResource("1_1b1sm")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_1j8e4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("BoxMesh_7so44")
+skeleton = NodePath("")
+
+[node name="InteractionArea" parent="." instance=ExtResource("1_ys8mk")]
+action_name = "BIBS"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+transform = Transform3D(1.52539, 0, 0, 0, 1.71596, 0, 0, 0, 2.97028, 0, 0, 0)
+shape = SubResource("BoxShape3D_ij6jh")
