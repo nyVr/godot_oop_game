@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuhb4xa8wx2lu"]
+
+[ext_resource type="Script" path="res://scripts/nextlvl.gd" id="1_quhdo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t2g6a"]
+
+[node name="Area3D" type="Area3D"]
+script = ExtResource("1_quhdo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(2.01165, 0, 0, 0, 2.01165, 0, 0, 0, 2.01165, 0, 0, 0)
+shape = SubResource("BoxShape3D_t2g6a")

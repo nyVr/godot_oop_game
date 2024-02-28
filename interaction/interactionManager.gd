@@ -9,13 +9,17 @@ var activeAreas = []
 var canInteract = true
 
 func registerArea(area: interactionArea):
-	activeAreas.push_back(area)
+	print("before add", activeAreas)
+	activeAreas.append(area)
+	print("after add", activeAreas)
 	
 func unregisterArea(area: interactionArea):
 	var index = activeAreas.find(area)
+	print("before remove", activeAreas)
 	# if index exists remove it from the array
 	if index != -1:
 		activeAreas.remove_at(index)
+	print("after remove", activeAreas)
 		
 func _process(delta):
 	# if there are interactive areas find the closest
@@ -25,7 +29,6 @@ func _process(delta):
 		label.text = baseText + activeAreas[0].action_name
 		label.show()
 
-
 	else:
 		label.hide()
 		
@@ -33,6 +36,7 @@ func _input(event):
 	if event.is_action_pressed("interact") && canInteract:
 		if activeAreas.size() > 0:
 			canInteract = false
+			label.hide()
 			await activeAreas[0].interact.call()
 			canInteract = true
 		

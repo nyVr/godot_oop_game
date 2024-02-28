@@ -109,6 +109,10 @@ reflected_light_source = 2
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0
 
+[sub_resource type="FogMaterial" id="FogMaterial_uxno1"]
+albedo = Color(0.243137, 0.0941176, 0.0431373, 1)
+emission = Color(0.152941, 0.0509804, 0.0117647, 1)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ptbd4"]
 albedo_color = Color(0.121569, 0.176471, 0.101961, 1)
 
@@ -119,105 +123,103 @@ size = Vector3(50, 0.5, 50)
 [sub_resource type="BoxShape3D" id="BoxShape3D_odway"]
 size = Vector3(50, 0.5, 50)
 
-[sub_resource type="FogMaterial" id="FogMaterial_uxno1"]
-albedo = Color(0.243137, 0.0941176, 0.0431373, 1)
-emission = Color(0.152941, 0.0509804, 0.0117647, 1)
-
 [node name="level1" type="Node3D"]
 
 [node name="sky" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bl2h8")
 
-[node name="floor" type="StaticBody3D" parent="."]
-transform = Transform3D(3.04, 0, 0, 0, 1.651, 0, 0, 0, 10, 0, 0, 0)
-metadata/_edit_group_ = true
+[node name="world" type="Node3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="floor"]
-mesh = SubResource("BoxMesh_uo6qh")
+[node name="FogVolume" type="FogVolume" parent="world"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.85996, 1.06673, 1.18452)
+size = Vector3(100, 1, 100)
+material = SubResource("FogMaterial_uxno1")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
-shape = SubResource("BoxShape3D_odway")
+[node name="boundaryWalls" type="Node3D" parent="world"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="plainWall1" parent="world/boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 2.30307, 0, -23.813)
+
+[node name="plainWall2" parent="world/boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -9.81527, 0, -23.813)
+
+[node name="plainWall3" parent="world/boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -22.5947, 0, -23.813)
+
+[node name="plainWall4" parent="world/boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 14.5669, 0, -23.813)
+
+[node name="plainWall6" parent="world/boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(-0.0149392, 0, 0.666152, 0, 0.551292, 0, -0.822857, 0, -0.0283067, -44.2678, 0.120051, -0.68946)
+
+[node name="plainWall7" parent="world/boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(-0.0216651, 0, 0.671593, 0, 0.551292, 0, -1.19332, 0, -0.0285379, -44.0429, 0.120051, 11.194)
+
+[node name="plainWall8" parent="world/boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(-0.0149392, 0, 0.666152, 0, 0.551292, 0, -0.822857, 0, -0.0283067, -44.717, 0.120051, -18.9074)
+
+[node name="plainWall9" parent="world/boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(-0.0153086, 0, 0.999728, 0, 0.565216, 0, -0.653472, 0, -0.0234202, 44.3428, 0, -5.24103)
+
+[node name="plainWall10" parent="world/boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(-0.0153086, 0, 0.999728, 0, 0.565216, 0, -0.653472, 0, -0.0234202, 44.6266, 0, 6.87398)
+
+[node name="plainWall11" parent="world/boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(-0.0153086, 0, 0.999728, 0, 0.565216, 0, -0.653472, 0, -0.0234202, 44.9124, 0, 19.0723)
+
+[node name="plainWall12" parent="world/boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(-0.0153086, 0, 0.999728, 0, 0.565216, 0, -0.653472, 0, -0.0234202, 44.0556, 0, -17.5015)
+
+[node name="plainWall14" parent="world/boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -20.8187, 0, 24.8723)
+
+[node name="plainWall15" parent="world/boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -35.2173, 0, 24.8723)
+
+[node name="plainWall16" parent="world/boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 7.96618, 0, 24.8723)
+
+[node name="plainWall5" parent="world/boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -37.4666, 0, -23.813)
+
+[node name="plainWall28" parent="world/boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 25.8498, 0, -23.813)
+
+[node name="plainWall31" parent="world/boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 37.0359, 0, -23.813)
+
+[node name="plainWall34" parent="world/boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 22.4842, 0, 24.8723)
+
+[node name="plainWall35" parent="world/boundaryWalls" instance=ExtResource("4_rkueh")]
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 37.4098, 0, 24.8723)
+
+[node name="blocks" type="Node3D" parent="world"]
+
+[node name="block1" parent="world/blocks" instance=ExtResource("1_k8bqx")]
+transform = Transform3D(0.652204, -0.271918, 0.707595, 0, 0.933449, 0.35871, -0.758043, -0.233952, 0.608799, -1.77109, 6.50821, 0.787333)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="world"]
 transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, -3.089, 100, 0)
 light_color = Color(0.964706, 0.776471, 0.890196, 1)
 shadow_enabled = true
 
-[node name="blocks" type="Node3D" parent="."]
+[node name="floor" type="StaticBody3D" parent="world"]
+transform = Transform3D(3.04, 0, 0, 0, 1.651, 0, 0, 0, 10, 0, 0, 0)
+metadata/_edit_group_ = true
 
-[node name="block1" parent="blocks" instance=ExtResource("1_k8bqx")]
-transform = Transform3D(0.652204, -0.271918, 0.707595, 0, 0.933449, 0.35871, -0.758043, -0.233952, 0.608799, -1.77109, 6.50821, 0.787333)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="world/floor"]
+mesh = SubResource("BoxMesh_uo6qh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="world/floor"]
+shape = SubResource("BoxShape3D_odway")
 
 [node name="joe" parent="." instance=ExtResource("2_76w2n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.635171, 0.432967, 5.1471)
 
 [node name="dolls" parent="." instance=ExtResource("3_aal3e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0241737, 1.07537, 10.1309)
-
-[node name="boundaryWalls" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
-
-[node name="plainWall1" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 2.30307, 0, -23.813)
-
-[node name="plainWall2" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -9.81527, 0, -23.813)
-
-[node name="plainWall3" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -22.5947, 0, -23.813)
-
-[node name="plainWall4" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 14.5669, 0, -23.813)
-
-[node name="plainWall6" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(-0.0149392, 0, 0.666152, 0, 0.551292, 0, -0.822857, 0, -0.0283067, -44.2678, 0.120051, -0.68946)
-
-[node name="plainWall7" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(-0.0216651, 0, 0.671593, 0, 0.551292, 0, -1.19332, 0, -0.0285379, -44.0429, 0.120051, 11.194)
-
-[node name="plainWall8" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(-0.0149392, 0, 0.666152, 0, 0.551292, 0, -0.822857, 0, -0.0283067, -44.717, 0.120051, -18.9074)
-
-[node name="plainWall9" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(-0.0153086, 0, 0.999728, 0, 0.565216, 0, -0.653472, 0, -0.0234202, 44.3428, 0, -5.24103)
-
-[node name="plainWall10" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(-0.0153086, 0, 0.999728, 0, 0.565216, 0, -0.653472, 0, -0.0234202, 44.6266, 0, 6.87398)
-
-[node name="plainWall11" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(-0.0153086, 0, 0.999728, 0, 0.565216, 0, -0.653472, 0, -0.0234202, 44.9124, 0, 19.0723)
-
-[node name="plainWall12" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(-0.0153086, 0, 0.999728, 0, 0.565216, 0, -0.653472, 0, -0.0234202, 44.0556, 0, -17.5015)
-
-[node name="plainWall14" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -20.8187, 0, 24.8723)
-
-[node name="plainWall15" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -35.2173, 0, 24.8723)
-
-[node name="plainWall16" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 7.96618, 0, 24.8723)
-
-[node name="plainWall5" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -37.4666, 0, -23.813)
-
-[node name="plainWall28" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 25.8498, 0, -23.813)
-
-[node name="plainWall31" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 37.0359, 0, -23.813)
-
-[node name="plainWall34" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 22.4842, 0, 24.8723)
-
-[node name="plainWall35" parent="boundaryWalls" instance=ExtResource("4_rkueh")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 37.4098, 0, 24.8723)
-
-[node name="FogVolume" type="FogVolume" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.85996, 1.06673, 1.18452)
-size = Vector3(100, 1, 100)
-material = SubResource("FogMaterial_uxno1")
 
 [node name="doorWall" parent="." instance=ExtResource("5_ktfd3")]
 transform = Transform3D(0.820971, 0, 0, 0, 0.565068, 0, 0, 0, 1.28408, 7.2353, 0.390994, -24.8234)
