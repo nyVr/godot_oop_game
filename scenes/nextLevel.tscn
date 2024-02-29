@@ -10,3 +10,5 @@ script = ExtResource("1_quhdo")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(2.01165, 0, 0, 0, 2.01165, 0, 0, 0, 2.01165, 0, 0, 0)
 shape = SubResource("BoxShape3D_t2g6a")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

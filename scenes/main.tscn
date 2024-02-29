@@ -218,7 +218,7 @@ shape = SubResource("BoxShape3D_odway")
 [node name="joe" parent="." instance=ExtResource("2_76w2n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.635171, 0.432967, 5.1471)
 
-[node name="dolls" parent="." instance=ExtResource("3_aal3e")]
+[node name="stars" parent="." instance=ExtResource("3_aal3e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0241737, 1.07537, 10.1309)
 
 [node name="doorWall" parent="." instance=ExtResource("5_ktfd3")]

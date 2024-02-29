@@ -19,6 +19,6 @@ func _on_body_entered(body):
 	
 	collectCount += 1
 	
-	print(collectCount) 
+	print("Stars collected: ", collectCount) 
 
 

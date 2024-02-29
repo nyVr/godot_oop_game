@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dde3hpdyxsg0n"]
 
-[ext_resource type="Script" path="res://scripts/dolls.gd" id="1_pm6rj"]
+[ext_resource type="Script" path="res://scripts/stars.gd" id="1_nh6sh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_75wqi"]
 radius = 0.3
@@ -15,7 +15,7 @@ radius = 0.3
 height = 1.0
 
 [node name="dolls" type="Area3D"]
-script = ExtResource("1_pm6rj")
+script = ExtResource("1_nh6sh")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
