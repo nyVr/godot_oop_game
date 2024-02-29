@@ -28,5 +28,7 @@ action_name = "BIBS"
 transform = Transform3D(1.777, 0, 0, 0, 2, 0, 0, 0, 3.462, 0, 0, 0)
 shape = SubResource("BoxShape3D_ij6jh")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="." method="_on_interaction_area_body_exited"]

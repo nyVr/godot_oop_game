@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var player = get_tree().get_first_node_in_group("player")
-@onready var label = $Label
+@onready var label: Label = $Label
 
 const baseText = "PRESS [E]"
 
@@ -26,11 +26,16 @@ func _process(delta):
 	if activeAreas.size() > 0 && canInteract:
 		activeAreas.sort_custom(sortByDist)
 		# centre the label text
-		label.text = baseText + activeAreas[0].action_name
+		print("Interacting with area: ", activeAreas[0].action_name, baseText, label)
+		var activeName = activeAreas[0].action_name
+		label.text = " "
+		label.text = baseText + activeName
+		print("Interacting with area: ", activeAreas[0].action_name, baseText, label)
 		label.show()
-
 	else:
+		#label.text = baseText
 		label.hide()
+		pass
 		
 func _input(event):
 	if event.is_action_pressed("interact") && canInteract:
