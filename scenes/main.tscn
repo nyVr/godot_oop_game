@@ -1,11 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://b7atxuaof20fe"]
+[gd_scene load_steps=18 format=3 uid="uid://b7atxuaof20fe"]
 
+[ext_resource type="Script" path="res://scripts/level1.gd" id="1_eeoya"]
 [ext_resource type="PackedScene" uid="uid://dvxedggvkby4l" path="res://scenes/block.tscn" id="1_k8bqx"]
 [ext_resource type="PackedScene" uid="uid://dqr54dd08lhks" path="res://scenes/joe.tscn" id="2_76w2n"]
 [ext_resource type="PackedScene" uid="uid://dde3hpdyxsg0n" path="res://scenes/dolls.tscn" id="3_aal3e"]
 [ext_resource type="PackedScene" uid="uid://d2lr7ndyoi0x0" path="res://blender/plainWall.dae" id="4_rkueh"]
 [ext_resource type="PackedScene" uid="uid://hna6y2qyem3t" path="res://blender/doorWall.dae" id="5_ktfd3"]
+[ext_resource type="PackedScene" uid="uid://cuhb4xa8wx2lu" path="res://scenes/nextLevel.tscn" id="6_ivd6f"]
 [ext_resource type="PackedScene" uid="uid://dtfuxlkwcfsrt" path="res://scenes/bibz.tscn" id="6_o177c"]
+[ext_resource type="Script" path="res://scenes/bibz2.gd" id="7_npsgo"]
 
 [sub_resource type="Shader" id="Shader_qayms"]
 code = "
@@ -124,6 +127,7 @@ size = Vector3(50, 0.5, 50)
 size = Vector3(50, 0.5, 50)
 
 [node name="level1" type="Node3D"]
+script = ExtResource("1_eeoya")
 
 [node name="sky" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bl2h8")
@@ -224,5 +228,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0241737, 1.07537, 10.1309)
 [node name="doorWall" parent="." instance=ExtResource("5_ktfd3")]
 transform = Transform3D(0.820971, 0, 0, 0, 0.565068, 0, 0, 0, 1.28408, 7.2353, 0.390994, -24.8234)
 
+[node name="L1TOL2" parent="doorWall" instance=ExtResource("6_ivd6f")]
+transform = Transform3D(3.91, 0, 0, 0, 5.257, 0, 0, 0, 1, 0, 4.02563, 0)
+
 [node name="bibz" parent="." instance=ExtResource("6_o177c")]
 transform = Transform3D(0.999822, 0.0188833, 0, -0.0188833, 0.999822, 0, 0, 0, 1, 7.97881, 1.09832, -2.04415)
+
+[node name="bibz2" parent="." instance=ExtResource("6_o177c")]
+transform = Transform3D(0.999822, 0.0188833, 0, -0.0188833, 0.999822, 0, 0, 0, 1, 11.5819, 1.09832, -18.3817)
+script = ExtResource("7_npsgo")

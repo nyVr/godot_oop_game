@@ -8,6 +8,9 @@ const baseText = "PRESS [E]"
 var activeAreas = []
 var canInteract = true
 
+func _ready():
+	print(Global.canInput)
+
 func registerArea(area: interactionArea):
 	print("before add", activeAreas)
 	activeAreas.append(area)
@@ -26,11 +29,11 @@ func _process(delta):
 	if activeAreas.size() > 0 && canInteract:
 		activeAreas.sort_custom(sortByDist)
 		# centre the label text
-		print("Interacting with area: ", activeAreas[0].action_name, baseText, label)
+		#print("Interacting with area: ", activeAreas[0].action_name, baseText, label)
 		var activeName = activeAreas[0].action_name
 		label.text = " "
 		label.text = baseText + activeName
-		print("Interacting with area: ", activeAreas[0].action_name, baseText, label)
+		#print("Interacting with area: ", activeAreas[0].action_name, baseText, label)
 		label.show()
 	else:
 		#label.text = baseText
@@ -38,12 +41,15 @@ func _process(delta):
 		pass
 		
 func _input(event):
-	if event.is_action_pressed("interact") && canInteract:
-		if activeAreas.size() > 0:
-			canInteract = false
-			label.hide()
-			await activeAreas[0].interact.call()
-			canInteract = true
+	if Global.canInput == 1:
+		if event.is_action_pressed("interact") && canInteract:
+			if activeAreas.size() > 0:
+				canInteract = false
+				label.hide()
+				await activeAreas[0].interact.call()
+				canInteract = true
+	else:
+		label.hide()
 		
 # sort by the distance of each interactive area, with the first one bing the closest one
 func sortByDist(area1, area2):

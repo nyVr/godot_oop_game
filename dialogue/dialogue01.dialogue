@@ -5,3 +5,7 @@ Official Light: Two
 Official Light: Theee
 Official Light: Four
 => END
+
+~ debugDialogue
+debug: debug
+=> END

@@ -24,7 +24,7 @@ skeleton = NodePath("")
 [node name="InteractionArea" parent="." instance=ExtResource("1_ys8mk")]
 action_name = "BIBS"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="InteractionArea"]
 transform = Transform3D(1.777, 0, 0, 0, 2, 0, 0, 0, 3.462, 0, 0, 0)
 shape = SubResource("BoxShape3D_ij6jh")
 

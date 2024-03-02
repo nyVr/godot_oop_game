@@ -10,9 +10,11 @@ var interact: Callable = func():
 
 func _on_body_entered(body):
 	print("body_entered()")
+	Global.canInput = 1
 	InteractionManager.registerArea(self)
 
 
 func _on_body_exited(body):
 	print("body_exited()")
+	Global.canInput = 0
 	InteractionManager.unregisterArea(self)
