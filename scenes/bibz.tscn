@@ -1,13 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtfuxlkwcfsrt"]
+[gd_scene load_steps=5 format=3 uid="uid://dtfuxlkwcfsrt"]
 
 [ext_resource type="Script" path="res://scripts/bibz.gd" id="1_1b1sm"]
-[ext_resource type="PackedScene" uid="uid://b6ufdc23p5n7w" path="res://interaction/interactionArea/interactionArea.tscn" id="1_ys8mk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1j8e4"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7so44"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ij6jh"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_obstb"]
+size = Vector3(1.45313, 1, 1)
 
 [node name="bibz" type="Node3D"]
 script = ExtResource("1_1b1sm")
@@ -21,14 +21,13 @@ shape = SubResource("BoxShape3D_1j8e4")
 mesh = SubResource("BoxMesh_7so44")
 skeleton = NodePath("")
 
-[node name="InteractionArea" parent="." instance=ExtResource("1_ys8mk")]
-action_name = "BIBS"
+[node name="Area3D" type="Area3D" parent="."]
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="InteractionArea"]
-transform = Transform3D(1.777, 0, 0, 0, 2, 0, 0, 0, 3.462, 0, 0, 0)
-shape = SubResource("BoxShape3D_ij6jh")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.453125, 0, 0)
+shape = SubResource("BoxShape3D_obstb")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
-[connection signal="body_exited" from="InteractionArea" to="." method="_on_interaction_area_body_exited"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

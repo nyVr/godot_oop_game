@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b7atxuaof20fe"]
+[gd_scene load_steps=17 format=3 uid="uid://b7atxuaof20fe"]
 
 [ext_resource type="Script" path="res://scripts/level1.gd" id="1_eeoya"]
 [ext_resource type="PackedScene" uid="uid://dvxedggvkby4l" path="res://scenes/block.tscn" id="1_k8bqx"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://hna6y2qyem3t" path="res://blender/doorWall.dae" id="5_ktfd3"]
 [ext_resource type="PackedScene" uid="uid://cuhb4xa8wx2lu" path="res://scenes/nextLevel.tscn" id="6_ivd6f"]
 [ext_resource type="PackedScene" uid="uid://dtfuxlkwcfsrt" path="res://scenes/bibz.tscn" id="6_o177c"]
-[ext_resource type="Script" path="res://scenes/bibz2.gd" id="7_npsgo"]
 
 [sub_resource type="Shader" id="Shader_qayms"]
 code = "
@@ -233,7 +232,3 @@ transform = Transform3D(3.91, 0, 0, 0, 5.257, 0, 0, 0, 1, 0, 4.02563, 0)
 
 [node name="bibz" parent="." instance=ExtResource("6_o177c")]
 transform = Transform3D(0.999822, 0.0188833, 0, -0.0188833, 0.999822, 0, 0, 0, 1, 7.97881, 1.09832, -2.04415)
-
-[node name="bibz2" parent="." instance=ExtResource("6_o177c")]
-transform = Transform3D(0.999822, 0.0188833, 0, -0.0188833, 0.999822, 0, 0, 0, 1, 11.5819, 1.09832, -18.3817)
-script = ExtResource("7_npsgo")
