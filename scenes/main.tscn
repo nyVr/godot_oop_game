@@ -127,7 +127,7 @@ size = Vector3(50, 0.5, 50)
 size = Vector3(50, 0.5, 50)
 
 [node name="level1" type="Node3D"]
-process_mode = 1
+process_mode = 3
 script = ExtResource("1_eeoya")
 
 [node name="sky" type="WorldEnvironment" parent="."]
