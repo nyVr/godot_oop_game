@@ -12,6 +12,7 @@ material = SubResource("StandardMaterial3D_arqs6")
 [sub_resource type="BoxShape3D" id="BoxShape3D_16lxf"]
 
 [node name="joe" type="CharacterBody3D" groups=["player"]]
+process_mode = 1
 collision_mask = 7
 script = ExtResource("1_a5mng")
 metadata/_edit_group_ = true

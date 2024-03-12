@@ -10,6 +10,7 @@
 size = Vector3(1.45313, 1, 1)
 
 [node name="bibz" type="Node3D"]
+process_mode = 1
 script = ExtResource("1_1b1sm")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]

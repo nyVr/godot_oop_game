@@ -38,10 +38,12 @@ func _input(event):
 func pause():
 	isPaused = true
 	Engine.time_scale = 0
+	get_tree().paused = true
 	$CanvasLayer/Pause.show()
 
 # start the time when ESC pressed again
 func unpause():
 	isPaused = false
 	Engine.time_scale = 1
+	get_tree().paused = false
 	$CanvasLayer/Pause.hide()
