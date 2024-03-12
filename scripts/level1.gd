@@ -1,15 +1,34 @@
 extends Node3D
 
+var isPaused = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$CanvasLayer/Pause.hide()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("esc"):
-		Engine.time_scale = 0
-		get_tree().change_scene_to_file("res://scenes/UI/pause.tscn")
-		
-func pauseMenu():
 	pass
+		
+func _input(event):
+	if event.is_action_pressed("esc"):
+		if isPaused:
+			print("***UNPAUSE***")
+			unpause()
+		else:
+			print("***PAUSE***")
+			pause()
+	else:
+		pass
+		
+func pause():
+	isPaused = true
+	Engine.time_scale = 0
+	$CanvasLayer/Pause.show()
+	
+
+func unpause():
+	isPaused = false
+	Engine.time_scale = 1
+	$CanvasLayer/Pause.hide()
