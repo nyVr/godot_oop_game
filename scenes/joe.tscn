@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqr54dd08lhks"]
+[gd_scene load_steps=8 format=3 uid="uid://dqr54dd08lhks"]
 
 [ext_resource type="Script" path="res://scripts/joe.gd" id="1_a5mng"]
 [ext_resource type="PackedScene" uid="uid://b7tjv03l5fi8l" path="res://scenes/health.tscn" id="2_qov3n"]
+[ext_resource type="PackedScene" uid="uid://d0j8b5v0w71pc" path="res://scenes/lanternHP.tscn" id="3_c2x12"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_arqs6"]
 albedo_color = Color(0.254902, 0.576471, 0.392157, 1)
@@ -48,6 +49,12 @@ anchor_right = 1.0
 offset_left = -240.0
 offset_bottom = 23.0
 grow_horizontal = 0
+
+[node name="LanternHp" parent="CanvasLayer" instance=ExtResource("3_c2x12")]
+offset_left = 912.0
+offset_top = 30.0
+offset_right = 1152.0
+offset_bottom = 53.0
 
 [node name="hitbox" type="Area3D" parent="."]
 
