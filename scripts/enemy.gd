@@ -9,3 +9,13 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+func _on_detection_area_body_entered(body):
+	if body.is_in_group("player"):
+		print("***ENEMY DETECTION AREA ENTERED***")
+
+
+func _on_enemy_hitbox_body_entered(body):
+	if body.is_in_group("player"):
+		print("***ENEMY HITBOX AREA ENTERED***")

@@ -1,6 +1,12 @@
 extends CharacterBody3D
 
 @onready var healthBar = $CanvasLayer/health
+@onready var timer = $Timer
+@onready var health = 100
+
+
+
+signal health_decrease(amountDmg)
 
 var hitbox
 var hitLight
@@ -11,8 +17,15 @@ const JUMP_VELOCITY = 4.5
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+func _process(_delta):
+	timer.wait_time = 5 # Timer will count down from 5 seconds
+	
+	
+
+
+
 func _ready():
-	var health = 100
+	timer.start()
 	healthBar.init_health(health)
 	
 	hitbox = $hitbox/joeAtkArea
@@ -23,7 +36,16 @@ func _set_health(value):
 	#super._set_health(value)
 	#if health <= 0:
 	pass
-	#healthBar.health = health
+	healthBar.health = health
+
+
+func _on_timer_timeout():
+	health = health - 5
+	_set_health(5)
+	print(health)
+	
+func charDeath():
+	pass
 
 
 func _physics_process(delta):
@@ -54,7 +76,7 @@ func _input(event):
 		hitbox.scale += Vector3(3, 3, 3)
 		hitLight.light_energy = 10
 	if event.is_action_released("q"):
-		print("***ATTACK RELEASE")
+		print("***ATTACK RELEASE***")
 		hitbox.scale -= Vector3(3, 3, 3)
 		hitLight.light_energy = 0
 		

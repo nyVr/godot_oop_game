@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://efjgw673wkm7"]
+[gd_scene load_steps=6 format=3 uid="uid://efjgw673wkm7"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_utle7"]
 
@@ -6,7 +6,9 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_oo444"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ys7dm"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_8hev4"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tdjsa"]
 
 [node name="enemy" type="CharacterBody3D"]
 script = ExtResource("1_utle7")
@@ -20,6 +22,18 @@ mesh = SubResource("BoxMesh_oo444")
 [node name="enemyHitbox" type="Area3D" parent="."]
 
 [node name="enHBArea" type="CollisionShape3D" parent="enemyHitbox"]
-shape = SubResource("BoxShape3D_ys7dm")
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+shape = SubResource("SphereShape3D_8hev4")
 
 [node name="enAtk" type="OmniLight3D" parent="enemyHitbox/enHBArea"]
+light_color = Color(0, 0, 0, 1)
+light_energy = 2.0
+
+[node name="detectionArea" type="Area3D" parent="."]
+
+[node name="area" type="CollisionShape3D" parent="detectionArea"]
+transform = Transform3D(6.5, 0, 0, 0, 6.5, 0, 0, 0, 6.5, 0, 0, 0)
+shape = SubResource("SphereShape3D_tdjsa")
+
+[connection signal="body_entered" from="enemyHitbox" to="." method="_on_enemy_hitbox_body_entered"]
+[connection signal="body_entered" from="detectionArea" to="." method="_on_detection_area_body_entered"]

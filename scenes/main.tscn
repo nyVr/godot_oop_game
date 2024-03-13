@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b7atxuaof20fe"]
+[gd_scene load_steps=19 format=3 uid="uid://b7atxuaof20fe"]
 
 [ext_resource type="Script" path="res://scripts/level1.gd" id="1_eeoya"]
 [ext_resource type="PackedScene" uid="uid://dvxedggvkby4l" path="res://scenes/block.tscn" id="1_k8bqx"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cuhb4xa8wx2lu" path="res://scenes/nextLevel.tscn" id="6_ivd6f"]
 [ext_resource type="PackedScene" uid="uid://dtfuxlkwcfsrt" path="res://scenes/bibz.tscn" id="6_o177c"]
 [ext_resource type="PackedScene" uid="uid://bhasjjid0r6w3" path="res://scenes/UI/pause.tscn" id="9_t4jsp"]
+[ext_resource type="PackedScene" uid="uid://efjgw673wkm7" path="res://scenes/enemy.tscn" id="10_bjgpl"]
 
 [sub_resource type="Shader" id="Shader_qayms"]
 code = "
@@ -240,3 +241,6 @@ transform = Transform3D(0.999822, 0.0188833, 0, -0.0188833, 0.999822, 0, 0, 0, 1
 
 [node name="Pause" parent="CanvasLayer" instance=ExtResource("9_t4jsp")]
 visible = false
+
+[node name="enemy" parent="." instance=ExtResource("10_bjgpl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1171, 1.64521, 2.1667)
