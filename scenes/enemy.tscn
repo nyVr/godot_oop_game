@@ -10,7 +10,7 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_tdjsa"]
 
-[node name="enemy" type="CharacterBody3D"]
+[node name="enemy" type="CharacterBody3D" groups=["enemy"]]
 script = ExtResource("1_utle7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

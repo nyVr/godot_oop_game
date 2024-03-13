@@ -222,7 +222,7 @@ mesh = SubResource("BoxMesh_uo6qh")
 shape = SubResource("BoxShape3D_odway")
 
 [node name="joe" parent="." instance=ExtResource("2_76w2n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.635171, 0.432967, 5.1471)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.635171, 1.31751, 5.1471)
 
 [node name="stars" parent="." instance=ExtResource("3_aal3e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0241737, 1.07537, 10.1309)
@@ -235,7 +235,7 @@ process_mode = 1
 transform = Transform3D(3.91, 0, 0, 0, 5.257, 0, 0, 0, 1, 0, 4.02563, 0)
 
 [node name="bibz" parent="." instance=ExtResource("6_o177c")]
-transform = Transform3D(0.999822, 0.0188833, 0, -0.0188833, 0.999822, 0, 0, 0, 1, 7.97881, 1.09832, -2.04415)
+transform = Transform3D(0.999822, 0.0188833, 0, -0.0188833, 0.999822, 0, 0, 0, 1, 7.97881, 1.09832, -21.4439)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

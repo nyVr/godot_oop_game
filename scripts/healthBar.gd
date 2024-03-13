@@ -5,7 +5,7 @@ extends ProgressBar
 
 var health = 0 : set = _set_health
 
-
+# update health and damage bar delay
 func _set_health(newHealth):
 	var oldHealth = health
 	health = min(max_value, newHealth)
@@ -19,8 +19,7 @@ func _set_health(newHealth):
 	else:
 		damageBar.value = health
 	
-
-
+# init health 
 func init_health(_health):
 	health = _health
 	max_value = health
@@ -28,6 +27,6 @@ func init_health(_health):
 	damageBar.max_value = health
 	damageBar.value = health
 	
-
+# damage bar delay for health bar
 func _on_timer_timeout():
 	damageBar.value = health

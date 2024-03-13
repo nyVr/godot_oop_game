@@ -8,7 +8,7 @@ extends CharacterBody3D
 @onready var lanternHP = 100
 @onready var timerWait = 2.5
 
-# wip
+# wip - work on enemy signal health deplete
 signal health_decrease(amountDmg)
 
 # vars
@@ -33,12 +33,14 @@ func _ready():
 	hitbox = $hitbox/joeAtkArea
 	hitLight = $hitbox/joeAtkArea/joeAttack
 
-# on setting health called
+# on setting health called update joe health
 func _set_health(value):
 	#super._set_health(value)
-	#if health <= 0:
+	if health <= 0:
+		charDeath()
 	healthBar.health = health
 	
+# on set lantern health called update lantern health	
 func _set_lanternHealth(value):
 	lanternBar.lanternHealth = lanternHP
 
@@ -83,12 +85,16 @@ func _input(event):
 	if lanternHP > 0:
 		if event.is_action_pressed("q"):
 			print("***ATTACK***")
-			hitbox.scale += Vector3(3, 3, 3)
-			hitLight.light_energy = 10
+			hitbox.scale += Vector3(4.5, 4.5, 4.5)
+			hitLight.light_energy = 15
 			timer.start()
 		if event.is_action_released("q"):
 			print("***ATTACK RELEASE***")
-			hitbox.scale -= Vector3(3, 3, 3)
+			hitbox.scale -= Vector3(4.5, 4.5, 4.5)
 			hitLight.light_energy = 0
 			attackOn = false
-		
+
+# enemy enter joe hit box when attack
+func _on_hitbox_body_entered(body):
+	if body.is_in_group("enemy"):
+		print("*****ENEMY ENTER ATTACK HITBOX*****")
