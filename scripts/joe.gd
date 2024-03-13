@@ -34,14 +34,14 @@ func _ready():
 	hitLight = $hitbox/joeAtkArea/joeAttack
 
 # on setting health called update joe health
-func _set_health(value):
+func _set_health(_value):
 	#super._set_health(value)
 	if health <= 0:
 		charDeath()
 	healthBar.health = health
 	
 # on set lantern health called update lantern health	
-func _set_lanternHealth(value):
+func _set_lanternHealth(_value):
 	lanternBar.lanternHealth = lanternHP
 
 # on timeout - wip

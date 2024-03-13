@@ -8,13 +8,13 @@ class_name interactionArea
 var interact: Callable = func():
 	pass
 
-func _on_body_entered(body):
+func _on_body_entered(_body):
 	print("body_entered()")
 	Global.canInput = 1
 	InteractionManager.registerArea(self)
 
 
-func _on_body_exited(body):
+func _on_body_exited(_body):
 	print("body_exited()")
 	Global.canInput = 0
 	InteractionManager.unregisterArea(self)

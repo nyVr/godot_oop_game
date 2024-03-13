@@ -8,7 +8,7 @@ func _ready():
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("esc"):
 		if Global.isPaused:
 			print("***UNPAUSE***")
@@ -19,7 +19,7 @@ func _process(delta):
 	else:
 		pass
 
-func _input(event):
+func _input(_event):
 	pass
 	#if event.is_action_pressed("esc"):
 		#if isPaused:

@@ -8,11 +8,11 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	rotate_y(deg_to_rad(ROT_SPEED))
 	
 
-func _on_body_entered(body):
+func _on_body_entered(_body):
 	queue_free() 
 	
 	Global.starsCount += 1

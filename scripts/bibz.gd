@@ -1,15 +1,15 @@
 extends Node3D
 
-@onready var interaction_area: interactionArea = $InteractionArea
+#@onready var interaction_area: interactionArea = $InteractionArea
 
 var inputReady = 0
 
-# Called when the node enters the scene tree for the first time.
+# onready local
 func _ready():
 	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+# every frame
+func _process(_delta):
 	if inputReady && Input.is_action_just_pressed("interact"):
 		print("*****BIBZ INTERACTINO DIALOGUE START*****")
 		var dialogue = load("res://dialogue/dialogue01.dialogue")

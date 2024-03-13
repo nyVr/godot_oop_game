@@ -4,7 +4,7 @@ var lanternHealth = 0 : set = _set_lanternHealth
 
 # update lantern health
 func _set_lanternHealth(newLTHealth):
-	var oldHealth = lanternHealth
+	var _oldHealth = lanternHealth
 	lanternHealth = min(max_value, newLTHealth)
 	value = lanternHealth
 	

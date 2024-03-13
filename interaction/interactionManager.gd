@@ -24,7 +24,7 @@ func unregisterArea(area: interactionArea):
 		activeAreas.remove_at(index)
 	print("after remove", activeAreas)
 		
-func _process(delta):
+func _process(_delta):
 	# if there are interactive areas find the closest
 	if activeAreas.size() > 0 && canInteract:
 		activeAreas.sort_custom(sortByDist)
