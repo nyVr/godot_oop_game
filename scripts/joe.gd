@@ -2,6 +2,9 @@ extends CharacterBody3D
 
 @onready var healthBar = $CanvasLayer/health
 
+var hitbox
+var hitLight
+
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
@@ -11,6 +14,9 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
 	var health = 100
 	healthBar.init_health(health)
+	
+	hitbox = $hitbox/joeAtkArea
+	hitLight = $hitbox/joeAtkArea/joeAttack
 
 
 func _set_health(value):
@@ -41,3 +47,14 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+	
+func _input(event):
+	if event.is_action_pressed("q"):
+		print("***ATTACK***")
+		hitbox.scale += Vector3(3, 3, 3)
+		hitLight.light_energy = 10
+	if event.is_action_released("q"):
+		print("***ATTACK RELEASE")
+		hitbox.scale -= Vector3(3, 3, 3)
+		hitLight.light_energy = 0
+		

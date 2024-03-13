@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqr54dd08lhks"]
+[gd_scene load_steps=7 format=3 uid="uid://dqr54dd08lhks"]
 
 [ext_resource type="Script" path="res://scripts/joe.gd" id="1_a5mng"]
 [ext_resource type="PackedScene" uid="uid://b7tjv03l5fi8l" path="res://scenes/health.tscn" id="2_qov3n"]
@@ -10,6 +10,8 @@ albedo_color = Color(0.254902, 0.576471, 0.392157, 1)
 material = SubResource("StandardMaterial3D_arqs6")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_16lxf"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6agj8"]
 
 [node name="joe" type="CharacterBody3D" groups=["player"]]
 process_mode = 1
@@ -32,7 +34,7 @@ margin = 0.2
 
 [node name="playerCam" type="Camera3D" parent="tripod"]
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="baseLight" type="OmniLight3D" parent="."]
 light_color = Color(1, 1, 0, 1)
 light_energy = 0.661
 light_volumetric_fog_energy = 2.016
@@ -46,3 +48,11 @@ anchor_right = 1.0
 offset_left = -240.0
 offset_bottom = 23.0
 grow_horizontal = 0
+
+[node name="hitbox" type="Area3D" parent="."]
+
+[node name="joeAtkArea" type="CollisionShape3D" parent="hitbox"]
+shape = SubResource("SphereShape3D_6agj8")
+
+[node name="joeAttack" type="OmniLight3D" parent="hitbox/joeAtkArea"]
+light_color = Color(0.894118, 0.737255, 0, 1)

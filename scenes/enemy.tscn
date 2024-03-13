@@ -1,3 +1,25 @@
-[gd_scene format=3 uid="uid://efjgw673wkm7"]
+[gd_scene load_steps=5 format=3 uid="uid://efjgw673wkm7"]
 
-[node name="enemy" type="Node3D"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_utle7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_snhiw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_oo444"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ys7dm"]
+
+[node name="enemy" type="CharacterBody3D"]
+script = ExtResource("1_utle7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_snhiw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_oo444")
+
+[node name="enemyHitbox" type="Area3D" parent="."]
+
+[node name="enHBArea" type="CollisionShape3D" parent="enemyHitbox"]
+shape = SubResource("BoxShape3D_ys7dm")
+
+[node name="enAtk" type="OmniLight3D" parent="enemyHitbox/enHBArea"]
