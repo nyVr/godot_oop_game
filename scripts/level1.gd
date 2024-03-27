@@ -2,6 +2,12 @@ extends Node3D
 
 class_name Level1
 
+@onready var player = $joe
+
+# 
+func _physics_process(delta):
+	get_tree().call_group("enemy", "updatePlayerLocation", player.global_transform.origin)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$CanvasLayer/Pause.hide()
@@ -21,15 +27,6 @@ func _process(_delta):
 
 func _input(_event):
 	pass
-	#if event.is_action_pressed("esc"):
-		#if isPaused:
-			#print("***UNPAUSE***")
-			#unpause()
-		#else:
-			#print("***PAUSE***")
-			#pause()
-	#else:
-		#pass
 		
 func _on_resume_press():
 	if Global.isPaused:

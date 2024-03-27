@@ -33,8 +33,6 @@ transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 
 spring_length = 8.0
 margin = 0.2
 
-[node name="playerCam" type="Camera3D" parent="tripod"]
-
 [node name="baseLight" type="OmniLight3D" parent="."]
 light_color = Color(1, 1, 0, 1)
 light_energy = 0.661
@@ -65,6 +63,9 @@ shape = SubResource("SphereShape3D_6agj8")
 light_color = Color(0.894118, 0.737255, 0, 1)
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="playerCam" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 6, 9)
 
 [connection signal="health_decrease" from="." to="." method="_on_health_decrease"]
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

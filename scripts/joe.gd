@@ -6,7 +6,7 @@ extends CharacterBody3D
 @onready var timer = $Timer
 @onready var health = 100
 @onready var lanternHP = 100
-@onready var timerWait = 2.5
+@onready var timerWait = 1
 
 # wip - work on enemy signal health deplete
 signal health_decrease(amountDmg)
@@ -38,11 +38,13 @@ func _set_health(_value):
 	#super._set_health(value)
 	if health <= 0:
 		charDeath()
-	healthBar.health = health
+	if health > 0:
+		healthBar.health = health
 	
 # on set lantern health called update lantern health	
 func _set_lanternHealth(_value):
-	lanternBar.lanternHealth = lanternHP
+	if lanternHP > 0:
+		lanternBar.lanternHealth = lanternHP
 
 # on timeout - wip
 func _on_timer_timeout():
@@ -81,6 +83,7 @@ func _physics_process(delta):
 	move_and_slide()
 	
 # on input
+# fix bug wher atk stays on if held after depleted
 func _input(event):
 	if lanternHP > 0:
 		if event.is_action_pressed("q"):
