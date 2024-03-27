@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bhasjjid0r6w3"]
+[gd_scene load_steps=3 format=3 uid="uid://bhasjjid0r6w3"]
 
 [ext_resource type="Script" path="res://scenes/UI/pause.gd" id="1_uenc1"]
+[ext_resource type="Texture2D" uid="uid://bc0vddhuce76v" path="res://textures/images/1000000076.png" id="2_238wu"]
 
 [node name="Pause" type="Control"]
 process_mode = 2
@@ -19,6 +20,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="1000000076" type="Sprite2D" parent="MarginContainer"]
+position = Vector2(578, 326.5)
+scale = Vector2(1.2125, 1.17199)
+texture = ExtResource("2_238wu")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
