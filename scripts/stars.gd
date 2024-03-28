@@ -12,11 +12,12 @@ func _process(_delta):
 	rotate_y(deg_to_rad(ROT_SPEED))
 	
 
-func _on_body_entered(_body):
-	queue_free() 
-	
-	Global.starsCount += 1
-	
-	print("Stars collected: ", Global.starsCount) 
+func _on_body_entered(body):
+	if body.is_in_group("player"):
+		queue_free() 
+		
+		Global.starsCount += 1
+		
+		print("Stars collected: ", Global.starsCount) 
 
 

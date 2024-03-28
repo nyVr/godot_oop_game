@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
 # onready global (script only)
-@onready var healthBar = $CanvasLayer/health
-@onready var lanternBar = $CanvasLayer/LanternHp
+@onready var healthBar = $bars/health
+@onready var lanternBar = $bars/LanternHp
 @onready var timer = $Timer
 @onready var health = 100
 @onready var lanternHP = 100
@@ -37,8 +37,8 @@ func _ready():
 	hitbox = $hitbox/joeAtkArea
 	hitLight = $hitbox/joeAtkArea/joeAttack
 	character = $"."
-	characterMesh = $MeshInstance3D
-	characterCol = $CollisionShape3D
+	characterMesh = $body
+	characterCol = $bodyCol
 
 # on setting health called update joe health
 func _set_health(_value):
