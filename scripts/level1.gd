@@ -5,7 +5,7 @@ class_name Level1
 @onready var player = $joe
 
 # 
-func _physics_process(delta):
+func _physics_process(_delta):
 	get_tree().call_group("enemy", "updatePlayerLocation", player.global_transform.origin)
 
 # Called when the node enters the scene tree for the first time.

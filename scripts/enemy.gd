@@ -13,7 +13,7 @@ var playerIn = false
 var initLoc
 
 
-func _process(delta):
+func _process(_delta):
 	pass
 
 func _ready():
@@ -44,7 +44,7 @@ func _physics_process(delta):
 		
 
 # move the enemy back to origin position if the player leaves their detec area
-func move_to_init_pos(delta):
+func move_to_init_pos(_delta):
 	var direction = (initLoc - global_transform.origin).normalized()
 	velocity = direction * SPEED2
 	move_and_slide()
