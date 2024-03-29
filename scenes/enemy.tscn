@@ -35,11 +35,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("BoxMesh_oo444")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-target_desired_distance = 3.0
-path_height_offset = 0.5
+target_desired_distance = 2.0
+path_height_offset = 0.01
 avoidance_enabled = true
 radius = 1.0
-use_3d_avoidance = true
 
 [node name="enemyHitbox" type="Area3D" parent="."]
 

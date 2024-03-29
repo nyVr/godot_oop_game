@@ -261,7 +261,7 @@ transform = Transform3D(0.999822, 0.0188833, 0, -0.0188833, 0.999822, 0, 0, 0, 1
 visible = false
 
 [node name="enemy" parent="." instance=ExtResource("10_bjgpl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1171, 0.880869, 2.1667)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1171, 0.624712, 2.1667)
 
 [node name="enemy2" parent="." instance=ExtResource("10_bjgpl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.468, 1, -19.046)
@@ -271,7 +271,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5066, 0.41275, -11.6646)
 
 [node name="enemy4" parent="." instance=ExtResource("10_bjgpl")]
 process_mode = 1
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.58874, 0.902522, -6.93021)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.58874, 0.735663, -6.93021)
 
 [node name="enemy5" parent="." instance=ExtResource("10_bjgpl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.40168, 0.9011, -2.34586)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.40168, 0.462617, -2.34586)
