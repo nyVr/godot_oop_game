@@ -5,10 +5,14 @@ extends ProgressBar
 
 var health = 0 : set = _set_health
 
+
+func _ready():
+	Global.connect("set_health", _set_health)
+
 # update health and damage bar delay
 func _set_health(newHealth):
 	var oldHealth = health
-	health = min(max_value, newHealth)
+	health = clamp(newHealth, 0, max_value)
 	value = health
 	
 	if health <= 0:

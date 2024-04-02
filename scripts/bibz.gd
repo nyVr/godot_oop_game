@@ -4,6 +4,8 @@ extends Node3D
 
 var inputReady = 0
 
+# array of dialogue?
+
 # onready local
 func _ready():
 	pass

@@ -6,18 +6,26 @@ extends CharacterBody3D
 @onready var timer = $Timer
 @onready var health = 100
 @onready var lanternHP = 100
-@onready var timerWait = 1
+@onready var lanternLoseHP = 1
 
 # wip - work on enemy signal health deplete
 signal health_decrease(amountDmg)
 
-# vars
+
+## vars
+# lantern 
 var hitbox
 var hitLight
+var lanternDmg = 20
+var lanternLose = false
+var lanternCD = true
+
 var attackOn = false
+
 var character
 var characterMesh
 var characterCol
+
 var angleAcc = 10
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -26,13 +34,21 @@ const JUMP_VELOCITY = 4.5
 
 # on every frame
 func _process(_delta):
-	timer.wait_time = timerWait # Timer will count down from 5 seconds
+	# init timer timeout
+	timer.wait_time = lanternLoseHP 
 	
 # on ready local
 func _ready():
+	# start timer
 	timer.start()
+	
+	# init healthbars
 	healthBar.init_health(health)
 	lanternBar.init_lanternHealth(lanternHP)
+	
+	# connections
+	Global.connect("player_attacked", _on_enemy_player_attacked)
+	
 	# vars
 	hitbox = $hitbox/joeAtkArea
 	hitLight = $hitbox/joeAtkArea/joeAttack
@@ -43,28 +59,29 @@ func _ready():
 # on setting health called update joe health
 func _set_health(_value):
 	#super._set_health(value)
+	health = health - _value
 	if health <= 0:
 		charDeath()
 	if health > 0:
-		healthBar.health = health
+		Global.emit_signal("set_health", health)
+	print("HEALTH: ", health)
 	
 # on set lantern health called update lantern health	
 func _set_lanternHealth(_value):
 	if lanternHP > 0:
 		lanternBar.lanternHealth = lanternHP
 
-# on timeout - wip
+# on timeout for lantern when lantern on reduce lantern hp
 func _on_timer_timeout():
-	lanternHP = lanternHP - 5
-	health = health - 5
-	_set_health(5)
-	_set_lanternHealth(5)
-	print(lanternHP)
-	print(health)
+	if attackOn:
+		lanternHP = lanternHP - 1
+		_set_lanternHealth(5)
+		print("LANTERN HEALTH: ", lanternHP)
+
 	
 # no joe dies call
 func charDeath():
-	pass
+	get_tree().change_scene_to_file("res://scenes/UI/youDied.tscn")
 
 # movement 
 func _physics_process(delta):
@@ -89,9 +106,6 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-
-	
-
 	move_and_slide()
 	
 # on input
@@ -102,7 +116,7 @@ func _input(event):
 			print("***ATTACK***")
 			hitbox.scale += Vector3(4.5, 4.5, 4.5)
 			hitLight.light_energy = 15
-			timer.start()
+			attackOn = true
 		if event.is_action_released("q"):
 			print("***ATTACK RELEASE***")
 			hitbox.scale -= Vector3(4.5, 4.5, 4.5)
@@ -111,5 +125,13 @@ func _input(event):
 
 # enemy enter joe hit box when attack
 func _on_hitbox_body_entered(body):
-	if body.is_in_group("enemy"):
+	if attackOn and body.is_in_group("enemy"):
 		print("*****ENEMY ENTER ATTACK HITBOX*****")
+		body._enemy_attacked(lanternDmg)
+
+
+func _on_enemy_player_attacked(attackDmg):
+	print("ATTACKED: ", attackDmg)
+	_set_health(attackDmg)
+
+

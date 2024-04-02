@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/lanternHP.gd" id="1_4r608"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7surv"]
-bg_color = Color(0.403922, 0.403922, 0.403922, 1)
+bg_color = Color(0, 0, 0, 0.137255)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m5sf1"]
 bg_color = Color(0.917647, 0.87451, 0.419608, 1)
@@ -16,9 +16,10 @@ shadow_offset = Vector2(0, 1)
 [node name="LanternHp" type="ProgressBar"]
 z_index = 1
 offset_right = 240.0
-offset_bottom = 23.0
-size_flags_horizontal = 8
+offset_bottom = 5.0
+size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_7surv")
 theme_override_styles/fill = SubResource("StyleBoxFlat_m5sf1")
 value = 60.0
+show_percentage = false
 script = ExtResource("1_4r608")
