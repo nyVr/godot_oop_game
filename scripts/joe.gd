@@ -34,12 +34,12 @@ const JUMP_VELOCITY = 4.5
 
 # on every frame
 func _process(_delta):
-	# init timer timeout
-	timer.wait_time = lanternLoseHP 
+	pass
 	
 # on ready local
 func _ready():
 	# start timer
+	timer.wait_time = lanternLoseHP 
 	timer.start()
 	
 	# init healthbars
@@ -56,32 +56,6 @@ func _ready():
 	characterMesh = $body
 	characterCol = $bodyCol
 
-# on setting health called update joe health
-func _set_health(_value):
-	#super._set_health(value)
-	health = health - _value
-	if health <= 0:
-		charDeath()
-	if health > 0:
-		Global.emit_signal("set_health", health)
-	print("HEALTH: ", health)
-	
-# on set lantern health called update lantern health	
-func _set_lanternHealth(_value):
-	if lanternHP > 0:
-		lanternBar.lanternHealth = lanternHP
-
-# on timeout for lantern when lantern on reduce lantern hp
-func _on_timer_timeout():
-	if attackOn:
-		lanternHP = lanternHP - 1
-		_set_lanternHealth(5)
-		print("LANTERN HEALTH: ", lanternHP)
-
-	
-# no joe dies call
-func charDeath():
-	get_tree().change_scene_to_file("res://scenes/UI/youDied.tscn")
 
 # movement 
 func _physics_process(delta):
@@ -134,4 +108,34 @@ func _on_enemy_player_attacked(attackDmg):
 	print("ATTACKED: ", attackDmg)
 	_set_health(attackDmg)
 
+
+## setters
+
+# on setting health called update joe health
+func _set_health(_value):
+	#super._set_health(value)
+	health = health - _value
+	if health <= 0:
+		charDeath()
+	if health > 0:
+		Global.emit_signal("set_health", health)
+	print("HEALTH: ", health)
+	
+# on set lantern health called update lantern health	
+func _set_lanternHealth(value):
+	lanternHP = lanternHP + value
+	if lanternHP > 0:
+		lanternBar.lanternHealth = lanternHP
+
+# no joe dies call
+func charDeath():
+	get_tree().change_scene_to_file("res://scenes/UI/youDied.tscn")
+
+## timeouts
+
+# on timeout for lantern when lantern on reduce lantern hp
+func _on_timer_timeout():
+	if attackOn:
+		_set_lanternHealth(-1)
+		print("LANTERN HEALTH: ", lanternHP)
 

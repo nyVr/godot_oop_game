@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgnk7tohhmqu2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aypgr"]
+bg_color = Color(0, 0, 0, 0.501961)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tg1yu"]
+bg_color = Color(0.827451, 0.772549, 0, 1)
+
+[node name="RechargeBar" type="SubViewportContainer"]
+offset_right = 256.0
+offset_bottom = 256.0
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(256, 256)
+render_target_update_mode = 4
+
+[node name="rechargeBar" type="ProgressBar" parent="SubViewport"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.5
+offset_top = -7.5
+offset_right = 62.5
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_aypgr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_tg1yu")
+value = 50.0
+show_percentage = false

@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bevwjnawygfoa"]
+[gd_scene load_steps=2 format=3 uid="uid://bevwjnawygfoa"]
+
+[ext_resource type="Script" path="res://scenes/UI/death.gd" id="1_4l7yh"]
 
 [node name="YouDied" type="Control"]
 layout_mode = 3
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_4l7yh")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -23,3 +26,9 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 8
 text = "YOU DIED"
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "RESTART"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

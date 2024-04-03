@@ -18,7 +18,7 @@ var health = 0 : set = _set_enemy_health
 
 
 func _process(_delta):
-	cooldown.wait_time = coolDownSeconds
+	pass
 
 func _ready():
 	# init health
@@ -31,6 +31,7 @@ func _ready():
 	initLoc = global_transform.origin
 	
 	# start enemys cooldown timer
+	cooldown.wait_time = coolDownSeconds
 	cooldown.start()
 	
 	# connections
@@ -53,7 +54,11 @@ func _physics_process(delta):
 	else:
 		move_to_init_pos(delta)
 		enemy_bar.hide()
-		
+
+
+## navigation ai 
+
+
 # move the enemy back to origin position if the player leaves their detec area
 func move_to_init_pos(_delta):
 	var direction = (initLoc - global_transform.origin).normalized()
@@ -81,6 +86,15 @@ func _on_detection_area_body_exited(body):
 		print("***ENEMY DETECTION AREA EXITED***")
 		playerIn = false
 
+# avoid cols using safe velocity
+func _on_navigation_agent_3d_velocity_computed(safe_velocity):
+	velocity = velocity.move_toward(safe_velocity, 0.25)
+	move_and_slide()
+
+
+## attack ai
+
+
 # to get rid of
 func _on_enemy_hitbox_body_exited(body):
 	if body.is_in_group("player"):
@@ -97,10 +111,7 @@ func _on_navigation_agent_3d_target_reached():
 		Global.emit_signal("player_attacked", attackDmg)
 		canAttack = false
 
-# avoid cols using safe velocity
-func _on_navigation_agent_3d_velocity_computed(safe_velocity):
-	velocity = velocity.move_toward(safe_velocity, 0.25)
-	move_and_slide()
+
 
 # cooldown for enemy attack 
 func _on_cd_timeout():
@@ -111,13 +122,15 @@ func _enemy_attacked(dmg):
 	var newHealth = health - dmg
 	_set_enemy_health(newHealth)
 	
-	
+
+## setters 
+
+# set enemy health and bar
 func _set_enemy_health(newHealth):
 	health = clamp(newHealth, 0, enemy_bar.max_value)
 	enemy_bar.value = health
 	if health <= 0:
 		enemy_death()
-
 
 # kill enemy
 func enemy_death():

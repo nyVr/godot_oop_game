@@ -18,6 +18,9 @@ func _process(_delta):
 	pass
 
 
+## pause mechanisms
+
+
 func _on_quit_pressed():
 	get_tree().quit()
 

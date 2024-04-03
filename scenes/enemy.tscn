@@ -83,7 +83,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_pl1ms")
 value = 50.0
 show_percentage = false
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
+[node name="renderBoard" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.40943, 0)
 billboard = 1
 texture = SubResource("ViewportTexture_82n7r")

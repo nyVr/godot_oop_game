@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b7atxuaof20fe"]
+[gd_scene load_steps=22 format=3 uid="uid://b7atxuaof20fe"]
 
 [ext_resource type="Script" path="res://scripts/level1.gd" id="1_eeoya"]
 [ext_resource type="PackedScene" uid="uid://dvxedggvkby4l" path="res://scenes/block.tscn" id="1_k8bqx"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://dfx0pxkjs6pr4" path="res://textures/burned_ground_01/burned_ground_01_rough_4k.jpg" id="6_4u2mb"]
 [ext_resource type="PackedScene" uid="uid://cuhb4xa8wx2lu" path="res://scenes/nextLevel.tscn" id="6_ivd6f"]
 [ext_resource type="PackedScene" uid="uid://dtfuxlkwcfsrt" path="res://scenes/bibz.tscn" id="6_o177c"]
-[ext_resource type="PackedScene" uid="uid://ci4mif64ksh6x" path="res://scenes/lanterns.tscn" id="9_02nqx"]
 [ext_resource type="PackedScene" uid="uid://bhasjjid0r6w3" path="res://scenes/UI/pause.tscn" id="9_t4jsp"]
 
 [sub_resource type="Shader" id="Shader_qayms"]
@@ -245,9 +244,6 @@ transform = Transform3D(0.820971, 0, 0, 0, 0.565068, 0, 0, 0, 1.28408, 7.2353, 0
 [node name="L1TOL2" parent="NavigationRegion3D/world/doorWall" instance=ExtResource("6_ivd6f")]
 process_mode = 1
 transform = Transform3D(3.91, 0, 0, 0, 5.257, 0, 0, 0, 1, 0, 4.02563, 0)
-
-[node name="Lanterns" parent="NavigationRegion3D/world" instance=ExtResource("9_02nqx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9832, 1.62645, 0)
 
 [node name="joe" parent="." instance=ExtResource("2_76w2n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.635171, 1.31751, 5.1471)

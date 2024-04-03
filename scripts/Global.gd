@@ -1,5 +1,7 @@
 extends Node
 
+var current_scene
+
 var canInput = 0
 
 var starsCount = 0

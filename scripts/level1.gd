@@ -5,31 +5,28 @@ class_name Level1
 @onready var player = $joe
 
 @onready var enemyScene : PackedScene = preload("res://scenes/enemy.tscn")
+@onready var lampScene : PackedScene = preload("res://scenes/lanterns.tscn")
 
-
-
-
-
-# $enemy
+#
 func _physics_process(_delta):
 	get_tree().call_group("enemy", "updatePlayerLocation", player.global_transform.origin)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	inst(Vector3(6, 0.5, 2))
-	inst(Vector3(3, 0.5, 2))
-	inst(Vector3(2, 0.5, 2))
-	inst(Vector3(9, 0.5, 2))
+	# get scene for restart purposes
+	Global.current_scene = "res://scenes/main.tscn"
 	
+	# instance of enemies
+	inst_enemy(Vector3(6, 0.5, 2))
+	inst_enemy(Vector3(3, 0.5, 2))
+	inst_enemy(Vector3(2, 0.5, 2))
+	inst_enemy(Vector3(9, 0.5, 2))
+	# instance of lamps
+	inst_lamps(Vector3(-5, 2, 0))
 
+	
+	# pause mechanisms
 	$CanvasLayer/Pause.hide()
-	
-
-# instantiate enemies
-func inst(pos):
-	var enemy = enemyScene.instantiate()
-	enemy.position = pos
-	add_child(enemy)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -41,23 +38,33 @@ func _process(_delta):
 		else:
 			print("***PAUSE***")
 			pause()
-	
 	else:
 		pass
 
 func _input(_event):
 	pass
-		
-func _on_resume_press():
-	if Global.isPaused:
-		Global.isPaused = false
-		Engine.time_scale = 1
-		get_tree().paused = false
-		$CanvasLayer/Pause.hide()
-	else:
-		pass
-	
-		
+
+
+## instances
+
+
+# instantiate enemies
+func inst_enemy(pos):
+	var enemy = enemyScene.instantiate()
+	enemy.position = pos
+	add_child(enemy)
+
+func inst_lamps(pos):
+	var lamp = lampScene.instantiate()
+	lamp.position = pos
+
+	add_child(lamp)
+	lamp.recharge_bar.hide()
+	lamp.label.hide()
+
+## pause mechanisms
+
+
 # stop game time when ESC pressed
 # using engine.time_scale because if use get_tree().pause = true then processing
 # will stop and can no longer detect input, meaning pause never be unpaused
@@ -73,3 +80,13 @@ func unpause():
 	Engine.time_scale = 1
 	get_tree().paused = false
 	$CanvasLayer/Pause.hide()
+
+#
+func _on_resume_press():
+	if Global.isPaused:
+		Global.isPaused = false
+		Engine.time_scale = 1
+		get_tree().paused = false
+		$CanvasLayer/Pause.hide()
+	else:
+		pass

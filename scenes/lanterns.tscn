@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://ci4mif64ksh6x"]
+[gd_scene load_steps=10 format=3 uid="uid://ci4mif64ksh6x"]
 
 [ext_resource type="Script" path="res://scripts/lanterns.gd" id="1_076it"]
+[ext_resource type="Script" path="res://scripts/lanternLight.gd" id="2_cyxan"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8h02y"]
 albedo_color = Color(0, 0.733333, 0.568627, 1)
@@ -12,7 +13,17 @@ material = SubResource("StandardMaterial3D_8h02y")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_805lw"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aypgr"]
+bg_color = Color(0, 0, 0, 0.501961)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tg1yu"]
+bg_color = Color(0.827451, 0.772549, 0, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ui76a"]
+viewport_path = NodePath("rechargeLayer")
+
 [node name="Lanterns" type="Area3D"]
+process_mode = 1
 script = ExtResource("1_076it")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -21,14 +32,72 @@ mesh = SubResource("CapsuleMesh_mstoy")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_kljca")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="rechargeArea" type="Area3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="rechargeAreaShape" type="CollisionShape3D" parent="rechargeArea"]
 transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 0, 0)
 shape = SubResource("SphereShape3D_805lw")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="lanternLight" type="OmniLight3D" parent="."]
 light_color = Color(0.792157, 0.513726, 0.0941176, 1)
 light_energy = 5.0
 light_volumetric_fog_energy = 5.0
 light_size = 3.5
+script = ExtResource("2_cyxan")
+
+[node name="flicker" type="Timer" parent="lanternLight"]
+
+[node name="rechargeTimer" type="Timer" parent="."]
+
+[node name="rechargeLayer" type="SubViewport" parent="."]
+process_mode = 1
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(300, 300)
+render_target_update_mode = 4
+
+[node name="rechargeBar" type="ProgressBar" parent="rechargeLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.5
+offset_top = -7.5
+offset_right = 62.5
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_aypgr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_tg1yu")
+value = 50.0
+show_percentage = false
+
+[node name="renderBoard" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14673, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_ui76a")
+
+[node name="labelLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="labelLayer"]
+process_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -28.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "100"
+
+[connection signal="body_entered" from="rechargeArea" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="rechargeArea" to="." method="_on_recharge_area_body_exited"]
+[connection signal="timeout" from="lanternLight/flicker" to="." method="_on_flicker_timeout"]
+[connection signal="timeout" from="rechargeTimer" to="." method="_on_recharge_timer_timeout"]
