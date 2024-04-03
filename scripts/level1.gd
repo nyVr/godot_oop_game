@@ -59,8 +59,6 @@ func inst_lamps(pos):
 	lamp.position = pos
 
 	add_child(lamp)
-	lamp.recharge_bar.hide()
-	lamp.label.hide()
 
 ## pause mechanisms
 

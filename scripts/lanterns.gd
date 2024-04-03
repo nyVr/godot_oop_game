@@ -5,7 +5,7 @@ extends Area3D
 @onready var flickerLight = $lanternLight/flicker
 @onready var recharge_bar = $rechargeLayer/rechargeBar
 @onready var label = $labelLayer/Label
-
+@onready var renderBoard = $renderBoard
 
 # total lantern can recover
 var totalRecharge = randi_range(7, 20)
@@ -29,8 +29,7 @@ func _ready():
 	var text = "Recharge amount: " + str(totalRecharge) + "\nPower: " + str(lanternPower)
 	label.text = text
 	
-	recharge_bar.hide()
-	label.hide()
+	hideMats()
 
 
 func lantern_empty():
@@ -60,18 +59,20 @@ func _on_flicker_timeout():
 		flickerLight.wait_time = randf_range(0, 0.5)
 
 
-func _on_recharge_area_body_exited(body):
-	label.hide()
-	recharge_bar.hide()
+func hideMats():
+	recharge_bar.visible = false
+	label.visible = false
+
+func _on_recharge_area_body_exited(_body):
+	hideMats()
 	
 
-func _on_area_3d_body_entered(body):
-	recharge_bar.show()
-	label.show()
-	
+func _on_area_3d_body_entered(body):	
 	# charge left
-	if totalRecharge > 0:
-		if body.is_in_group("player"):
+	if body.is_in_group("player"):
+		recharge_bar.visible = true
+		label.visible = true
+		if totalRecharge > 0:
 			print("***RECHARGE AREA ENTERED***")
 			
 			# get current hp
@@ -94,3 +95,4 @@ func _on_area_3d_body_entered(body):
 			print("AFTER RECHARGE... CURRHP : ", currHP, " NEWHP: ", (currHP+rechargeAmt), " RECHARGE LEFT: ", totalRecharge)
 	if totalRecharge == 0:
 		lantern_empty()
+	
