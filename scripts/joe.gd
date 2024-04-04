@@ -97,6 +97,7 @@ func _input(event):
 				hitbox.scale -= Vector3(4.5, 4.5, 4.5)
 				hitLight.light_energy = 0
 				attackOn = false
+	# turn latern off if in dialogue
 	if inDialogue and attackOn:
 		hitbox.scale -= Vector3(4.5, 4.5, 4.5)
 		hitLight.light_energy = 0
@@ -108,7 +109,7 @@ func _on_hitbox_body_entered(body):
 		print("*****ENEMY ENTER ATTACK HITBOX*****")
 		body._enemy_attacked(lanternDmg)
 
-
+# got attacked
 func _on_enemy_player_attacked(attackDmg):
 	print("ATTACKED: ", attackDmg)
 	_set_health(attackDmg)

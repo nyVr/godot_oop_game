@@ -35,16 +35,18 @@ metadata/_edit_group_ = true
 
 [node name="name" type="RichTextLabel" parent="boxBG"]
 layout_mode = 0
-offset_left = 12.0
-offset_top = 7.0
-offset_right = 96.0
-offset_bottom = 47.0
+offset_left = 8.0
+offset_top = 5.0
+offset_right = 196.0
+offset_bottom = 30.0
+scale = Vector2(3, 3)
 text = "Name"
 
 [node name="chat" type="RichTextLabel" parent="boxBG"]
 layout_mode = 0
-offset_left = 20.0
-offset_top = 52.0
-offset_right = 835.0
-offset_bottom = 196.0
+offset_left = 8.0
+offset_top = 75.0
+offset_right = 419.0
+offset_bottom = 144.0
+scale = Vector2(2, 2)
 text = "Chatting..."

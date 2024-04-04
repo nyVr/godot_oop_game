@@ -1,4 +1,21 @@
 [
-	{"name": "Gaurd", "chat": "Testing"},
-	{"name": "You", "chat": "PART2"}
+	{"name": "Guard", "chat": "what are you doing here?"},
+	{"name": "You", "chat": "what's going on? how come youre here?"},
+	{"name": "Guard", "chat": "we found a hole in the boundary walls, im keeping watch on it."},
+	{"name": "Guard", "chat":  "why are you so far out of the village?"},
+	{"name": "You", "chat":  "just strolling..."},
+	{"name": "Guard", "chat":  "just strolling? this isnt the place for leisurely walks"},
+	{"name": "You", "chat":  "i got carried away..."},
+	{"name": "You", "chat":  "whats going on with the hole in the wall?"},
+	{"name": "Guard", "chat":  "its a breach in our defence, we need to find out how it happened"},
+	{"name": "Guard", "chat":  "its a miracle nothing got in before we caught it"},
+	{"name": "Guard", "chat":  "a team is on their way to patch up the hole"},
+	{"name": "You", "chat":  "youre closing it?"},
+	{"name": "Guard", "chat":  "of course, we cant leave the village vulnerable to any potential threats"},
+	{"name": "You", "chat":  "you dont know how it got there?"},
+	{"name": "Guard", "chat":  "not yet, were investigating, but i suspect it might be sabotage"},
+	{"name": "You", "chat":  "sabotage? who would want umbra-fog creatures in the village?"},
+	{"name": "Guard", "chat":  "its just a gut feeling; i cant take any chances"},
+	{"name": "Guard", "chat":  "anyway, you should head back to the village; its not ideal to be out here"},
+	{"name": "You", "chat":  "okay..."}
 ]

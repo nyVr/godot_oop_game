@@ -18,7 +18,7 @@ func _process(_delta):
 	if inputReady && Input.is_action_just_pressed("interact"):
 		print("*****BIBZ INTERACTINO DIALOGUE START*****")
 		emit_signal("pauseWorld_dialogue")
-		$Chatbox.start_di()
+		$Chatbox.start_di("res://dialogue/gaurd1.json")
 		print("*****BIBS INTERACTION DIALOGUE COMPLETE*****")
 
 

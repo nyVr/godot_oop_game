@@ -17,19 +17,19 @@ func _ready():
 	$boxBG.visible = false
 	
 # start dialogue
-func start_di():
+func start_di(fileName):
 	if dialogue_on:
 		return
 	$boxBG.visible = true
 	dialogue_on = true
-	dialogue = load_dialogue()
+	dialogue = load_dialogue(fileName)
 	dialogue_index = -1
 	next_line()
 	
 # load the file
-func load_dialogue():
+func load_dialogue(fileName):
 	# get file and give read perms
-	var file = FileAccess.open("res://dialogue/gaurd1.json", FileAccess.READ)
+	var file = FileAccess.open(fileName, FileAccess.READ)
 	# parse the lines per json and return this to the dialogue array
 	var lines = JSON.parse_string(file.get_as_text())
 	return lines
