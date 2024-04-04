@@ -41,8 +41,9 @@ shape = SubResource("SphereShape3D_805lw")
 [node name="lanternLight" type="OmniLight3D" parent="."]
 light_color = Color(0.792157, 0.513726, 0.0941176, 1)
 light_energy = 5.0
-light_volumetric_fog_energy = 5.0
 light_size = 3.5
+shadow_enabled = true
+distance_fade_enabled = true
 script = ExtResource("2_cyxan")
 
 [node name="flicker" type="Timer" parent="lanternLight"]

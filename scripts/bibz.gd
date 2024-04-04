@@ -4,6 +4,9 @@ extends Node3D
 
 var inputReady = 0
 
+signal unpauseWorld_dialogue
+signal pauseWorld_dialogue
+
 # array of dialogue?
 
 # onready local
@@ -14,11 +17,10 @@ func _ready():
 func _process(_delta):
 	if inputReady && Input.is_action_just_pressed("interact"):
 		print("*****BIBZ INTERACTINO DIALOGUE START*****")
-		var dialogue = load("res://dialogue/dialogue01.dialogue")
-		if DialogueManager and dialogue:  # Check if DialogueManager is available and dialogue is loaded
-			DialogueManager.show_example_dialogue_balloon(dialogue, "intro_meeting")
+		emit_signal("pauseWorld_dialogue")
+		$Chatbox.start_di()
 		print("*****BIBS INTERACTION DIALOGUE COMPLETE*****")
-	
+
 
 # joe enters interaction area
 func _on_area_3d_body_entered(body):
@@ -30,3 +32,7 @@ func _on_area_3d_body_entered(body):
 func _on_area_3d_body_exited(body):
 	if body.is_in_group("player"):
 		print("***INTERCACTION AREA LEFT***")
+
+
+func _on_chatbox_dialogue_finished():
+	emit_signal("unpauseWorld_dialogue")

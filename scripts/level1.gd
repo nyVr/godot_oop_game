@@ -7,6 +7,8 @@ class_name Level1
 @onready var enemyScene : PackedScene = preload("res://scenes/enemy.tscn")
 @onready var lampScene : PackedScene = preload("res://scenes/lanterns.tscn")
 
+var levelUp = false
+
 #
 func _physics_process(_delta):
 	get_tree().call_group("enemy", "updatePlayerLocation", player.global_transform.origin)
@@ -17,10 +19,10 @@ func _ready():
 	Global.current_scene = "res://scenes/main.tscn"
 	
 	# instance of enemies
-	inst_enemy(Vector3(6, 0.5, 2))
-	inst_enemy(Vector3(3, 0.5, 2))
-	inst_enemy(Vector3(2, 0.5, 2))
-	inst_enemy(Vector3(9, 0.5, 2))
+	inst_enemy(Vector3(6, 0.9, 2))
+	inst_enemy(Vector3(3, 0.9, 2))
+	inst_enemy(Vector3(2, 0.9, 2))
+	inst_enemy(Vector3(9, 0.9, 2))
 	# instance of lamps
 	inst_lamps(Vector3(-5, 2, 0))
 
@@ -88,3 +90,4 @@ func _on_resume_press():
 		$CanvasLayer/Pause.hide()
 	else:
 		pass
+

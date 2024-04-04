@@ -11,7 +11,6 @@ extends CharacterBody3D
 # wip - work on enemy signal health deplete
 signal health_decrease(amountDmg)
 
-
 ## vars
 # lantern 
 var hitbox
@@ -21,6 +20,7 @@ var lanternLose = false
 var lanternCD = true
 
 var attackOn = false
+var inDialogue = false
 
 var character
 var characterMesh
@@ -57,45 +57,50 @@ func _ready():
 	characterCol = $bodyCol
 
 
-# movement 
+## movement 
+
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
+	if !inDialogue:
+		# Handle jump.
+		if Input.is_action_just_pressed("space") and is_on_floor():
+			velocity.y = JUMP_VELOCITY
+		# Get the input direction and handle the movement/deceleration.
+		# As good practice, you should replace UI actions with custom gameplay actions.
+		var input_dir = Input.get_vector("left", "right", "up", "down")
+		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		
+		if direction:
+			velocity.x = direction.x * SPEED
+			velocity.z = direction.z * SPEED
+			# rotation smoothed using lerp
+			characterMesh.rotation.y = lerp_angle(characterMesh.rotation.y, atan2(-velocity.x, - velocity.z), delta * angleAcc)
+			characterCol.rotation.y = lerp_angle(characterCol.rotation.y, atan2(-velocity.x, - velocity.z), delta * angleAcc)
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.z = move_toward(velocity.z, 0, SPEED)
+		move_and_slide()
 
-	# Handle jump.
-	if Input.is_action_just_pressed("space") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("left", "right", "up", "down")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-		# rotation smoothed using lerp
-		characterMesh.rotation.y = lerp_angle(characterMesh.rotation.y, atan2(-velocity.x, - velocity.z), delta * angleAcc)
-		characterCol.rotation.y = lerp_angle(characterCol.rotation.y, atan2(-velocity.x, - velocity.z), delta * angleAcc)
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-	move_and_slide()
-	
-# on input
 # fix bug wher atk stays on if held after depleted
 func _input(event):
-	if lanternHP > 0:
-		if event.is_action_pressed("q"):
-			print("***ATTACK***")
-			hitbox.scale += Vector3(4.5, 4.5, 4.5)
-			hitLight.light_energy = 15
-			attackOn = true
-		if event.is_action_released("q"):
-			print("***ATTACK RELEASE***")
-			hitbox.scale -= Vector3(4.5, 4.5, 4.5)
-			hitLight.light_energy = 0
-			attackOn = false
+	if !inDialogue:
+		if lanternHP > 0:
+			if event.is_action_pressed("q"):
+				print("***ATTACK***")
+				hitbox.scale += Vector3(4.5, 4.5, 4.5)
+				hitLight.light_energy = 15
+				attackOn = true
+			if event.is_action_released("q"):
+				print("***ATTACK RELEASE***")
+				hitbox.scale -= Vector3(4.5, 4.5, 4.5)
+				hitLight.light_energy = 0
+				attackOn = false
+	if inDialogue and attackOn:
+		hitbox.scale -= Vector3(4.5, 4.5, 4.5)
+		hitLight.light_energy = 0
+		attackOn = false
 
 # enemy enter joe hit box when attack
 func _on_hitbox_body_entered(body):
@@ -131,7 +136,8 @@ func _set_lanternHealth(value):
 func charDeath():
 	get_tree().change_scene_to_file("res://scenes/UI/youDied.tscn")
 
-## timeouts
+
+## timeouts // signals
 
 # on timeout for lantern when lantern on reduce lantern hp
 func _on_timer_timeout():
@@ -139,3 +145,10 @@ func _on_timer_timeout():
 		_set_lanternHealth(-1)
 		print("LANTERN HEALTH: ", lanternHP)
 
+# dialogue w npc starts 
+func _on_bibz_pause_world_dialogue():
+	inDialogue = true
+
+# not in dialogue w npc anymore
+func _on_bibz_unpause_world_dialogue():
+	inDialogue = false
