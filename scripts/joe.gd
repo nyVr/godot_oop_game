@@ -91,16 +91,19 @@ func _input(event):
 				print("***ATTACK***")
 				hitbox.scale += Vector3(4.5, 4.5, 4.5)
 				hitLight.light_energy = 15
+				hitLight.light_volumetric_fog_energy = 15
 				attackOn = true
 			if event.is_action_released("q"):
 				print("***ATTACK RELEASE***")
 				hitbox.scale -= Vector3(4.5, 4.5, 4.5)
 				hitLight.light_energy = 0
+				hitLight.light_volumetric_fog_energy = 0
 				attackOn = false
 	# turn latern off if in dialogue
 	if inDialogue and attackOn:
 		hitbox.scale -= Vector3(4.5, 4.5, 4.5)
 		hitLight.light_energy = 0
+		hitLight.light_volumetric_fog_energy = 0
 		attackOn = false
 
 # enemy enter joe hit box when attack

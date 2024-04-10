@@ -32,7 +32,7 @@ shape = SubResource("BoxShape3D_16lxf")
 [node name="baseLight" type="OmniLight3D" parent="."]
 light_color = Color(1, 1, 0, 1)
 light_energy = 0.661
-light_volumetric_fog_energy = 2.016
+light_volumetric_fog_energy = 5.0
 
 [node name="bars" type="CanvasLayer" parent="."]
 
@@ -63,11 +63,14 @@ shape = SubResource("SphereShape3D_6agj8")
 
 [node name="joeAttack" type="OmniLight3D" parent="hitbox/joeAtkArea"]
 light_color = Color(0.894118, 0.737255, 0, 1)
+shadow_enabled = true
+distance_fade_enabled = true
+distance_fade_length = 20.0
 
 [node name="Timer" type="Timer" parent="."]
 
 [node name="playerCam" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 6, 9)
+transform = Transform3D(1, 0, 0, 0, 0.443025, 0.89651, 0, -0.89651, 0.443025, 0, 10.446, 1.9037)
 
 [node name="lanternReset" type="Timer" parent="."]
 

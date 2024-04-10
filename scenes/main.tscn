@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bvldrvhbxl4ii" path="res://blender/deadBush02.dae" id="9_b45cy"]
 [ext_resource type="PackedScene" uid="uid://bhasjjid0r6w3" path="res://scenes/UI/pause.tscn" id="9_t4jsp"]
 
-[sub_resource type="Shader" id="Shader_qayms"]
+[sub_resource type="Shader" id="Shader_lbt46"]
 code = "
 // NOTE: Shader automatically converted from Godot Engine 4.2.1.stable's ProceduralSkyMaterial.
 
@@ -92,7 +92,7 @@ void sky() {
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xm622"]
-shader = SubResource("Shader_qayms")
+shader = SubResource("Shader_lbt46")
 shader_parameter/sky_top_color = Color(0.109804, 0.0745098, 0.0352941, 1)
 shader_parameter/sky_horizon_color = Color(0.152941, 0.109804, 0.0705882, 1)
 shader_parameter/sky_curve = 0.15
@@ -105,12 +105,12 @@ shader_parameter/ground_energy = 1.0
 shader_parameter/sun_angle_max = 0.523599
 shader_parameter/sun_curve = 0.15
 
-[sub_resource type="Sky" id="Sky_smafh"]
+[sub_resource type="Sky" id="Sky_igkov"]
 sky_material = SubResource("ShaderMaterial_xm622")
 
 [sub_resource type="Environment" id="Environment_bl2h8"]
 background_mode = 2
-sky = SubResource("Sky_smafh")
+sky = SubResource("Sky_igkov")
 ambient_light_source = 3
 reflected_light_source = 2
 volumetric_fog_enabled = true
@@ -127,7 +127,7 @@ agent_max_climb = 0.05
 albedo = Color(0.243137, 0.0941176, 0.0431373, 1)
 emission = Color(0.152941, 0.0509804, 0.0117647, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yqut8"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ia8gh"]
 albedo_texture = ExtResource("4_6k0y7")
 roughness_texture = ExtResource("6_4u2mb")
 normal_enabled = true
@@ -136,7 +136,7 @@ normal_texture = ExtResource("5_tixys")
 uv1_scale = Vector3(30, 30, 30)
 
 [sub_resource type="BoxMesh" id="BoxMesh_uo6qh"]
-material = SubResource("StandardMaterial3D_yqut8")
+material = SubResource("StandardMaterial3D_ia8gh")
 size = Vector3(50, 0.5, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_odway"]
@@ -333,6 +333,8 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.2623
 
 [node name="Pause" parent="CanvasLayer" instance=ExtResource("9_t4jsp")]
 visible = false
+
+[node name="music" type="AudioStreamPlayer" parent="."]
 
 [connection signal="pauseWorld_dialogue" from="bibz" to="joe" method="_on_bibz_pause_world_dialogue"]
 [connection signal="unpauseWorld_dialogue" from="bibz" to="joe" method="_on_bibz_unpause_world_dialogue"]
