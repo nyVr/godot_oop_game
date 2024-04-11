@@ -38,6 +38,32 @@ func lantern_empty():
 
 func _on_recharge_timer_timeout():
 	cdOver = true
+	var bodies = $rechargeArea.get_overlapping_bodies()
+	for body in bodies:
+		if body.is_in_group("player"):
+			if totalRecharge > 0:
+				print("***RECHARGE AREA ENTERED***")
+				
+				# get current hp
+				var currHP = body.lanternHP
+				# find missing hp
+				var missingHp = 100 - currHP
+				# calculate how much hp to restore
+				var rechargeAmt = min(missingHp, lanternPower)
+				print("BEFORE RECHARGE... CURRHP : ", currHP, " NEWHP: ", (currHP+rechargeAmt), " RECHARGE LEFT: ", totalRecharge)
+				if cdOver:
+					# if less than dump the rest
+					if totalRecharge >= rechargeAmt:
+						body._set_lanternHealth(rechargeAmt)
+						totalRecharge -= rechargeAmt
+					else:
+						body._set_lanternHealth(totalRecharge)
+						totalRecharge = 0
+					set_recharge_bar(totalRecharge)
+					cdOver = false
+				print("AFTER RECHARGE... CURRHP : ", currHP, " NEWHP: ", (currHP+rechargeAmt), " RECHARGE LEFT: ", totalRecharge)
+		if totalRecharge == 0:
+			lantern_empty()
 
 
 ## setters
@@ -63,6 +89,7 @@ func hideMats():
 	recharge_bar.visible = false
 	label.visible = false
 
+
 func _on_recharge_area_body_exited(_body):
 	hideMats()
 	
@@ -70,29 +97,10 @@ func _on_recharge_area_body_exited(_body):
 func _on_area_3d_body_entered(body):	
 	# charge left
 	if body.is_in_group("player"):
+		playerIn = true
 		recharge_bar.visible = true
 		label.visible = true
-		if totalRecharge > 0:
-			print("***RECHARGE AREA ENTERED***")
-			
-			# get current hp
-			var currHP = body.lanternHP
-			# find missing hp
-			var missingHp = 100 - currHP
-			# calculate how much hp to restore
-			var rechargeAmt = min(missingHp, lanternPower)
-			print("BEFORE RECHARGE... CURRHP : ", currHP, " NEWHP: ", (currHP+rechargeAmt), " RECHARGE LEFT: ", totalRecharge)
-			if cdOver:
-				# if less than dump the rest
-				if totalRecharge >= rechargeAmt:
-					body._set_lanternHealth(rechargeAmt)
-					totalRecharge -= rechargeAmt
-				else:
-					body._set_lanternHealth(totalRecharge)
-					totalRecharge = 0
-				set_recharge_bar(totalRecharge)
-				cdOver = false
-			print("AFTER RECHARGE... CURRHP : ", currHP, " NEWHP: ", (currHP+rechargeAmt), " RECHARGE LEFT: ", totalRecharge)
+		
 	if totalRecharge == 0:
 		lantern_empty()
 	

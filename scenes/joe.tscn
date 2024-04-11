@@ -74,7 +74,10 @@ transform = Transform3D(1, 0, 0, 0, 0.443025, 0.89651, 0, -0.89651, 0.443025, 0,
 
 [node name="lanternReset" type="Timer" parent="."]
 
+[node name="atkCooldown" type="Timer" parent="."]
+
 [connection signal="health_decrease" from="." to="." method="_on_health_decrease"]
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="lanternReset" to="." method="_on_lantern_reset_timeout"]
+[connection signal="timeout" from="atkCooldown" to="." method="_on_atk_cooldown_timeout"]

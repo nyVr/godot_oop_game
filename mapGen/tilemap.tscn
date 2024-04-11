@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://gc52uyyso82m"]
+
+[ext_resource type="Texture2D" uid="uid://ddl4hn6lw2fra" path="res://textures/burned_ground_01/burned_ground_01_diff_4k.jpg" id="1_ljq8m"]
+[ext_resource type="Texture2D" uid="uid://dh7jpxsfpyd3x" path="res://textures/burned_ground_01/burned_ground_01_nor_gl_4k.jpg" id="2_prkxg"]
+[ext_resource type="Texture2D" uid="uid://dfx0pxkjs6pr4" path="res://textures/burned_ground_01/burned_ground_01_rough_4k.jpg" id="3_nbjhl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_60fq4"]
+albedo_texture = ExtResource("1_ljq8m")
+roughness_texture = ExtResource("3_nbjhl")
+normal_enabled = true
+normal_texture = ExtResource("2_prkxg")
+
+[sub_resource type="BoxMesh" id="BoxMesh_8vi6n"]
+material = SubResource("StandardMaterial3D_60fq4")
+
+[sub_resource type="BoxMesh" id="BoxMesh_pqv22"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ju4mb"]
+albedo_color = Color(1, 0, 0, 1)
+
+[node name="Tilemap" type="Node3D"]
+
+[node name="blank" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.97653)
+mesh = SubResource("BoxMesh_8vi6n")
+skeleton = NodePath("")
+
+[node name="forest" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.2187)
+mesh = SubResource("BoxMesh_8vi6n")
+skeleton = NodePath("")
+
+[node name="border" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.22)
+mesh = SubResource("BoxMesh_pqv22")
+surface_material_override/0 = SubResource("StandardMaterial3D_ju4mb")

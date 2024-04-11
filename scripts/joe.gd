@@ -7,6 +7,8 @@ extends CharacterBody3D
 @onready var health = 100
 @onready var lanternHP = 100
 @onready var lanternLoseHP = 1
+@onready var atk_cooldown = $atkCooldown
+
 
 # wip - work on enemy signal health deplete
 signal health_decrease(amountDmg)
@@ -15,9 +17,9 @@ signal health_decrease(amountDmg)
 # lantern 
 var hitbox
 var hitLight
-var lanternDmg = 20
+var lanternDmg = 7
 var lanternLose = false
-var lanternCD = true
+var cdOver = false
 
 var attackOn = false
 var inDialogue = false
@@ -41,6 +43,9 @@ func _ready():
 	# start timer
 	timer.wait_time = lanternLoseHP 
 	timer.start()
+	
+	atk_cooldown.wait_time = 0.5
+	atk_cooldown.start()
 	
 	# init healthbars
 	healthBar.init_health(health)
@@ -93,12 +98,18 @@ func _input(event):
 				hitLight.light_energy = 15
 				hitLight.light_volumetric_fog_energy = 15
 				attackOn = true
-			if event.is_action_released("q"):
+				
+				atk_cooldown.start()
+				
+			elif event.is_action_released("q") or lanternHP <= 0:
 				print("***ATTACK RELEASE***")
 				hitbox.scale -= Vector3(4.5, 4.5, 4.5)
 				hitLight.light_energy = 0
 				hitLight.light_volumetric_fog_energy = 0
 				attackOn = false
+				
+				atk_cooldown.stop()
+				
 	# turn latern off if in dialogue
 	if inDialogue and attackOn:
 		hitbox.scale -= Vector3(4.5, 4.5, 4.5)
@@ -107,10 +118,20 @@ func _input(event):
 		attackOn = false
 
 # enemy enter joe hit box when attack
-func _on_hitbox_body_entered(body):
-	if attackOn and body.is_in_group("enemy"):
-		print("*****ENEMY ENTER ATTACK HITBOX*****")
-		body._enemy_attacked(lanternDmg)
+#func _on_hitbox_body_entered(body):
+	#if cdOver:
+		#if attackOn and body.is_in_group("enemy"):
+			#print("*****ENEMY ENTER ATTACK HITBOX*****")
+			#body._enemy_attacked(lanternDmg)
+			#cdOver = false
+
+func attackEnemy():
+	if attackOn:
+		var bodies = $hitbox.get_overlapping_bodies()
+		for body in bodies:
+			if body.is_in_group("enemy"):
+				body._enemy_attacked(lanternDmg)
+
 
 # got attacked
 func _on_enemy_player_attacked(attackDmg):
@@ -149,6 +170,11 @@ func _on_timer_timeout():
 		_set_lanternHealth(-1)
 		print("LANTERN HEALTH: ", lanternHP)
 
+
+func _on_atk_cooldown_timeout():
+	if attackOn:
+		attackEnemy()
+
 # dialogue w npc starts 
 func _on_bibz_pause_world_dialogue():
 	inDialogue = true
@@ -156,3 +182,5 @@ func _on_bibz_pause_world_dialogue():
 # not in dialogue w npc anymore
 func _on_bibz_unpause_world_dialogue():
 	inDialogue = false
+
+
