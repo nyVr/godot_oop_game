@@ -65,6 +65,11 @@ func _ready():
 	clear_instantiations()
 	
 	
+	var colPos : int = int(ceil(border_size / 2))
+	$StaticBody3D/CollisionShape3D.position = Vector3(colPos, 1, colPos)
+	$StaticBody3D/CollisionShape3D.scale = Vector3(border_size, 1, border_size)
+
+	
 	print("generating...")
 	visualise_border()
 	for i in forest_count:
@@ -111,11 +116,14 @@ func make_forest(rec):
 			grid_map.set_cell_item(pos, 1)
 			forest.append(pos)
 			
-			var collision = collisionScene.instantiate()
-			collision.position = pos
-			add_child(collision)
+			#var collision = collisionScene.instantiate()
+			#collision.position = pos
+			#add_child(collision)
 			
-			
+			if randf_range(0, 1) < 0.2: # Adjust the probability as needed
+				spawn_tree(pos)
+			if randf_range(0, 1) < 0.15: # Adjust the probability as needed
+				spawn_bush(pos)
 	
 	forest_tiles.append(forest)
 	
@@ -152,9 +160,9 @@ func make_bushes(rec):
 			grid_map.set_cell_item(pos, 2)
 			bush.append(pos)
 	
-			var collision = collisionScene.instantiate()
-			collision.position = pos
-			add_child(collision)
+			#var collision = collisionScene.instantiate()
+			#collision.position = pos
+			#add_child(collision)
 
 			if randf_range(0, 1) < 0.5: # Adjust the probability as needed
 				spawn_bush(pos)
@@ -175,9 +183,9 @@ func blank_tiles():
 			if grid_map.get_cell_item(pos) == -1:
 				grid_map.set_cell_item(pos, 0)
 				
-				var collision = collisionScene.instantiate()
-				collision.position = pos
-				add_child(collision)
+				#var collision = collisionScene.instantiate()
+				#collision.position = pos
+				#add_child(collision)
 
 
 # spawn trees on the forest/tree blocks
