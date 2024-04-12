@@ -4,14 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://dh7jpxsfpyd3x" path="res://textures/burned_ground_01/burned_ground_01_nor_gl_4k.jpg" id="2_prkxg"]
 [ext_resource type="Texture2D" uid="uid://dfx0pxkjs6pr4" path="res://textures/burned_ground_01/burned_ground_01_rough_4k.jpg" id="3_nbjhl"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_60fq4"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ebrq"]
 albedo_texture = ExtResource("1_ljq8m")
 roughness_texture = ExtResource("3_nbjhl")
 normal_enabled = true
 normal_texture = ExtResource("2_prkxg")
 
 [sub_resource type="BoxMesh" id="BoxMesh_8vi6n"]
-material = SubResource("StandardMaterial3D_60fq4")
+material = SubResource("StandardMaterial3D_6ebrq")
 
 [sub_resource type="BoxMesh" id="BoxMesh_pqv22"]
 
@@ -27,6 +27,11 @@ skeleton = NodePath("")
 
 [node name="forest" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.2187)
+mesh = SubResource("BoxMesh_8vi6n")
+skeleton = NodePath("")
+
+[node name="bush" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.68719)
 mesh = SubResource("BoxMesh_8vi6n")
 skeleton = NodePath("")
 

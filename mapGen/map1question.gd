@@ -26,10 +26,9 @@ func set_border_size(val : int):
 @export  var giveup : int = 10
 
 
-
 @onready var treeScene : PackedScene = preload("res://mapGen/dead_tree_01.tscn")
 @onready var bushScene : PackedScene = preload("res://mapGen/dead_bush_02.tscn")
-@onready var collisionScene : PackedScene = preload("res://mapGen/cells.tscn")
+
 
 var forest_tiles : Array[PackedVector3Array] = []
 var forest_positions : PackedVector3Array = []
@@ -55,25 +54,7 @@ func generate():
 	for i in bush_count:
 		make_bushes(giveup)
 	print("BUSH POSITIONS: ", bush_positions)
-	blank_tiles()
 
-func _ready():
-	forest_tiles.clear()
-	forest_positions.clear()
-	bush_tiles.clear()
-	bush_positions.clear()
-	clear_instantiations()
-	
-	
-	print("generating...")
-	visualise_border()
-	for i in forest_count:
-		make_forest(giveup)
-	print("FOREST POSITIONS: ", forest_positions)
-	for i in bush_count:
-		make_bushes(giveup)
-	print("BUSH POSITIONS: ", bush_positions)
-	blank_tiles()
 
 func visualise_border():
 	grid_map.clear()
@@ -111,11 +92,10 @@ func make_forest(rec):
 			grid_map.set_cell_item(pos, 1)
 			forest.append(pos)
 			
-			var collision = collisionScene.instantiate()
-			collision.position = pos
-			add_child(collision)
-			
-			
+			if randf_range(0, 1) < 0.2: # Adjust the probability as needed
+				spawn_tree(pos)
+			if randf_range(0, 1) < 0.15: # Adjust the probability as needed
+				spawn_bush(pos)
 	
 	forest_tiles.append(forest)
 	
@@ -151,10 +131,6 @@ func make_bushes(rec):
 			var pos : Vector3i = start_pos + Vector3i(col, 0, row)
 			grid_map.set_cell_item(pos, 2)
 			bush.append(pos)
-	
-			var collision = collisionScene.instantiate()
-			collision.position = pos
-			add_child(collision)
 
 			if randf_range(0, 1) < 0.5: # Adjust the probability as needed
 				spawn_bush(pos)
@@ -166,18 +142,6 @@ func make_bushes(rec):
 	var avgZ : float = start_pos.x + (float(height)/2)
 	var pos : Vector3 = Vector3(avgX, 0, avgZ)
 	bush_positions.append(pos)
-
-
-func blank_tiles():
-	for row in range(-1, border_size):
-		for col in range(-1, border_size):
-			var pos : Vector3i = Vector3i(col, 0, row)
-			if grid_map.get_cell_item(pos) == -1:
-				grid_map.set_cell_item(pos, 0)
-				
-				var collision = collisionScene.instantiate()
-				collision.position = pos
-				add_child(collision)
 
 
 # spawn trees on the forest/tree blocks

@@ -70,7 +70,7 @@ distance_fade_length = 20.0
 [node name="Timer" type="Timer" parent="."]
 
 [node name="playerCam" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.443025, 0.89651, 0, -0.89651, 0.443025, 0, 10.446, 1.9037)
+transform = Transform3D(0.642788, -0.541675, 0.541675, 0, 0.707107, 0.707107, -0.766044, -0.454519, 0.454519, 8, 10.446, 6)
 
 [node name="lanternReset" type="Timer" parent="."]
 

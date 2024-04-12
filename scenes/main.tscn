@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bvldrvhbxl4ii" path="res://blender/deadBush02.dae" id="9_b45cy"]
 [ext_resource type="PackedScene" uid="uid://bhasjjid0r6w3" path="res://scenes/UI/pause.tscn" id="9_t4jsp"]
 
-[sub_resource type="Shader" id="Shader_lbt46"]
+[sub_resource type="Shader" id="Shader_njq1a"]
 code = "
 // NOTE: Shader automatically converted from Godot Engine 4.2.1.stable's ProceduralSkyMaterial.
 
@@ -92,7 +92,7 @@ void sky() {
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xm622"]
-shader = SubResource("Shader_lbt46")
+shader = SubResource("Shader_njq1a")
 shader_parameter/sky_top_color = Color(0.109804, 0.0745098, 0.0352941, 1)
 shader_parameter/sky_horizon_color = Color(0.152941, 0.109804, 0.0705882, 1)
 shader_parameter/sky_curve = 0.15
@@ -105,12 +105,12 @@ shader_parameter/ground_energy = 1.0
 shader_parameter/sun_angle_max = 0.523599
 shader_parameter/sun_curve = 0.15
 
-[sub_resource type="Sky" id="Sky_igkov"]
+[sub_resource type="Sky" id="Sky_x664m"]
 sky_material = SubResource("ShaderMaterial_xm622")
 
 [sub_resource type="Environment" id="Environment_bl2h8"]
 background_mode = 2
-sky = SubResource("Sky_igkov")
+sky = SubResource("Sky_x664m")
 ambient_light_source = 3
 reflected_light_source = 2
 volumetric_fog_enabled = true
