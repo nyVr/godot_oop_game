@@ -23,13 +23,16 @@ func set_border_size(val : int):
 @export var bush_count : int = 5
 @export var bush_spacing : int = 2
 
+
+
 @export  var giveup : int = 10
+
 
 
 
 @onready var treeScene : PackedScene = preload("res://mapGen/dead_tree_01.tscn")
 @onready var bushScene : PackedScene = preload("res://mapGen/dead_bush_02.tscn")
-@onready var collisionScene : PackedScene = preload("res://mapGen/cells.tscn")
+@onready var enemyScene : PackedScene = preload("res://scenes/enemy.tscn")
 
 var forest_tiles : Array[PackedVector3Array] = []
 var forest_positions : PackedVector3Array = []
@@ -38,47 +41,56 @@ var bush_positions : PackedVector3Array = []
 var instances : Array[Node3D] = []
 
 
-
 func generate():
 	forest_tiles.clear()
 	forest_positions.clear()
 	bush_tiles.clear()
 	bush_positions.clear()
-	clear_instantiations()
-	
+	clear_instantiations()	
 	
 	print("generating...")
 	visualise_border()
 	for i in forest_count:
-		make_forest(giveup)
+		make_forest_tiles(giveup)
 	print("FOREST POSITIONS: ", forest_positions)
 	for i in bush_count:
-		make_bushes(giveup)
+		make_bush_tiles(giveup)
 	print("BUSH POSITIONS: ", bush_positions)
-	blank_tiles()
+	make_blank_tiles()
+	
+
+	
+
 
 func _ready():
+	$pathfind/worldSpawner.position = Vector3(0, 0, 0)
+	$pathfind/worldSpawner/groundShape/groundCol.position = Vector3(0, 0, 0)
+	$pathfind/worldSpawner/groundShape/groundMats.position = Vector3(0, 0, 0)
+	$pathfind/worldSpawner/groundShape/groundCol.scale = Vector3(1, 1, 1)
+	
 	forest_tiles.clear()
 	forest_positions.clear()
 	bush_tiles.clear()
 	bush_positions.clear()
 	clear_instantiations()
 	
+	var colPos : int = int(border_size / 2) 
 	
-	var colPos : int = int(ceil(border_size / 2))
-	$StaticBody3D/CollisionShape3D.position = Vector3(colPos, 1, colPos)
-	$StaticBody3D/CollisionShape3D.scale = Vector3(border_size, 1, border_size)
-
+	$pathfind/worldSpawner/groundShape.position = Vector3(colPos, 0.5, colPos)
+	$pathfind/worldSpawner/groundShape/groundCol.scale = Vector3(border_size, 1, border_size)
+	
 	
 	print("generating...")
 	visualise_border()
 	for i in forest_count:
-		make_forest(giveup)
+		make_forest_tiles(giveup)
 	print("FOREST POSITIONS: ", forest_positions)
 	for i in bush_count:
-		make_bushes(giveup)
+		make_bush_tiles(giveup)
 	print("BUSH POSITIONS: ", bush_positions)
-	blank_tiles()
+	make_blank_tiles()
+	
+
 
 func visualise_border():
 	grid_map.clear()
@@ -89,7 +101,7 @@ func visualise_border():
 		grid_map.set_cell_item(Vector3i(-1, 0, i), 3)
 	
 # build forest ground
-func make_forest(rec):
+func make_forest_tiles(rec):
 	if !rec > 0:
 		return
 	
@@ -105,7 +117,7 @@ func make_forest(rec):
 		for col in range(-forest_spacing, width+forest_spacing):
 			var pos : Vector3i = start_pos + Vector3i(col, 0, row)
 			if grid_map.get_cell_item(pos) != -1:
-				make_forest(rec-1)
+				make_forest_tiles(rec-1)
 				return
 			
 	var forest : PackedVector3Array = []
@@ -115,15 +127,7 @@ func make_forest(rec):
 			var pos : Vector3i = start_pos + Vector3i(col, 0, row)
 			grid_map.set_cell_item(pos, 1)
 			forest.append(pos)
-			
-			#var collision = collisionScene.instantiate()
-			#collision.position = pos
-			#add_child(collision)
-			
-			if randf_range(0, 1) < 0.2: # Adjust the probability as needed
-				spawn_tree(pos)
-			if randf_range(0, 1) < 0.15: # Adjust the probability as needed
-				spawn_bush(pos)
+
 	
 	forest_tiles.append(forest)
 	
@@ -133,7 +137,7 @@ func make_forest(rec):
 	var pos : Vector3 = Vector3(avgX, 0, avgZ)
 	forest_positions.append(pos)
 
-func make_bushes(rec):
+func make_bush_tiles(rec):
 	if !rec > 0:
 		return
 	
@@ -149,7 +153,7 @@ func make_bushes(rec):
 		for col in range(-bush_spacing, width+bush_spacing):
 			var pos : Vector3i = start_pos + Vector3i(col, 0, row)
 			if grid_map.get_cell_item(pos) != -1:
-				make_bushes(rec-1)
+				make_bush_tiles(rec-1)
 				return
 			
 	var bush : PackedVector3Array = []
@@ -159,13 +163,7 @@ func make_bushes(rec):
 			var pos : Vector3i = start_pos + Vector3i(col, 0, row)
 			grid_map.set_cell_item(pos, 2)
 			bush.append(pos)
-	
-			#var collision = collisionScene.instantiate()
-			#collision.position = pos
-			#add_child(collision)
 
-			if randf_range(0, 1) < 0.5: # Adjust the probability as needed
-				spawn_bush(pos)
 	
 	bush_tiles.append(bush)
 	
@@ -176,16 +174,16 @@ func make_bushes(rec):
 	bush_positions.append(pos)
 
 
-func blank_tiles():
+func make_blank_tiles():
 	for row in range(-1, border_size):
 		for col in range(-1, border_size):
 			var pos : Vector3i = Vector3i(col, 0, row)
 			if grid_map.get_cell_item(pos) == -1:
 				grid_map.set_cell_item(pos, 0)
 				
-				#var collision = collisionScene.instantiate()
-				#collision.position = pos
-				#add_child(collision)
+				#if randf() < 0.01:
+					#spawn_enemy(pos)
+
 
 
 # spawn trees on the forest/tree blocks
@@ -229,6 +227,9 @@ func spawn_bush(pos: Vector3):
 	instances.append(bush)
 	# create
 	add_child(bush)
+
+
+
 
 # spawn broken wall on broken wall blocks
 func spawn_broken_wall(pos: Vector3):

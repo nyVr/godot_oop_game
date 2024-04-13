@@ -1,7 +1,9 @@
 extends CollisionShape3D
 
-@onready var grid_map = $"../../GridMap"
-@onready var map = $"../.."
+@onready var grid_map = $"../../../../GridMap"
+
+@onready var map = $"../../../.."
+
 
 #var pos : int = ceil((map.border_size)/2)
 #

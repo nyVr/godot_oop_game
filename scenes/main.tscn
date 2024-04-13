@@ -246,8 +246,20 @@ transform = Transform3D(3.91, 0, 0, 0, 5.257, 0, 0, 0, 1, 0, 4.02563, 0)
 [node name="deadTree01" parent="NavigationRegion3D/world/trees" instance=ExtResource("8_pucbj")]
 transform = Transform3D(-1.25646, 0.0883763, -3.79651, 0.0277671, 3.99902, 0.083901, 3.79744, 2.23517e-08, -1.25677, -11.0209, 0, -7.60132)
 
+[node name="deadTree09" parent="NavigationRegion3D/world/trees" instance=ExtResource("8_pucbj")]
+transform = Transform3D(-3.16274, 0.87283, -2.28806, 0.676181, 3.90327, 0.554316, 2.35369, 0.0515036, -3.23381, -31.0573, 0, 5.56491)
+
 [node name="deadTree08" parent="NavigationRegion3D/world/trees" instance=ExtResource("8_pucbj")]
 transform = Transform3D(-2.79196, 0.0358217, -0.78339, 0.0201311, 2.89929, 0.0608282, 0.783951, 0.0531239, -2.79152, -18.0901, 0, -3.84202)
+
+[node name="deadTree10" parent="NavigationRegion3D/world/trees" instance=ExtResource("8_pucbj")]
+transform = Transform3D(-2.36634, -0.0187396, 1.67633, 0.0201311, 2.89929, 0.0608282, -1.67632, 0.0612713, -2.36563, -27.4485, 0, 4.14825)
+
+[node name="deadTree11" parent="NavigationRegion3D/world/trees" instance=ExtResource("8_pucbj")]
+transform = Transform3D(-2.82298, -0.172269, -0.641194, -0.180142, 2.89436, 0.0154809, 0.639028, 0.0548993, -2.82818, -16.0978, 0, 8.16871)
+
+[node name="deadTree12" parent="NavigationRegion3D/world/trees" instance=ExtResource("8_pucbj")]
+transform = Transform3D(-2.5364, 0.945215, 1.04079, 1.05009, 2.70113, 0.105964, -0.934882, 0.469546, -2.70472, -16.0814, 0, 8.16871)
 
 [node name="deadTree06" parent="NavigationRegion3D/world/trees" instance=ExtResource("8_pucbj")]
 transform = Transform3D(-2.15343, 0, -1.26994, 0, 2.5, 0, 1.26994, 0, -2.15343, -0.249743, 0, -12.5692)
@@ -263,6 +275,12 @@ transform = Transform3D(3.40944, 0, 0.791018, 0, 3.5, 0, -0.791018, 0, 3.40944, 
 
 [node name="deadTree04" parent="NavigationRegion3D/world/trees" instance=ExtResource("8_pucbj")]
 transform = Transform3D(1.36266, 0, -2.09599, 0, 2.5, 0, 2.09599, 0, 1.36266, -2.94431, 0, -5.40039)
+
+[node name="deadTree13" parent="NavigationRegion3D/world/trees" instance=ExtResource("8_pucbj")]
+transform = Transform3D(2.61579, 0.405812, -0.271919, -0.320716, 3.30985, 0.0333393, 0.292532, 0, 2.46802, -4.53583, 0, 13.0165)
+
+[node name="deadTree14" parent="NavigationRegion3D/world/trees" instance=ExtResource("8_pucbj")]
+transform = Transform3D(1.21023, 0.145384, 2.20679, 0.558448, 3.21832, -0.38617, -2.29222, 0.860832, 1.07105, -4.53583, 0, 4.12662)
 
 [node name="deadTree05" parent="NavigationRegion3D/world/trees" instance=ExtResource("8_pucbj")]
 transform = Transform3D(-2.23583, 0, -2.94806, 0, 3.7, 0, 2.94806, 0, -2.23583, 31.1305, 0, -4.29572)

@@ -1,17 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://gc52uyyso82m"]
+[gd_scene load_steps=9 format=3 uid="uid://gc52uyyso82m"]
 
-[ext_resource type="Texture2D" uid="uid://ddl4hn6lw2fra" path="res://textures/burned_ground_01/burned_ground_01_diff_4k.jpg" id="1_ljq8m"]
-[ext_resource type="Texture2D" uid="uid://dh7jpxsfpyd3x" path="res://textures/burned_ground_01/burned_ground_01_nor_gl_4k.jpg" id="2_prkxg"]
-[ext_resource type="Texture2D" uid="uid://dfx0pxkjs6pr4" path="res://textures/burned_ground_01/burned_ground_01_rough_4k.jpg" id="3_nbjhl"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ebrq"]
-albedo_texture = ExtResource("1_ljq8m")
-roughness_texture = ExtResource("3_nbjhl")
-normal_enabled = true
-normal_texture = ExtResource("2_prkxg")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wg46s"]
+albedo_color = Color(1, 0.733333, 0.886275, 0.992157)
 
 [sub_resource type="BoxMesh" id="BoxMesh_8vi6n"]
-material = SubResource("StandardMaterial3D_6ebrq")
+material = SubResource("StandardMaterial3D_wg46s")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0pdwt"]
+albedo_color = Color(0, 0.74902, 0.74902, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fb14s"]
+material = SubResource("StandardMaterial3D_0pdwt")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6kf1n"]
+albedo_color = Color(0.72549, 0.745098, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hkhe4"]
+material = SubResource("StandardMaterial3D_6kf1n")
 
 [sub_resource type="BoxMesh" id="BoxMesh_pqv22"]
 
@@ -27,13 +32,12 @@ skeleton = NodePath("")
 
 [node name="forest" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.2187)
-mesh = SubResource("BoxMesh_8vi6n")
+mesh = SubResource("BoxMesh_fb14s")
 skeleton = NodePath("")
 
 [node name="bush" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.68719)
-mesh = SubResource("BoxMesh_8vi6n")
-skeleton = NodePath("")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.65432)
+mesh = SubResource("BoxMesh_hkhe4")
 
 [node name="border" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.22)
