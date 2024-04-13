@@ -19,6 +19,7 @@ var enemies : Array[Node3D] = []
 func generate():
 	#  clear
 	for enemy in enemies:
+		print("FREEING ENEMY")
 		enemy.queue_free()
 	enemies.clear()
 	
@@ -27,7 +28,7 @@ func generate():
 		for col in range(-1, map.border_size):
 			var pos : Vector3i = Vector3i(col, 0, row)
 			if grid_map.get_cell_item(pos) == 0:
-				if randf() < 0.01:
+				if randf() < 0.001:
 					spawn_enemy(pos)
 
 
@@ -42,7 +43,7 @@ func _ready():
 		for col in range(-1, map.border_size):
 			var pos : Vector3i = Vector3i(col, 0, row)
 			if grid_map.get_cell_item(pos) == 0:
-				if randf() < 0.01:
+				if randf() < 0.003:
 					spawn_enemy(pos)
 
 # spawn enemy
@@ -50,7 +51,7 @@ func spawn_enemy(pos : Vector3):
 	# create enemy + give height
 	print("spawning enemy")
 	var enemy = enemyScene.instantiate()
-	pos.y = 1
+	pos.y = 1.5
 	
 	# enemy position on block
 	enemy.position = pos
