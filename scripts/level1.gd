@@ -7,6 +7,10 @@ class_name Level1
 @onready var enemyScene : PackedScene = preload("res://scenes/enemy.tscn")
 @onready var lampScene : PackedScene = preload("res://scenes/lanterns.tscn")
 
+@onready var pauseSprite = $CanvasLayer/MarginContainer/Pause
+
+
+
 var levelUp = false
 
 #
@@ -28,7 +32,7 @@ func _ready():
 
 	
 	# pause mechanisms
-	$CanvasLayer/Pause.hide()
+	pauseSprite.hide()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -72,14 +76,14 @@ func pause():
 	Global.isPaused = true
 	Engine.time_scale = 0
 	get_tree().paused = true
-	$CanvasLayer/Pause.show()
+	pauseSprite.show()
 
 # start the time when ESC pressed again
 func unpause():
 	Global.isPaused = false
 	Engine.time_scale = 1
 	get_tree().paused = false
-	$CanvasLayer/Pause.hide()
+	pauseSprite.hide()
 
 #
 func _on_resume_press():

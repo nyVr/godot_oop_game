@@ -1,6 +1,42 @@
-[gd_scene load_steps=2 format=3 uid="uid://ogcre7kellm3"]
+[gd_scene load_steps=16 format=3 uid="uid://ogcre7kellm3"]
 
 [ext_resource type="Script" path="res://scenes/UI/mainMenu.gd" id="1_06a7w"]
+[ext_resource type="Texture2D" uid="uid://cdlroorm0hh8l" path="res://sprites_fonts/blank.png" id="2_sbvkg"]
+[ext_resource type="FontFile" uid="uid://beoqupkvxqtfg" path="res://sprites_fonts/Ruthligos.ttf" id="3_bts18"]
+
+[sub_resource type="SystemFont" id="SystemFont_tljwu"]
+font_names = PackedStringArray("Book Antiqua")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ue3p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5i5ny"]
+
+[sub_resource type="SystemFont" id="SystemFont_xrsi3"]
+font_names = PackedStringArray("Book Antiqua")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8apqf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_swfmk"]
+
+[sub_resource type="SystemFont" id="SystemFont_mmub8"]
+font_names = PackedStringArray("Book Antiqua")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uwhcq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uf70p"]
+
+[sub_resource type="SystemFont" id="SystemFont_15bqd"]
+font_names = PackedStringArray("Impact")
+
+[sub_resource type="SystemFont" id="SystemFont_yun54"]
+font_names = PackedStringArray("Impact")
+
+[sub_resource type="LabelSettings" id="LabelSettings_f0t2v"]
+font = SubResource("SystemFont_yun54")
+font_size = 50
+font_color = Color(0.792157, 0, 0.0784314, 1)
+outline_size = 15
+outline_color = Color(0, 0, 0, 1)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -11,7 +47,20 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_06a7w")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="sprite" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -112.0
+offset_right = 80.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_sbvkg")
+
+[node name="buttons" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,23 +68,130 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="buttons"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_constants/separation = 0
 
-[node name="play" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="play" type="Button" parent="buttons/VBoxContainer"]
 layout_mode = 2
-text = "Start"
+theme_override_colors/font_color = Color(0.682353, 0.227451, 0.172549, 0.560784)
+theme_override_colors/font_hover_color = Color(0.94902, 0.52549, 0.458824, 0.560784)
+theme_override_fonts/font = SubResource("SystemFont_tljwu")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3ue3p")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_5i5ny")
+text = " 𓇻 Start"
 
-[node name="options" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="continue" type="Button" parent="buttons/VBoxContainer"]
 layout_mode = 2
-text = "Options"
+theme_override_colors/font_color = Color(0.682353, 0.227451, 0.172549, 0.560784)
+theme_override_colors/font_hover_color = Color(0.94902, 0.52549, 0.458824, 0.560784)
+theme_override_fonts/font = SubResource("SystemFont_tljwu")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3ue3p")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_5i5ny")
+text = " 𓇻 Continue"
 
-[node name="quit" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="endless" type="Button" parent="buttons/VBoxContainer"]
 layout_mode = 2
-text = "Quit"
+theme_override_colors/font_color = Color(0.682353, 0.227451, 0.172549, 0.560784)
+theme_override_colors/font_hover_color = Color(0.94902, 0.52549, 0.458824, 0.560784)
+theme_override_fonts/font = SubResource("SystemFont_tljwu")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3ue3p")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_5i5ny")
+text = "𓇻 Endless Mode 
+"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]
+[node name="options" type="Button" parent="buttons/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.952941, 0.537255, 0.470588, 0.560784)
+theme_override_colors/font_hover_color = Color(0.94902, 0.52549, 0.458824, 0.560784)
+theme_override_fonts/font = SubResource("SystemFont_xrsi3")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8apqf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_swfmk")
+text = "⭒ Options "
+
+[node name="quit" type="Button" parent="buttons/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.952941, 0.537255, 0.470588, 0.560784)
+theme_override_colors/font_hover_color = Color(0.94902, 0.52549, 0.458824, 0.560784)
+theme_override_fonts/font = SubResource("SystemFont_mmub8")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uwhcq")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_uf70p")
+text = "⭒ Quit"
+
+[node name="gameTitle" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 189.0
+grow_horizontal = 2
+
+[node name="gameTitle" type="Label" parent="gameTitle"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.745098, 0.262745, 0.203922, 0.498039)
+theme_override_fonts/font = ExtResource("3_bts18")
+theme_override_font_sizes/font_size = 90
+text = "Star Seeker"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="unlockMsg" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -31.0
+offset_right = 576.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.658824, 0.372549, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_15bqd")
+theme_override_font_sizes/font_size = 50
+text = "Complete normal mode to unlock endless"
+label_settings = SubResource("LabelSettings_f0t2v")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="noSavedMsg" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -31.0
+offset_right = 576.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.658824, 0.372549, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_15bqd")
+theme_override_font_sizes/font_size = 50
+text = "No previous saved content"
+label_settings = SubResource("LabelSettings_f0t2v")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="unlockTimer" type="Timer" parent="."]
+
+[connection signal="pressed" from="buttons/VBoxContainer/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="buttons/VBoxContainer/continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="buttons/VBoxContainer/endless" to="." method="_on_endless_pressed"]
+[connection signal="pressed" from="buttons/VBoxContainer/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="buttons/VBoxContainer/quit" to="." method="_on_quit_pressed"]
+[connection signal="timeout" from="unlockTimer" to="." method="_on_unlock_timer_timeout"]

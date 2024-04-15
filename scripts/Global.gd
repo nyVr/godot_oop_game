@@ -1,12 +1,14 @@
 extends Node
 
-var current_scene
+var current_scene = "null"
 
 var canInput = 0
 
 var starsCount = 0
 
 var isPaused = false
+
+var endlessUnlocked = false
 
 signal set_health(amount)
 

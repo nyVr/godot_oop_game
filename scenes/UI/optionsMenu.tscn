@@ -1,6 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctq1vlk2a3uy1"]
+[gd_scene load_steps=15 format=3 uid="uid://ctq1vlk2a3uy1"]
 
 [ext_resource type="Script" path="res://scenes/UI/optionsMenu.gd" id="1_vot60"]
+[ext_resource type="Texture2D" uid="uid://cdlroorm0hh8l" path="res://sprites_fonts/blank.png" id="2_q3380"]
+[ext_resource type="FontFile" uid="uid://beoqupkvxqtfg" path="res://sprites_fonts/Ruthligos.ttf" id="3_iqkdv"]
+
+[sub_resource type="SystemFont" id="SystemFont_duhhl"]
+font_names = PackedStringArray("Book Antiqua")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4og4j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qd5f5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s0a1l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hifih"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u01b2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gj2t7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_207xw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_naun8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nme5w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hp00m"]
 
 [node name="OptionsMenu" type="Control"]
 layout_mode = 3
@@ -11,21 +36,69 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vot60")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="sprite" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+texture = ExtResource("2_q3380")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 15
 
 [node name="volume" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Volume"
+theme_override_colors/font_color = Color(0.682353, 0.227451, 0.172549, 0.560784)
+theme_override_fonts/font = SubResource("SystemFont_duhhl")
+theme_override_font_sizes/font_size = 55
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4og4j")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qd5f5")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_s0a1l")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hifih")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_u01b2")
+text = "⭒ Volume"
 
 [node name="back" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Back"
+theme_override_colors/font_color = Color(0.682353, 0.227451, 0.172549, 0.560784)
+theme_override_fonts/font = SubResource("SystemFont_duhhl")
+theme_override_font_sizes/font_size = 55
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gj2t7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_207xw")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_naun8")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_nme5w")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hp00m")
+text = "⭒ Back"
+
+[node name="gameTitle" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -228.0
+offset_right = 228.0
+offset_bottom = 189.0
+grow_horizontal = 2
+
+[node name="gameTitle" type="Label" parent="gameTitle"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.745098, 0.262745, 0.203922, 0.498039)
+theme_override_fonts/font = ExtResource("3_iqkdv")
+theme_override_font_sizes/font_size = 90
+text = "Star Seeker"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/volume" to="." method="_on_volume_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/back" to="." method="_on_back_pressed"]

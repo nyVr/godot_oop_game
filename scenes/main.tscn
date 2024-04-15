@@ -349,8 +349,15 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.2623
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Pause" parent="CanvasLayer" instance=ExtResource("9_t4jsp")]
-visible = false
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pause" parent="CanvasLayer/MarginContainer" instance=ExtResource("9_t4jsp")]
+layout_mode = 2
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 
