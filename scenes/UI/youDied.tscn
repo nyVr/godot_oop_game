@@ -56,7 +56,16 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="gameTitle" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.745098, 0.262745, 0.203922, 0.498039)
+theme_override_fonts/font = ExtResource("3_lyrxl")
+theme_override_font_sizes/font_size = 90
+text = "Star Seeker"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="youDied" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "YOU DIED"
 label_settings = SubResource("LabelSettings_pdxqk")
@@ -95,22 +104,6 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_rutw7")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_5xblx")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_3uyb7")
 text = "⭒ Quit"
-
-[node name="gameTitle" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 189.0
-grow_horizontal = 2
-
-[node name="gameTitle" type="Label" parent="gameTitle"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.745098, 0.262745, 0.203922, 0.498039)
-theme_override_fonts/font = ExtResource("3_lyrxl")
-theme_override_font_sizes/font_size = 90
-text = "Star Seeker"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/restart" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/mainmenu" to="." method="_on_mainmenu_pressed"]

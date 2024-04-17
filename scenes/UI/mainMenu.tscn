@@ -74,6 +74,15 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 0
 
+[node name="gameTitle" type="Label" parent="buttons/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.745098, 0.262745, 0.203922, 0.498039)
+theme_override_fonts/font = ExtResource("3_bts18")
+theme_override_font_sizes/font_size = 90
+text = "Star Seeker"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="play" type="Button" parent="buttons/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.682353, 0.227451, 0.172549, 0.560784)
@@ -125,22 +134,6 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_uwhcq")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_uf70p")
 text = "⭒ Quit"
 
-[node name="gameTitle" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 189.0
-grow_horizontal = 2
-
-[node name="gameTitle" type="Label" parent="gameTitle"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.745098, 0.262745, 0.203922, 0.498039)
-theme_override_fonts/font = ExtResource("3_bts18")
-theme_override_font_sizes/font_size = 90
-text = "Star Seeker"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="unlockMsg" type="Label" parent="."]
 visible = false
 layout_mode = 1
@@ -188,6 +181,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="unlockTimer" type="Timer" parent="."]
+
+[node name="MMmusic" type="AudioStreamPlayer" parent="."]
 
 [connection signal="pressed" from="buttons/VBoxContainer/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="buttons/VBoxContainer/continue" to="." method="_on_continue_pressed"]

@@ -13,17 +13,9 @@ func _ready():
 	#var current_scene = scene_tree.get_current_scene()
 	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
-
 
 ## pause mechanisms
 
 
 func _on_quit_pressed():
 	get_tree().quit()
-
-func _on_resume_pressed():
-	#emit_signal("resume_pressed")
-	pass

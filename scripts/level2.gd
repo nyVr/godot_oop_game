@@ -20,11 +20,11 @@ func _ready():
 	
 	## instance of enemies
 	inst_enemy(Vector3(3, 0.9, 40))
-	#inst_enemy(Vector3(3, 0.9, 2))
-	#inst_enemy(Vector3(2, 0.9, 2))
-	#inst_enemy(Vector3(9, 0.9, 2))
+	
+	
+	
 	## instance of lamps
-	#inst_lamps(Vector3(-5, 2, 0))
+	
 
 	
 	# pause mechanisms

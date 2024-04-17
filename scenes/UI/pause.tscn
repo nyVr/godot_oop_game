@@ -1,7 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://bhasjjid0r6w3"]
+[gd_scene load_steps=14 format=3 uid="uid://bhasjjid0r6w3"]
 
 [ext_resource type="Script" path="res://scenes/UI/pause.gd" id="1_uenc1"]
-[ext_resource type="Texture2D" uid="uid://bc0vddhuce76v" path="res://textures/images/1000000076.png" id="2_238wu"]
+[ext_resource type="Texture2D" uid="uid://cdlroorm0hh8l" path="res://sprites_fonts/blank.png" id="2_r0mwp"]
+[ext_resource type="FontFile" uid="uid://beoqupkvxqtfg" path="res://sprites_fonts/Ruthligos.ttf" id="3_3xbva"]
+
+[sub_resource type="SystemFont" id="SystemFont_xl6o6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w2aj5"]
+
+[sub_resource type="SystemFont" id="SystemFont_c65ui"]
+font_names = PackedStringArray("Book Antiqua")
+
+[sub_resource type="LabelSettings" id="LabelSettings_6yhxe"]
+font = SubResource("SystemFont_c65ui")
+font_size = 45
+font_color = Color(0.682353, 0.227451, 0.172549, 0.560784)
+
+[sub_resource type="SystemFont" id="SystemFont_sdb6w"]
+font_names = PackedStringArray("Book Antiqua")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ctl40"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w8wgf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j4act"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mcdf5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x8uer"]
 
 [node name="Pause" type="Control"]
 process_mode = 2
@@ -15,6 +41,15 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_uenc1")
 
+[node name="bg" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_r0mwp")
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -23,33 +58,41 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer"]
-layout_mode = 2
-patch_margin_left = 5
-patch_margin_top = 5
-patch_margin_right = 5
-patch_margin_bottom = 5
-
-[node name="1000000076" type="Sprite2D" parent="MarginContainer/NinePatchRect"]
-position = Vector2(578, 326.5)
-scale = Vector2(1.2125, 1.17199)
-texture = ExtResource("2_238wu")
-
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="resume" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="gameTitle" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.745098, 0.262745, 0.203922, 0.498039)
+theme_override_fonts/font = ExtResource("3_3xbva")
+theme_override_font_sizes/font_size = 90
+text = "Star Seeker"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="resume" type="Label" parent="MarginContainer/VBoxContainer"]
 process_mode = 2
 layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_xl6o6")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_w2aj5")
 text = "ESC To resume
 "
-flat = true
+label_settings = SubResource("LabelSettings_6yhxe")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="quit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Quit"
+theme_override_colors/font_color = Color(0.682353, 0.227451, 0.172549, 0.560784)
+theme_override_fonts/font = SubResource("SystemFont_sdb6w")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ctl40")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_w8wgf")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_j4act")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_mcdf5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x8uer")
+text = " 𓇻  Quit"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]
