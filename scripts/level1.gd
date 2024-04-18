@@ -7,8 +7,7 @@ class_name Level1
 @onready var enemyScene : PackedScene = preload("res://scenes/enemy.tscn")
 @onready var lampScene : PackedScene = preload("res://scenes/lanterns.tscn")
 
-@onready var pauseSprite = $CanvasLayer/MarginContainer/Pause
-
+@onready var pauseSprite = $pauseMenu/MarginContainer/Pause
 
 
 var levelUp = false

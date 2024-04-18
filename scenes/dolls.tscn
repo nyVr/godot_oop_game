@@ -59,6 +59,7 @@ skeleton = NodePath("../CollisionShape3D")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.148429, 0)
 light_color = Color(0.921569, 0.709804, 0.196078, 1)
 light_energy = 2.0
+light_indirect_energy = 0.0
 light_volumetric_fog_energy = 3.0
 light_size = 1.0
 distance_fade_enabled = true

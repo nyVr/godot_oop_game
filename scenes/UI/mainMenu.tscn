@@ -1,8 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://ogcre7kellm3"]
+[gd_scene load_steps=17 format=3 uid="uid://ogcre7kellm3"]
 
 [ext_resource type="Script" path="res://scenes/UI/mainMenu.gd" id="1_06a7w"]
 [ext_resource type="Texture2D" uid="uid://cdlroorm0hh8l" path="res://sprites_fonts/blank.png" id="2_sbvkg"]
 [ext_resource type="FontFile" uid="uid://beoqupkvxqtfg" path="res://sprites_fonts/Ruthligos.ttf" id="3_bts18"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6t5yd"]
+font = ExtResource("3_bts18")
+font_size = 35
+font_color = Color(1, 0.447059, 0.337255, 1)
 
 [sub_resource type="SystemFont" id="SystemFont_tljwu"]
 font_names = PackedStringArray("Book Antiqua")
@@ -80,6 +85,13 @@ theme_override_colors/font_color = Color(0.745098, 0.262745, 0.203922, 0.498039)
 theme_override_fonts/font = ExtResource("3_bts18")
 theme_override_font_sizes/font_size = 90
 text = "Star Seeker"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="menutype" type="Label" parent="buttons/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+label_settings = SubResource("LabelSettings_6t5yd")
 horizontal_alignment = 1
 vertical_alignment = 1
 

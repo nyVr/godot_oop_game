@@ -1,8 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://bhasjjid0r6w3"]
+[gd_scene load_steps=15 format=3 uid="uid://bhasjjid0r6w3"]
 
 [ext_resource type="Script" path="res://scenes/UI/pause.gd" id="1_uenc1"]
 [ext_resource type="Texture2D" uid="uid://cdlroorm0hh8l" path="res://sprites_fonts/blank.png" id="2_r0mwp"]
 [ext_resource type="FontFile" uid="uid://beoqupkvxqtfg" path="res://sprites_fonts/Ruthligos.ttf" id="3_3xbva"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fr0q3"]
+font = ExtResource("3_3xbva")
+font_size = 35
+font_color = Color(1, 0.447059, 0.337255, 1)
 
 [sub_resource type="SystemFont" id="SystemFont_xl6o6"]
 
@@ -41,6 +46,15 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_uenc1")
 
+[node name="controlMenu" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="bg" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -72,6 +86,13 @@ text = "Star Seeker"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="menuType" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Game Paused"
+label_settings = SubResource("LabelSettings_fr0q3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="resume" type="Label" parent="MarginContainer/VBoxContainer"]
 process_mode = 2
 layout_mode = 2
@@ -82,6 +103,19 @@ text = "ESC To resume
 label_settings = SubResource("LabelSettings_6yhxe")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="controls" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.682353, 0.227451, 0.172549, 0.560784)
+theme_override_fonts/font = SubResource("SystemFont_sdb6w")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ctl40")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_w8wgf")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_j4act")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_mcdf5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x8uer")
+text = " 𓇻  Controls
+"
 
 [node name="quit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
