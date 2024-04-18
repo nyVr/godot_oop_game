@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dde3hpdyxsg0n"]
+[gd_scene load_steps=9 format=3 uid="uid://dde3hpdyxsg0n"]
 
 [ext_resource type="Script" path="res://scripts/stars.gd" id="1_nh6sh"]
+[ext_resource type="PackedScene" uid="uid://cn23mltvrmuvq" path="res://blender/jsstar.glb" id="2_jb4kq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_75wqi"]
 radius = 0.3
@@ -14,23 +15,58 @@ material = SubResource("StandardMaterial3D_fotw2")
 radius = 0.3
 height = 1.0
 
-[node name="dolls" type="Area3D"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_502f5"]
+emission_shape_scale = Vector3(1.5, 1.5, 1.5)
+emission_shape = 1
+emission_sphere_radius = 2.0
+velocity_pivot = Vector3(2, 2, 2)
+direction = Vector3(2, 4, 2)
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2oy8"]
+albedo_color = Color(1, 1, 0, 1)
+emission_enabled = true
+emission = Color(0.847059, 0.847059, 0.196078, 1)
+emission_energy_multiplier = 2.0
+backlight = Color(1, 0.662745, 0, 1)
+proximity_fade_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_lo8us"]
+material = SubResource("StandardMaterial3D_g2oy8")
+radius = 0.05
+height = 0.1
+
+[node name="star" type="Area3D"]
+transform = Transform3D(0.591868, -0.408851, -0.694646, 0.568361, 0.822779, 0, 0.57154, -0.394809, 0.719352, 0, 0, 0)
 script = ExtResource("1_nh6sh")
 metadata/_edit_group_ = true
 
+[node name="jsstar" parent="." instance=ExtResource("2_jb4kq")]
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0)
+visible = false
 shape = SubResource("CapsuleShape3D_75wqi")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_ylehh")
 skeleton = NodePath("../CollisionShape3D")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.148429, 0)
 light_color = Color(0.921569, 0.709804, 0.196078, 1)
 light_energy = 2.0
 light_volumetric_fog_energy = 3.0
 light_size = 1.0
+distance_fade_enabled = true
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.760961, 0.648798, 0, -0.648798, 0.760961, 0, 0, 0)
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_502f5")
+draw_pass_1 = SubResource("SphereMesh_lo8us")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

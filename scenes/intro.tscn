@@ -1,10 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://yv6tx3d7fj3b"]
+[gd_scene load_steps=19 format=3 uid="uid://yv6tx3d7fj3b"]
 
+[ext_resource type="PackedScene" uid="uid://dqr54dd08lhks" path="res://scenes/joe.tscn" id="1_f85ub"]
 [ext_resource type="PackedScene" uid="uid://tgjdsvt30gt7" path="res://blender/deadTree01.dae" id="2_6yxbl"]
 [ext_resource type="Texture2D" uid="uid://ddl4hn6lw2fra" path="res://textures/burned_ground_01/burned_ground_01_diff_4k.jpg" id="2_w5qgk"]
 [ext_resource type="Texture2D" uid="uid://dh7jpxsfpyd3x" path="res://textures/burned_ground_01/burned_ground_01_nor_gl_4k.jpg" id="3_d53cl"]
 [ext_resource type="Texture2D" uid="uid://dfx0pxkjs6pr4" path="res://textures/burned_ground_01/burned_ground_01_rough_4k.jpg" id="4_fij52"]
 [ext_resource type="PackedScene" uid="uid://dgphceem3w1tt" path="res://blender/main_char_anim.glb" id="5_nh0yb"]
+[ext_resource type="PackedScene" uid="uid://cn23mltvrmuvq" path="res://blender/jsstar.glb" id="7_s3hso"]
 
 [sub_resource type="Shader" id="Shader_jrvam"]
 code = "
@@ -127,6 +129,28 @@ size = Vector3(50, 0.5, 50)
 albedo = Color(0.243137, 0.0941176, 0.0431373, 1)
 emission = Color(0.152941, 0.0509804, 0.0117647, 1)
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3hi4i"]
+emission_shape_scale = Vector3(1.5, 1.5, 1.5)
+emission_shape = 1
+emission_sphere_radius = 2.0
+velocity_pivot = Vector3(2, 2, 2)
+direction = Vector3(2, 4, 2)
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2oy8"]
+albedo_color = Color(1, 1, 0, 1)
+emission_enabled = true
+emission = Color(0.847059, 0.847059, 0.196078, 1)
+emission_energy_multiplier = 2.0
+backlight = Color(1, 0.662745, 0, 1)
+proximity_fade_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_h03tx"]
+material = SubResource("StandardMaterial3D_g2oy8")
+radius = 0.05
+height = 0.1
+
 [node name="introScene" type="Node3D"]
 
 [node name="sky" type="WorldEnvironment" parent="."]
@@ -163,18 +187,78 @@ mesh = SubResource("BoxMesh_4f0or")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="world/floor"]
 shape = SubResource("BoxShape3D_6dlv3")
 
-[node name="FogVolume" type="FogVolume" parent="."]
+[node name="fog" type="FogVolume" parent="."]
 transform = Transform3D(1, 0, 0, 0, 7.50682, 0, 0, 0, 1, 5, 2, 1.185)
 visible = false
 size = Vector3(100, 1, 100)
 material = SubResource("FogMaterial_xas3i")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.4159, 0)
+
 [node name="mainchar" parent="." instance=ExtResource("5_nh0yb")]
 transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 0, 0)
 
-[node name="cutscene" type="AnimationPlayer" parent="."]
+[node name="Skeleton3D" parent="mainchar/Armature" index="0"]
+bones/0/position = Vector3(0.0277103, -0.0881001, -1.22306)
+bones/0/rotation = Quaternion(-0.633438, -0.0300467, -0.0102248, 0.773142)
+bones/1/rotation = Quaternion(0.115969, 0.0147071, 0.0455292, 0.9921)
+bones/2/rotation = Quaternion(0.0177045, -0.000237426, 0.00445006, 0.999833)
+bones/3/rotation = Quaternion(0.0435071, -0.000437065, 0.00163374, 0.999052)
+bones/4/rotation = Quaternion(-0.06177, -0.00312575, -0.00223644, 0.998083)
+bones/5/rotation = Quaternion(-0.140482, 0.00314505, -0.0281138, 0.989679)
+bones/7/rotation = Quaternion(0.60678, 0.389839, -0.545675, 0.42671)
+bones/8/rotation = Quaternion(0.411754, 0.145164, 0.0028757, 0.899654)
+bones/9/rotation = Quaternion(-0.0772454, 0.00152637, 0.702875, 0.707105)
+bones/10/rotation = Quaternion(-0.086012, -0.0579468, 0.0244285, 0.994307)
+bones/11/rotation = Quaternion(0.274028, -0.0323536, 0.229069, 0.933482)
+bones/12/rotation = Quaternion(-0.111109, 0.135267, -0.309548, 0.934632)
+bones/13/rotation = Quaternion(-0.0754889, 0.162727, 0.404646, 0.896707)
+bones/15/rotation = Quaternion(0.689422, 0.0573286, -0.126542, 0.710914)
+bones/16/rotation = Quaternion(0.586359, 0.00232757, -0.0436007, 0.808874)
+bones/17/rotation = Quaternion(0.680155, -0.00840888, -0.0633607, 0.730277)
+bones/19/rotation = Quaternion(0.604956, -0.391946, 0.548191, 0.424138)
+bones/20/rotation = Quaternion(0.251622, 0.00311468, -0.281031, 0.92612)
+bones/21/rotation = Quaternion(-0.0769871, -0.00155286, -0.704591, 0.705423)
+bones/22/rotation = Quaternion(-0.0889306, 0.0139902, -0.101663, 0.990737)
+bones/23/rotation = Quaternion(0.208619, -0.0650267, -0.229227, 0.948528)
+bones/24/rotation = Quaternion(-0.117822, -0.0501686, 0.192466, 0.972912)
+bones/25/rotation = Quaternion(-0.159288, -0.0481023, -0.228687, 0.959175)
+bones/27/rotation = Quaternion(0.580079, 0.0319985, 0.0194718, 0.813699)
+bones/28/rotation = Quaternion(0.607374, 0.000994268, 0.0503149, 0.792821)
+bones/29/rotation = Quaternion(0.468248, 0.00115967, 0.0495399, 0.882206)
+bones/31/rotation = Quaternion(0.0806464, 0.162494, 0.982765, -0.035578)
+bones/32/rotation = Quaternion(-0.930733, -0.0169259, 0.0392962, 0.363188)
+bones/33/rotation = Quaternion(0.774646, -0.481531, 0.151279, 0.381006)
+bones/34/rotation = Quaternion(0.0433272, -0.00690402, -0.126453, 0.991002)
+bones/36/rotation = Quaternion(-0.0720457, 0.279495, 0.956675, -0.0382713)
+bones/37/rotation = Quaternion(-0.465974, -0.00740211, 0.0595566, 0.88276)
+bones/38/rotation = Quaternion(0.794749, 0.36355, -0.247959, 0.417997)
+bones/39/rotation = Quaternion(0.0365491, -0.00577252, 0.0894274, 0.995306)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.4159, 0)
+[node name="mcLight" type="OmniLight3D" parent="mainchar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08035, 0.261752)
+light_color = Color(1, 1, 0, 1)
+light_energy = 0.0
+
+[node name="joe" parent="." instance=ExtResource("1_f85ub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 10.3805, 24.3244)
+
+[node name="jsstar" parent="." instance=ExtResource("7_s3hso")]
+transform = Transform3D(1, 0, 0, 0, 0.760961, -0.648798, 0, 0.648798, 0.760961, 30, 1.38417, 24)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="jsstar"]
+transform = Transform3D(1, 0, 0, 0, 0.760961, 0.648798, 0, -0.648798, 0.760961, 0, 0, 0)
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_3hi4i")
+draw_pass_1 = SubResource("SphereMesh_h03tx")
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="jsstar"]
+light_color = Color(1, 1, 0, 1)
+light_energy = 10.0
+light_volumetric_fog_energy = 1.5
+distance_fade_enabled = true
+
+[node name="cutscene" type="AnimationPlayer" parent="."]
 
 [editable path="mainchar"]
