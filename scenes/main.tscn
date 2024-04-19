@@ -349,6 +349,7 @@ transform = Transform3D(0.635, 0.772512, 0, -0.736188, 0.605142, -0.303035, -0.2
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.26237, 0.92, -19.4395)
 
 [node name="pauseMenu" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="MarginContainer" type="MarginContainer" parent="pauseMenu"]
 anchors_preset = 15

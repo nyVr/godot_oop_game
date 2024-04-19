@@ -1,7 +1,12 @@
 extends Node3D
+
+@onready var mcPlayer = $mainchar/AnimationPlayer
+@onready var cutscenePlayer = $cutscene
+
+
 # manually matching cutscene with mc animation
-var animqueue = ["cutsceneP1", "cutsceneP2"]
-var mcanimqueue = ["look_up", "[stop]"]
+var animqueue = ["cutsceneP1", "cutsceneP2", "cutsceneP3"]
+var mcanimqueue = ["look_up", "[stop]", "run"]
 
 # array vars for iteration
 var index = 0
@@ -12,8 +17,11 @@ func _ready():
 
 # queue for animations
 func play_nims():
-	$cutscene.play(animqueue[index])
-	$mainchar/AnimationPlayer.play(mcanimqueue[index])
+	cutscenePlayer.play(animqueue[index])
+	if mcanimqueue[index] != "[stop]":
+		mcPlayer.play(mcanimqueue[index])
+	else:
+		return
 
 ## signal
 func _on_cutscene_animation_finished(anim_name):

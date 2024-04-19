@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c4r44mh8hqtk0"]
+[gd_scene load_steps=23 format=3 uid="uid://c4r44mh8hqtk0"]
 
 [ext_resource type="PackedScene" uid="uid://d2lr7ndyoi0x0" path="res://blender/plainWall.dae" id="1_686np"]
 [ext_resource type="Script" path="res://scripts/level2.gd" id="1_pgy4g"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dikk48xuaigo8" path="res://blender/wall02.dae" id="7_pheu5"]
 [ext_resource type="PackedScene" uid="uid://dqr54dd08lhks" path="res://scenes/joe.tscn" id="7_wdq2f"]
 [ext_resource type="PackedScene" uid="uid://bhasjjid0r6w3" path="res://scenes/UI/pause.tscn" id="10_8by03"]
+[ext_resource type="PackedScene" uid="uid://dde3hpdyxsg0n" path="res://scenes/dolls.tscn" id="11_7p1ve"]
 
 [sub_resource type="Shader" id="Shader_kpjv8"]
 code = "
@@ -137,6 +138,17 @@ size = Vector3(50, 0.5, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e74f4"]
 size = Vector3(50, 0.5, 50)
+
+[sub_resource type="SystemFont" id="SystemFont_po0aw"]
+font_names = PackedStringArray("Book Antiqua")
+
+[sub_resource type="LabelSettings" id="LabelSettings_kjn4d"]
+line_spacing = 0.0
+font = SubResource("SystemFont_po0aw")
+font_size = 50
+font_color = Color(0.976471, 0.745098, 0.705882, 1)
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Level2" type="Node3D"]
 process_mode = 3
@@ -647,10 +659,23 @@ transform = Transform3D(0.771453, 0, 0.281491, 0, 1, 0, -0.717983, 0, 0.302454, 
 [node name="joe" parent="." instance=ExtResource("7_wdq2f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6803, 0.92, 48.6894)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="scoreCanv" type="CanvasLayer" parent="."]
 
-[node name="Pause" parent="CanvasLayer" instance=ExtResource("10_8by03")]
+[node name="score" type="Label" parent="scoreCanv"]
+offset_right = 368.0
+offset_bottom = 67.0
+size_flags_horizontal = 4
+text = "Stars collected: 0"
+label_settings = SubResource("LabelSettings_kjn4d")
+metadata/_edit_use_anchors_ = true
+
+[node name="pauseCanv" type="CanvasLayer" parent="."]
 visible = false
+
+[node name="Pause" parent="pauseCanv" instance=ExtResource("10_8by03")]
 
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 40)
+
+[node name="star" parent="Node3D" instance=ExtResource("11_7p1ve")]
+transform = Transform3D(0.591868, -0.408851, -0.694646, 0.568361, 0.822779, 0, 0.57154, -0.394809, 0.719352, 3.47189, 0.72539, 0)

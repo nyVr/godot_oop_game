@@ -10,11 +10,13 @@ font_size = 35
 font_color = Color(1, 0.447059, 0.337255, 1)
 
 [sub_resource type="SystemFont" id="SystemFont_xl6o6"]
+subpixel_positioning = 0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w2aj5"]
 
 [sub_resource type="SystemFont" id="SystemFont_c65ui"]
 font_names = PackedStringArray("Book Antiqua")
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_6yhxe"]
 font = SubResource("SystemFont_c65ui")
@@ -23,6 +25,7 @@ font_color = Color(0.682353, 0.227451, 0.172549, 0.560784)
 
 [sub_resource type="SystemFont" id="SystemFont_sdb6w"]
 font_names = PackedStringArray("Book Antiqua")
+subpixel_positioning = 0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ctl40"]
 

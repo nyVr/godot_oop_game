@@ -15,3 +15,5 @@ signal set_health(amount)
 signal player_attacked(attackDmg)
 
 signal attacked_enemy(lanternDmg)
+
+signal star_collected()

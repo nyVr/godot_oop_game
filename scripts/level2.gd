@@ -7,6 +7,10 @@ class_name Level2
 @onready var enemyScene : PackedScene = preload("res://scenes/enemy.tscn")
 @onready var lampScene : PackedScene = preload("res://scenes/lanterns.tscn")
 
+@onready var score = $scoreCanv/score
+@onready var pauseSc = $pauseCanv/Pause
+
+
 var levelUp = false
 
 #
@@ -18,17 +22,19 @@ func _ready():
 	# get scene for restart purposes
 	Global.current_scene = "res://scenes/level2.tscn"
 	
+	# reset stars
+	Global.starsCount = 0
+	
+	Global.connect("star_collected", _star_collected)
+	
+	
 	## instance of enemies
 	inst_enemy(Vector3(3, 0.9, 40))
 	
-	
-	
 	## instance of lamps
 	
-
-	
 	# pause mechanisms
-	$CanvasLayer/Pause.hide()
+	pauseSc.hide()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -72,22 +78,20 @@ func pause():
 	Global.isPaused = true
 	Engine.time_scale = 0
 	get_tree().paused = true
-	$CanvasLayer/Pause.show()
+	pauseSc.show()
 
 # start the time when ESC pressed again
 func unpause():
 	Global.isPaused = false
 	Engine.time_scale = 1
 	get_tree().paused = false
-	$CanvasLayer/Pause.hide()
+	pauseSc.hide()
 
-#
-func _on_resume_press():
-	if Global.isPaused:
-		Global.isPaused = false
-		Engine.time_scale = 1
-		get_tree().paused = false
-		$CanvasLayer/Pause.hide()
-	else:
-		pass
 
+## sigfnals
+
+# update label when star collected
+func _star_collected():
+	print("EMITTED")
+	var score_text = "Stars collected: " + str(Global.starsCount)
+	score.text = score_text
