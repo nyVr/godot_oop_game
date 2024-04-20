@@ -5,8 +5,8 @@ extends Node3D
 
 
 # manually matching cutscene with mc animation
-var animqueue = ["cutsceneP1", "cutsceneP2", "cutsceneP3"]
-var mcanimqueue = ["look_up", "[stop]", "run"]
+var animqueue = ["cutsceneP1", "cutsceneP2", "cutsceneP3", "cutsceneP4"]
+var mcanimqueue = ["look_up", "[stop]", "run", "crouch_look_down"]
 
 # array vars for iteration
 var index = 0
