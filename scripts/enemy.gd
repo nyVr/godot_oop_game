@@ -41,7 +41,7 @@ func _ready():
 # calculate movement
 func _physics_process(delta):
 	if playerIn:
-		print("PLAYER IN -- PHYSICS PROCESS")
+		#print("PLAYER IN -- PHYSICS PROCESS")
 		var currLocation = global_transform.origin
 		var nextLocation = navAgent.get_next_path_position()
 		

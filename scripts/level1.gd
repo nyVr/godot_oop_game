@@ -2,7 +2,7 @@ extends Node3D
 
 class_name Level1
 
-@onready var player = $joe
+@onready var player = $mcStar_anim
 
 @onready var enemyScene : PackedScene = preload("res://scenes/enemy.tscn")
 @onready var lampScene : PackedScene = preload("res://scenes/lanterns.tscn")

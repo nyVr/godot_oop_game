@@ -1,7 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://b7atxuaof20fe"]
 
 [ext_resource type="Script" path="res://scripts/level1.gd" id="1_eeoya"]
-[ext_resource type="PackedScene" uid="uid://dqr54dd08lhks" path="res://scenes/joe.tscn" id="2_76w2n"]
 [ext_resource type="PackedScene" uid="uid://dde3hpdyxsg0n" path="res://scenes/dolls.tscn" id="3_aal3e"]
 [ext_resource type="Texture2D" uid="uid://ddl4hn6lw2fra" path="res://textures/burned_ground_01/burned_ground_01_diff_4k.jpg" id="4_6k0y7"]
 [ext_resource type="PackedScene" uid="uid://d2lr7ndyoi0x0" path="res://blender/plainWall.dae" id="4_rkueh"]
@@ -13,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://tgjdsvt30gt7" path="res://blender/deadTree01.dae" id="8_pucbj"]
 [ext_resource type="PackedScene" uid="uid://bvldrvhbxl4ii" path="res://blender/deadBush02.dae" id="9_b45cy"]
 [ext_resource type="PackedScene" uid="uid://bhasjjid0r6w3" path="res://scenes/UI/pause.tscn" id="9_t4jsp"]
+[ext_resource type="PackedScene" uid="uid://b61l0x0l37n4j" path="res://scenes/mc_star.tscn" id="11_sli2k"]
 [ext_resource type="AudioStream" uid="uid://cfs0xqhu4lqy1" path="res://audio/hsynth_white_bat_IGM.mp3" id="14_hyeot"]
 
 [sub_resource type="Shader" id="Shader_njq1a"]
@@ -340,8 +340,9 @@ transform = Transform3D(1.94405, 0, 0.469741, 0, 2, 0, -0.469741, 0, 1.94405, 5.
 [node name="deadBush12" parent="NavigationRegion3D/world/bush" instance=ExtResource("9_b45cy")]
 transform = Transform3D(1.98763, 0, -0.222105, 0, 2, 0, 0.222105, 0, 1.98763, 7.57267, 2.60183, -22.845)
 
-[node name="joe" parent="." instance=ExtResource("2_76w2n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.635, 0.91275, 5.147)
+[node name="mcStar_anim" parent="." instance=ExtResource("11_sli2k")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+metadata/_edit_group_ = true
 
 [node name="stars" parent="." instance=ExtResource("3_aal3e")]
 transform = Transform3D(0.635, 0.772512, 0, -0.736188, 0.605142, -0.303035, -0.234098, 0.192427, 0.952979, -0.0241737, 1.27446, 10.1309)
@@ -365,6 +366,3 @@ layout_mode = 2
 [node name="music" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("14_hyeot")
-
-[connection signal="pauseWorld_dialogue" from="bibz" to="joe" method="_on_bibz_pause_world_dialogue"]
-[connection signal="unpauseWorld_dialogue" from="bibz" to="joe" method="_on_bibz_unpause_world_dialogue"]

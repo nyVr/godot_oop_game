@@ -25,7 +25,7 @@ func set_border_size(val : int):
 
 
 
-@export  var giveup : int = 10
+@export  var giveup : int = 5
 
 
 @onready var enemyScene : PackedScene = preload("res://scenes/enemy.tscn")
@@ -96,7 +96,13 @@ func _ready():
 	for i in bush_count:
 		make_bush_tiles(giveup)
 	print("BUSH POSITIONS: ", bush_positions)
-	make_blank_tiles()
+	
+	
+	$pathfind.bake_navigation_mesh(true)
+	print("BAKED MESH")
+	
+	
+	
 	
 
 
@@ -187,8 +193,9 @@ func make_blank_tiles():
 			if grid_map.get_cell_item(pos) == -1:
 				grid_map.set_cell_item(pos, 0)
 				
-				if randf() < 0.001:
-					spawn_enemy(pos)
+				#if randf() < 0.005:
+					#print("ENEMY SPAWNED")
+					#spawn_enemy(pos)
 
 
 
@@ -198,3 +205,8 @@ func clear_instantiations():
 		instance.queue_free()
 	instances.clear()
 
+
+
+func _on_pathfind_bake_finished():
+	spawn_enemy(Vector3(21, 0.9, 9.5))
+	make_blank_tiles()

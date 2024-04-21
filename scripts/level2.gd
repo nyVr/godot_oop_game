@@ -135,4 +135,4 @@ func _star_collected():
 	var score_text = "Stars collected: " + str(Global.starsCount) + "/10"
 	score.text = score_text
 	if Global.starsCount == 10:
-		print("WIN")
+		get_tree().change_scene_to_file("res://scenes/final.tscn")
