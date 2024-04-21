@@ -21,6 +21,8 @@ func _ready():
 	# get scene for restart purposes
 	Global.current_scene = "res://scenes/main.tscn"
 	
+	$music.play()
+	
 	# instance of enemies
 	inst_enemy(Vector3(6, 0.9, 2))
 	inst_enemy(Vector3(3, 0.9, 2))

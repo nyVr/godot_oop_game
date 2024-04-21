@@ -923,7 +923,6 @@ transform = Transform3D(7.43028, 0, 3.9858, 0, 8.93492, 0, -6.17466, 0, 4.79631,
 transform = Transform3D(-7.90417, 0, 3.58589, 0, 8.93492, 0, -5.55514, 0, -5.10221, -59.7295, 0.250004, 5.68525)
 
 [node name="bushes" type="Node3D" parent="world"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="deadBush02" parent="world/bushes" instance=ExtResource("7_8h7sx")]
 transform = Transform3D(0.996761, 0, -0.20018, 0, 3.62609, 0, 0.0804251, 0, 2.48096, -0.90171, 0.305091, -21.3566)

@@ -116,16 +116,9 @@ func _input(event):
 		hitLight.light_energy = 0
 		hitLight.light_volumetric_fog_energy = 0
 		attackOn = false
-	
 
-# enemy enter joe hit box when attack
-#func _on_hitbox_body_entered(body):
-	#if cdOver:
-		#if attackOn and body.is_in_group("enemy"):
-			#print("*****ENEMY ENTER ATTACK HITBOX*****")
-			#body._enemy_attacked(lanternDmg)
-			#cdOver = false
 
+# atk
 func attackEnemy():
 	if attackOn:
 		var bodies = $hitbox.get_overlapping_bodies()

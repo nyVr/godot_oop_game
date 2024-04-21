@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b7atxuaof20fe"]
+[gd_scene load_steps=24 format=3 uid="uid://b7atxuaof20fe"]
 
 [ext_resource type="Script" path="res://scripts/level1.gd" id="1_eeoya"]
 [ext_resource type="PackedScene" uid="uid://dqr54dd08lhks" path="res://scenes/joe.tscn" id="2_76w2n"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://tgjdsvt30gt7" path="res://blender/deadTree01.dae" id="8_pucbj"]
 [ext_resource type="PackedScene" uid="uid://bvldrvhbxl4ii" path="res://blender/deadBush02.dae" id="9_b45cy"]
 [ext_resource type="PackedScene" uid="uid://bhasjjid0r6w3" path="res://scenes/UI/pause.tscn" id="9_t4jsp"]
+[ext_resource type="AudioStream" uid="uid://cfs0xqhu4lqy1" path="res://audio/hsynth_white_bat_IGM.mp3" id="14_hyeot"]
 
 [sub_resource type="Shader" id="Shader_njq1a"]
 code = "
@@ -362,6 +363,8 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="music" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("14_hyeot")
 
 [connection signal="pauseWorld_dialogue" from="bibz" to="joe" method="_on_bibz_pause_world_dialogue"]
 [connection signal="unpauseWorld_dialogue" from="bibz" to="joe" method="_on_bibz_unpause_world_dialogue"]

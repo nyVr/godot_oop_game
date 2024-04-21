@@ -62,7 +62,6 @@ func _physics_process(delta):
 
 # move the enemy back to origin position if the player leaves their detec area
 func move_to_init_pos(_delta):
-	print("IN MOVE TO INITIAL POSITION ")
 	var direction = (initLoc - global_transform.origin).normalized()
 	velocity = direction * SPEED2
 	move_and_slide()
@@ -74,7 +73,6 @@ func move_to_init_pos(_delta):
 	
 # set taregt location (player location)
 func updatePlayerLocation(playerLocation):
-	print("UPDATING PLAYER LOCATION ")
 	navAgent.target_position = playerLocation
 
 # when player in enemy radar start navigation ai
@@ -91,7 +89,6 @@ func _on_detection_area_body_exited(body):
 
 # avoid cols using safe velocity
 func _on_navigation_agent_3d_velocity_computed(safe_velocity):
-	print("SAFE VELOVITY COMPUTED ")
 	velocity = velocity.move_toward(safe_velocity, 0.25)
 	move_and_slide()
 
