@@ -3,6 +3,11 @@ extends Node3D
 
 @onready var grid_map : GridMap = $GridMap
 
+
+
+@onready var player = $joe
+
+
 @export var start : bool = false : set = set_start
 func set_start(val: bool):
 	generate()
@@ -103,6 +108,8 @@ func _ready():
 	
 	
 	
+func _physics_process(delta):
+	get_tree().call_group("enemy", "updatePlayerLocation", player.global_transform.origin)
 	
 
 

@@ -1,6 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://b7atxuaof20fe"]
+[gd_scene load_steps=25 format=3 uid="uid://b7atxuaof20fe"]
 
 [ext_resource type="Script" path="res://scripts/level1.gd" id="1_eeoya"]
+[ext_resource type="PackedScene" uid="uid://dqr54dd08lhks" path="res://scenes/joe.tscn" id="2_76w2n"]
 [ext_resource type="PackedScene" uid="uid://dde3hpdyxsg0n" path="res://scenes/dolls.tscn" id="3_aal3e"]
 [ext_resource type="Texture2D" uid="uid://ddl4hn6lw2fra" path="res://textures/burned_ground_01/burned_ground_01_diff_4k.jpg" id="4_6k0y7"]
 [ext_resource type="PackedScene" uid="uid://d2lr7ndyoi0x0" path="res://blender/plainWall.dae" id="4_rkueh"]
@@ -339,6 +340,9 @@ transform = Transform3D(1.94405, 0, 0.469741, 0, 2, 0, -0.469741, 0, 1.94405, 5.
 
 [node name="deadBush12" parent="NavigationRegion3D/world/bush" instance=ExtResource("9_b45cy")]
 transform = Transform3D(1.98763, 0, -0.222105, 0, 2, 0, 0.222105, 0, 1.98763, 7.57267, 2.60183, -22.845)
+
+[node name="joe" parent="." instance=ExtResource("2_76w2n")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0.35, 0)
 
 [node name="mcStar_anim" parent="." instance=ExtResource("11_sli2k")]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)

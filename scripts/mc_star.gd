@@ -120,10 +120,12 @@ func _input(event):
 
 # atk
 func attackEnemy():
+	print("ATTACK")
 	if attackOn:
 		var bodies = $hitbox.get_overlapping_bodies()
 		for body in bodies:
 			if body.is_in_group("enemy"):
+				print("ENEMY DETECTTED EMIITING SIGNAL")
 				#body._enemy_attacked(lanternDmg)
 				Global.emit_signal("attacked_enemy", lanternDmg)
 
