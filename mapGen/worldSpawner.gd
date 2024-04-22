@@ -9,13 +9,16 @@ func set_start(val: bool):
 @onready var grid_map = $"../../GridMap"
 
 
-@onready var treeScene : PackedScene = preload("res://mapGen/dead_tree_01.tscn")
-@onready var bushScene : PackedScene = preload("res://mapGen/dead_bush_02.tscn")
+@onready var treeScene : PackedScene = preload("res://mapGen/sceneGeneration/dead_tree_01.tscn")
+@onready var bushScene : PackedScene = preload("res://mapGen/sceneGeneration/dead_bush_02.tscn")
+@onready var plainwallScene : PackedScene = preload("res://mapGen/sceneGeneration/plain_wall.tscn")
+@onready var brokenwallScene : PackedScene = preload("res://mapGen/sceneGeneration/brokenWall.tscn")
 
 
 var instances : Array[Node3D] = []
 
 
+# built world on ready
 func _ready():
 	clear_instantiations()
 	
@@ -25,15 +28,16 @@ func _ready():
 			if grid_map.get_cell_item(pos) == 0:
 				pass
 			elif grid_map.get_cell_item(pos) == 1:
-				if randf_range(0, 1) < 0.2: # Adjust the probability as needed
+				if randf_range(0, 1) < 0.2:
 					spawn_tree(pos)
-				if randf_range(0, 1) < 0.15: # Adjust the probability as needed
+				if randf_range(0, 1) < 0.15:
 					spawn_bush(pos)
 			elif grid_map.get_cell_item(pos) == 2:
-				if randf_range(0, 1) < 0.5: # Adjust the probability as needed
+				if randf_range(0, 1) < 0.5:
 					spawn_bush(pos)
 
 
+# build world on generate
 func generate():
 	clear_instantiations()
 	
@@ -43,12 +47,12 @@ func generate():
 			if grid_map.get_cell_item(pos) == 0:
 				pass
 			elif grid_map.get_cell_item(pos) == 1:
-				if randf_range(0, 1) < 0.2: # Adjust the probability as needed
+				if randf_range(0, 1) < 0.2:
 					spawn_tree(pos)
-				if randf_range(0, 1) < 0.15: # Adjust the probability as needed
+				if randf_range(0, 1) < 0.15:
 					spawn_bush(pos)
 			elif grid_map.get_cell_item(pos) == 2:
-				if randf_range(0, 1) < 0.5: # Adjust the probability as needed
+				if randf_range(0, 1) < 0.5:
 					spawn_bush(pos)
 
 
@@ -93,8 +97,6 @@ func spawn_bush(pos: Vector3):
 	instances.append(bush)
 	# create
 	add_child(bush)
-
-
 
 
 # spawn broken wall on broken wall blocks

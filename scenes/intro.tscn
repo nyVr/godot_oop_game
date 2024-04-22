@@ -1,6 +1,6 @@
 [gd_scene load_steps=27 format=3 uid="uid://yv6tx3d7fj3b"]
 
-[ext_resource type="Script" path="res://scenes/intro.gd" id="1_1jhrq"]
+[ext_resource type="Script" path="res://scripts/intro.gd" id="1_1jhrq"]
 [ext_resource type="PackedScene" uid="uid://tgjdsvt30gt7" path="res://blender/deadTree01.dae" id="2_6yxbl"]
 [ext_resource type="PackedScene" uid="uid://d2lr7ndyoi0x0" path="res://blender/plainWall.dae" id="2_jgst0"]
 [ext_resource type="Texture2D" uid="uid://ddl4hn6lw2fra" path="res://textures/burned_ground_01/burned_ground_01_diff_4k.jpg" id="2_w5qgk"]

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://s3v7ud4bhlkf"]
+
+[ext_resource type="PackedScene" uid="uid://d2lr7ndyoi0x0" path="res://blender/plainWall.dae" id="1_gxa02"]
+
+[node name="plainWall" instance=ExtResource("1_gxa02")]
