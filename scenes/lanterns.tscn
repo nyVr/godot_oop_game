@@ -1,13 +1,30 @@
-[gd_scene load_steps=10 format=3 uid="uid://ci4mif64ksh6x"]
+[gd_scene load_steps=12 format=3 uid="uid://ci4mif64ksh6x"]
 
 [ext_resource type="Script" path="res://scripts/lanterns.gd" id="1_076it"]
 [ext_resource type="Script" path="res://scripts/lanternLight.gd" id="2_cyxan"]
+[ext_resource type="PackedScene" uid="uid://ix08ou3ke7sp" path="res://blender/torch.glb" id="2_kij3k"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8h02y"]
-albedo_color = Color(0, 0.733333, 0.568627, 1)
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6dnwd"]
+emission_shape_scale = Vector3(0.5, 0.5, 0.5)
+emission_shape = 1
+emission_sphere_radius = 2.0
+direction = Vector3(0, 0, 0)
+initial_velocity_min = 0.05
+initial_velocity_max = 0.05
+gravity = Vector3(0, 0, 0)
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_mstoy"]
-material = SubResource("StandardMaterial3D_8h02y")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2oy8"]
+albedo_color = Color(1, 1, 0, 1)
+emission_enabled = true
+emission = Color(0.847059, 0.847059, 0.196078, 1)
+emission_energy_multiplier = 2.0
+backlight = Color(1, 0.662745, 0, 1)
+proximity_fade_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_86f62"]
+material = SubResource("StandardMaterial3D_g2oy8")
+radius = 0.01
+height = 0.02
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kljca"]
 
@@ -24,24 +41,35 @@ viewport_path = NodePath("rechargeLayer")
 
 [node name="Lanterns" type="Area3D"]
 process_mode = 1
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 script = ExtResource("1_076it")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_mstoy")
+[node name="torch2" parent="." instance=ExtResource("2_kij3k")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="fireEmbers" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.999999, 0, 0, 0, 0.760961, 0.648798, 0, -0.648797, 0.76096, 0.0474881, 1.74619, -0.0459459)
+amount = 10
+lifetime = 1.5
+process_material = SubResource("ParticleProcessMaterial_6dnwd")
+draw_pass_1 = SubResource("SphereMesh_86f62")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.524683, 0, 0, 0, 0.992198, -0.0625346, 0, 0.124675, 0.497666, 0.138841, 0.928521, -0.205891)
 shape = SubResource("CapsuleShape3D_kljca")
 
 [node name="rechargeArea" type="Area3D" parent="."]
 
 [node name="rechargeAreaShape" type="CollisionShape3D" parent="rechargeArea"]
-transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 0, 0)
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 0.666667, 0)
 shape = SubResource("SphereShape3D_805lw")
 
 [node name="lanternLight" type="OmniLight3D" parent="."]
+transform = Transform3D(0.666667, 0, 0, 0, 0.666667, 0, 0, 0, 0.666667, 0.100649, 1.9705, 0)
 light_color = Color(0.792157, 0.513726, 0.0941176, 1)
 light_energy = 5.0
 light_indirect_energy = 0.0
+light_volumetric_fog_energy = 5.0
 light_size = 3.5
 shadow_enabled = true
 distance_fade_enabled = true
@@ -59,7 +87,6 @@ size = Vector2i(300, 300)
 render_target_update_mode = 4
 
 [node name="rechargeBar" type="ProgressBar" parent="rechargeLayer"]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -77,7 +104,7 @@ value = 50.0
 show_percentage = false
 
 [node name="renderBoard" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14673, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 billboard = 1
 texture = SubResource("ViewportTexture_ui76a")
 
@@ -104,3 +131,5 @@ text = "100"
 [connection signal="body_exited" from="rechargeArea" to="." method="_on_recharge_area_body_exited"]
 [connection signal="timeout" from="lanternLight/flicker" to="." method="_on_flicker_timeout"]
 [connection signal="timeout" from="rechargeTimer" to="." method="_on_recharge_timer_timeout"]
+
+[editable path="torch2"]

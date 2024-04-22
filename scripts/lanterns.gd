@@ -1,4 +1,4 @@
-extends Area3D
+extends Node3D
 
 @onready var recharge_timer = $rechargeTimer
 @onready var light = $lanternLight
@@ -33,7 +33,8 @@ func _ready():
 
 
 func lantern_empty():
-	$torch/cnts/fire.hide()
+	$torch2/torch/cnts/fire.hide()
+	$fireEmbers.set_emitting(false)
 	light.light_energy = 0
 
 

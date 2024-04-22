@@ -27,7 +27,7 @@ func _ready():
 
 
 	# instance of lamps
-	inst_lamps(Vector3(-5, 2, 0))
+	inst_lamps(Vector3(-5, 0.5, 0))
 
 	
 	# pause mechanisms
