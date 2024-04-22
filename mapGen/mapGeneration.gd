@@ -1,11 +1,15 @@
 @tool
 extends Node3D
 
+# player spawn first then stars then lamps then enemies
+# scenes, forest & bushes spawn after 
+
+
 @onready var grid_map : GridMap = $GridMap
 
 
-
-@onready var player = $joe
+@onready var player = 1
+#$joe
 
 
 @export var start : bool = false : set = set_start
@@ -18,48 +22,81 @@ func set_border_size(val : int):
 	if Engine.is_editor_hint():
 		visualise_border()
 
+
+
+# lamp and enemy count
+@export var enemy_count = 10
+@export var lamp_count = 5
+var star_count = 10
+
+
+# to avoid recursion error
+@export  var giveup : int = 5
+
+# forest
 @export var min_forest_size : int = 2
 @export var max_forest_size : int = 5
 @export var forest_count : int = 4
 @export var forest_spacing : int = 2
 
+# bushes
 @export var min_bush_size : int = 1
 @export var max_bush_size : int = 3
 @export var bush_count : int = 5
 @export var bush_spacing : int = 2
 
 
+# player spawn on 2x2 randomly
+var player_tile_size : int = 2
 
-@export  var giveup : int = 5
 
-
+# scenes
 @onready var enemyScene : PackedScene = preload("res://scenes/enemy.tscn")
+@onready var lampScene : PackedScene = preload("res://scenes/lanterns.tscn")
 
-
+# tile arrays
 var forest_tiles : Array[PackedVector3Array] = []
 var forest_positions : PackedVector3Array = []
 var bush_tiles : Array[PackedVector3Array] = []
 var bush_positions : PackedVector3Array = []
 var instances : Array[Node3D] = []
 
-
+# generate on start 
 func generate():
+	# clear all arrays and map contents
 	forest_tiles.clear()
 	forest_positions.clear()
 	bush_tiles.clear()
 	bush_positions.clear()
-	clear_instantiations()	
+	clear_instantiations()
 	
+	# create border
 	print("generating...")
 	visualise_border()
+	# spawn player
+	
+	# spawn stars
+	
+	
+	# spawn lamps
+	
+	
+	# spawn enemies
+	
+	
+	# make forest tiles - world spawner spawns in scenes (for nav mesh)
 	for i in forest_count:
 		make_forest_tiles(giveup)
 	print("FOREST POSITIONS: ", forest_positions)
+	
+	# make bush tiles - world spawner spawns in scenes (for nav mesh)
 	for i in bush_count:
 		make_bush_tiles(giveup)
 	print("BUSH POSITIONS: ", bush_positions)
-	make_blank_tiles()
 	
+	# fill in rest of gridmap
+	make_blank_tiles()
+
 
 func spawn_enemy(pos : Vector3):
 	# create enemy + give height
