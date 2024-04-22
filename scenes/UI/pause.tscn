@@ -132,4 +132,5 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_mcdf5")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_x8uer")
 text = " 𓇻  Quit"
 
+[connection signal="pressed" from="MarginContainer/VBoxContainer/controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]

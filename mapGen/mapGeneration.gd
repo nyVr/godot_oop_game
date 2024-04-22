@@ -1,27 +1,28 @@
 @tool
 extends Node3D
 
+# basically creates the gridmap for the world
+# also spawns player, enemy, star and lamps
+# another script spawns instances so it works with the navigation mesh coll detection
 # player spawn first then stars then lamps then enemies
 # scenes, forest & bushes spawn after 
 
-
 @onready var grid_map : GridMap = $GridMap
-
 
 @onready var player = 1
 #$joe
 
-
+# to generate the mapp without running the scene
 @export var start : bool = false : set = set_start
 func set_start(val: bool):
 	generate()
 
+# border variable and setter - to make a border so player cant get by
 @export var border_size : int = 20 : set = set_border_size
 func set_border_size(val : int):
 	border_size = val
 	if Engine.is_editor_hint():
 		visualise_border()
-
 
 
 # lamp and enemy count
@@ -57,8 +58,23 @@ var player_tile_size : int = 2
 # tile arrays
 var forest_tiles : Array[PackedVector3Array] = []
 var forest_positions : PackedVector3Array = []
+
 var bush_tiles : Array[PackedVector3Array] = []
 var bush_positions : PackedVector3Array = []
+
+var player_tile 
+var player_position
+
+var star_tiles : Array[PackedVector3Array] = []
+var star_positions : PackedVector3Array = []
+
+var lamp_tiles : Array[PackedVector3Array] = []
+var lamp_positions : PackedVector3Array = []
+
+var enemy_tiles : Array[PackedVector3Array] = []
+var enemy_positions : PackedVector3Array = []
+
+
 var instances : Array[Node3D] = []
 
 # generate on start 

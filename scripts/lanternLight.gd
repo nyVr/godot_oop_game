@@ -1,5 +1,7 @@
 extends OmniLight3D
 
+# just gds to run light flicker when 1 recharge left
+
 @onready var flickerTimer = $flicker
 
 func _ready():

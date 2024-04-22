@@ -10,6 +10,8 @@ var isPaused = false
 
 var endlessUnlocked = false
 
+var endlessLevel = 0
+
 signal set_health(amount)
 
 signal player_attacked(attackDmg)
