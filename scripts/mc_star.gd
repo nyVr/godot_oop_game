@@ -8,6 +8,8 @@ extends CharacterBody3D
 @onready var lanternHP = 100
 @onready var lanternLoseHP = 1
 @onready var atk_cooldown = $atkCooldown
+@onready var anims = $anims
+
 
 
 # wip - work on enemy signal health deplete
@@ -71,7 +73,10 @@ func _physics_process(delta):
 	if !inDialogue:
 		# Handle jump.
 		if Input.is_action_just_pressed("space") and is_on_floor():
+			
 			velocity.y = JUMP_VELOCITY
+			anims.play("jump")
+			
 		# Get the input direction and handle the movement/deceleration.
 		# As good practice, you should replace UI actions with custom gameplay actions.
 		var input_dir = Input.get_vector("left", "right", "up", "down")
@@ -83,6 +88,9 @@ func _physics_process(delta):
 			# rotation smoothed using lerp
 			characterMesh.rotation.y = lerp_angle(characterMesh.rotation.y, atan2(velocity.x, velocity.z), delta * angleAcc)
 			characterCol.rotation.y = lerp_angle(characterCol.rotation.y, atan2(velocity.x, velocity.z), delta * angleAcc)
+			
+			anims.play("run")
+			
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)

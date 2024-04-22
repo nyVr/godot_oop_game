@@ -1,13 +1,10 @@
 extends Node3D
 
-#@onready var interaction_area: interactionArea = $InteractionArea
-
 var inputReady = 0
 
 signal unpauseWorld_dialogue
 signal pauseWorld_dialogue
 
-# array of dialogue?
 
 # onready local
 func _ready():

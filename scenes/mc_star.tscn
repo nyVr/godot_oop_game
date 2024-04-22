@@ -1390,9 +1390,9 @@ distance_fade_length = 20.0
 
 [node name="Timer" type="Timer" parent="."]
 
-[node name="lanternReset" type="Timer" parent="."]
-
 [node name="atkCooldown" type="Timer" parent="."]
+
+[node name="jumpCD" type="Timer" parent="."]
 
 [node name="anims" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1401,3 +1401,6 @@ libraries = {
 
 [node name="playerCam" type="Camera3D" parent="."]
 transform = Transform3D(0.642788, -0.541675, 0.541675, 0, 0.707107, 0.707107, -0.766044, -0.454519, 0.454519, 8, 10.446, 6)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="atkCooldown" to="." method="_on_atk_cooldown_timeout"]
