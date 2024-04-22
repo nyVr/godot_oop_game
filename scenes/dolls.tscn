@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dde3hpdyxsg0n"]
+[gd_scene load_steps=11 format=3 uid="uid://dde3hpdyxsg0n"]
 
 [ext_resource type="Script" path="res://scripts/stars.gd" id="1_nh6sh"]
 [ext_resource type="PackedScene" uid="uid://cn23mltvrmuvq" path="res://blender/jsstar.glb" id="2_jb4kq"]
+[ext_resource type="AudioStream" uid="uid://dw4ccuvvqlm7f" path="res://audio/starBG.mp3" id="3_1x4w0"]
+[ext_resource type="AudioStream" uid="uid://debr4v3fel8at" path="res://audio/collectedSound.mp3" id="4_0b80a"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_75wqi"]
 radius = 0.3
@@ -64,10 +66,21 @@ light_volumetric_fog_energy = 15.0
 light_size = 1.0
 distance_fade_enabled = true
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+[node name="embers" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.760961, 0.648798, 0, -0.648798, 0.760961, 0, 0, 0)
 amount = 20
 process_material = SubResource("ParticleProcessMaterial_502f5")
 draw_pass_1 = SubResource("SphereMesh_lo8us")
 
+[node name="bg" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, -4.91738e-07, 2.68221e-07, 1.49012e-08, 1, -5.96046e-08, -5.96046e-08, 5.96046e-08, 1, 0, 0, 0)
+stream = ExtResource("3_1x4w0")
+attenuation_model = 2
+volume_db = -1.0
+bus = &"sfx"
+
+[node name="collect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_0b80a")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="collect" to="." method="_on_collect_finished"]

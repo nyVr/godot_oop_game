@@ -1424,12 +1424,16 @@ libraries = {
 [node name="playerCam" type="Camera3D" parent="."]
 transform = Transform3D(0.642788, -0.541675, 0.541675, 0, 0.707107, 0.707107, -0.766044, -0.454519, 0.454519, 8, 10.446, 6)
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+[node name="particls" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.999999, 0, 0, 0, 0.760961, 0.648798, 0, -0.648797, 0.76096, 0, 3.15377, -1.54999)
 amount = 50
 lifetime = 15.0
 process_material = SubResource("ParticleProcessMaterial_jifo0")
 draw_pass_1 = SubResource("SphereMesh_xiia4")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.34804, 0)
+current = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="atkCooldown" to="." method="_on_atk_cooldown_timeout"]

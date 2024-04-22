@@ -28,13 +28,14 @@ func _ready():
 	# init label
 	var text = "Recharge amount: " + str(totalRecharge) + "\nPower: " + str(lanternPower)
 	label.text = text
-	
+	$fire.play()
 	hideMats()
 
 
 func lantern_empty():
 	$torch2/torch/cnts/fire.hide()
 	$fireEmbers.set_emitting(false)
+	$fire.stop()
 	light.light_energy = 0
 
 
