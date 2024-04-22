@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b61l0x0l37n4j"]
+[gd_scene load_steps=30 format=3 uid="uid://b61l0x0l37n4j"]
 
 [ext_resource type="Texture2D" uid="uid://dgi26yug83jfy" path="res://blender/mcStar_anim_bodyBC01.png" id="1_jl2yt"]
 [ext_resource type="Script" path="res://scripts/mc_star.gd" id="1_xq5pt"]
@@ -1084,6 +1084,28 @@ _data = {
 "walk": SubResource("Animation_ada53")
 }
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jifo0"]
+emission_shape_scale = Vector3(0.5, 0.5, 0.5)
+emission_shape = 1
+emission_sphere_radius = 2.0
+direction = Vector3(0, 0, 0)
+initial_velocity_min = 0.05
+initial_velocity_max = 0.05
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2oy8"]
+albedo_color = Color(1, 1, 0, 1)
+emission_enabled = true
+emission = Color(0.847059, 0.847059, 0.196078, 1)
+emission_energy_multiplier = 2.0
+backlight = Color(1, 0.662745, 0, 1)
+proximity_fade_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_xiia4"]
+material = SubResource("StandardMaterial3D_g2oy8")
+radius = 0.02
+height = 0.04
+
 [node name="mcStar_anim" type="CharacterBody3D" groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_xq5pt")
@@ -1401,6 +1423,13 @@ libraries = {
 
 [node name="playerCam" type="Camera3D" parent="."]
 transform = Transform3D(0.642788, -0.541675, 0.541675, 0, 0.707107, 0.707107, -0.766044, -0.454519, 0.454519, 8, 10.446, 6)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.999999, 0, 0, 0, 0.760961, 0.648798, 0, -0.648797, 0.76096, 0, 3.15377, -1.54999)
+amount = 50
+lifetime = 15.0
+process_material = SubResource("ParticleProcessMaterial_jifo0")
+draw_pass_1 = SubResource("SphereMesh_xiia4")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="atkCooldown" to="." method="_on_atk_cooldown_timeout"]

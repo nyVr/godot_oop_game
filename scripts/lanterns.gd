@@ -33,6 +33,7 @@ func _ready():
 
 
 func lantern_empty():
+	$torch/cnts/fire.hide()
 	light.light_energy = 0
 
 

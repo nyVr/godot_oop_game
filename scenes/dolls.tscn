@@ -24,7 +24,7 @@ direction = Vector3(2, 4, 2)
 initial_velocity_max = 2.0
 gravity = Vector3(0, 0, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2oy8"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_phtor"]
 albedo_color = Color(1, 1, 0, 1)
 emission_enabled = true
 emission = Color(0.847059, 0.847059, 0.196078, 1)
@@ -33,7 +33,7 @@ backlight = Color(1, 0.662745, 0, 1)
 proximity_fade_enabled = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_lo8us"]
-material = SubResource("StandardMaterial3D_g2oy8")
+material = SubResource("StandardMaterial3D_phtor")
 radius = 0.05
 height = 0.1
 
