@@ -130,8 +130,6 @@ volumetric_fog_density = 0.0
 [node name="Map" type="Node3D"]
 script = ExtResource("1_xjmc1")
 border_size = 50
-enemy_count = null
-lamp_count = null
 giveup = 10
 min_forest_size = 4
 max_forest_size = 10

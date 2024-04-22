@@ -26,8 +26,8 @@ func set_border_size(val : int):
 
 
 # lamp and enemy count
-@export var enemy_count = 10
-@export var lamp_count = 5
+@export var enemy_count = 10 + (2*Global.endlessLevel)
+@export var lamp_count = 5 + (1*Global.endlessLevel)
 var star_count = 10
 
 
@@ -74,7 +74,6 @@ var lamp_positions : PackedVector3Array = []
 var enemy_tiles : Array[PackedVector3Array] = []
 var enemy_positions : PackedVector3Array = []
 
-
 var instances : Array[Node3D] = []
 
 # generate on start 
@@ -89,6 +88,7 @@ func generate():
 	# create border
 	print("generating...")
 	visualise_border()
+	
 	# spawn player
 	
 	# spawn stars
