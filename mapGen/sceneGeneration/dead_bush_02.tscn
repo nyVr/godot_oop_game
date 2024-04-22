@@ -1,5 +1,5 @@
 [gd_scene load_steps=2 format=3 uid="uid://rni7cafvcxdm"]
 
-[ext_resource type="PackedScene" uid="uid://bvldrvhbxl4ii" path="res://blender/deadBush02.dae" id="1_5wf8g"]
+[ext_resource type="PackedScene" uid="uid://bvldrvhbxl4ii" path="res://blender/deadBush02.dae" id="1_yh5ro"]
 
-[node name="deadBush02" instance=ExtResource("1_5wf8g")]
+[node name="deadBush02" instance=ExtResource("1_yh5ro")]

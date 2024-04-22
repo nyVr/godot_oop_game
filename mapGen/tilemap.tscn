@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://gc52uyyso82m"]
+[gd_scene load_steps=17 format=3 uid="uid://gc52uyyso82m"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wg46s"]
 albedo_color = Color(1, 0.733333, 0.886275, 0.992157)
@@ -18,10 +18,30 @@ albedo_color = Color(0.72549, 0.745098, 0, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_hkhe4"]
 material = SubResource("StandardMaterial3D_6kf1n")
 
-[sub_resource type="BoxMesh" id="BoxMesh_pqv22"]
+[sub_resource type="BoxMesh" id="BoxMesh_7jvu7"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ju4mb"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cf67t"]
 albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tcojq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4tm7k"]
+albedo_color = Color(1, 0.572549, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_28bds"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t7rwt"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4pe46"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ndwvy"]
+albedo_color = Color(0.65098, 0.537255, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8jb7h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e1ndj"]
+albedo_color = Color(0.313726, 0, 0.501961, 1)
 
 [node name="Tilemap" type="Node3D"]
 
@@ -40,6 +60,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.65432)
 mesh = SubResource("BoxMesh_hkhe4")
 
 [node name="border" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.22)
-mesh = SubResource("BoxMesh_pqv22")
-surface_material_override/0 = SubResource("StandardMaterial3D_ju4mb")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.0247)
+mesh = SubResource("BoxMesh_7jvu7")
+surface_material_override/0 = SubResource("StandardMaterial3D_cf67t")
+
+[node name="enemy" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_tcojq")
+skeleton = NodePath("../star")
+surface_material_override/0 = SubResource("StandardMaterial3D_4tm7k")
+
+[node name="star" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.5362)
+mesh = SubResource("BoxMesh_28bds")
+skeleton = NodePath("../lamp")
+surface_material_override/0 = SubResource("StandardMaterial3D_t7rwt")
+
+[node name="lamp" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.84571)
+mesh = SubResource("BoxMesh_4pe46")
+surface_material_override/0 = SubResource("StandardMaterial3D_ndwvy")
+
+[node name="player" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.63833)
+mesh = SubResource("BoxMesh_8jb7h")
+surface_material_override/0 = SubResource("StandardMaterial3D_e1ndj")

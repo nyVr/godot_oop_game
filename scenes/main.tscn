@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b7atxuaof20fe"]
+[gd_scene load_steps=23 format=3 uid="uid://b7atxuaof20fe"]
 
 [ext_resource type="Script" path="res://scripts/level1.gd" id="1_eeoya"]
 [ext_resource type="PackedScene" uid="uid://dde3hpdyxsg0n" path="res://scenes/dolls.tscn" id="3_aal3e"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://hna6y2qyem3t" path="res://blender/doorWall.dae" id="5_ktfd3"]
 [ext_resource type="Texture2D" uid="uid://dh7jpxsfpyd3x" path="res://textures/burned_ground_01/burned_ground_01_nor_gl_4k.jpg" id="5_tixys"]
 [ext_resource type="Texture2D" uid="uid://dfx0pxkjs6pr4" path="res://textures/burned_ground_01/burned_ground_01_rough_4k.jpg" id="6_4u2mb"]
-[ext_resource type="PackedScene" uid="uid://cuhb4xa8wx2lu" path="res://scenes/nextLevel.tscn" id="6_ivd6f"]
 [ext_resource type="PackedScene" uid="uid://dtfuxlkwcfsrt" path="res://scenes/bibz.tscn" id="6_o177c"]
 [ext_resource type="PackedScene" uid="uid://tgjdsvt30gt7" path="res://blender/deadTree01.dae" id="8_pucbj"]
 [ext_resource type="PackedScene" uid="uid://bvldrvhbxl4ii" path="res://blender/deadBush02.dae" id="9_b45cy"]
@@ -153,7 +152,7 @@ navigation_mesh = SubResource("NavigationMesh_8k8rt")
 
 [node name="world" type="Node3D" parent="nav"]
 
-[node name="FogVolume" type="FogVolume" parent="nav/world"]
+[node name="fog" type="FogVolume" parent="nav/world"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.85996, 1.06673, 1.18452)
 size = Vector3(100, 1, 100)
 material = SubResource("FogMaterial_uxno1")
@@ -236,10 +235,6 @@ shape = SubResource("BoxShape3D_odway")
 
 [node name="doorWall" parent="nav/world" instance=ExtResource("5_ktfd3")]
 transform = Transform3D(0.820971, 0, 0, 0, 0.565068, 0, 0, 0, 1.28408, 7.2353, 0.390994, -24.8234)
-
-[node name="L1TOL2" parent="nav/world/doorWall" instance=ExtResource("6_ivd6f")]
-process_mode = 1
-transform = Transform3D(3.91, 0, 0, 0, 5.257, 0, 0, 0, 1, 0, 4.02563, 0)
 
 [node name="trees" type="Node3D" parent="nav/world"]
 

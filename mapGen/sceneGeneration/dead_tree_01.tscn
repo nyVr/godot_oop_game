@@ -1,5 +1,5 @@
 [gd_scene load_steps=2 format=3 uid="uid://bhdscesh67gg7"]
 
-[ext_resource type="PackedScene" uid="uid://tgjdsvt30gt7" path="res://blender/deadTree01.dae" id="1_e8jgr"]
+[ext_resource type="PackedScene" uid="uid://tgjdsvt30gt7" path="res://blender/deadTree01.dae" id="1_waw4f"]
 
-[node name="deadTree01" instance=ExtResource("1_e8jgr")]
+[node name="deadTree01" instance=ExtResource("1_waw4f")]
