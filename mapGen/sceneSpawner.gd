@@ -63,7 +63,7 @@ func spawn_tree(pos: Vector3):
 	pos.y = 0.9
 	
 	# rand scale
-	var scale_tree = randf_range(0.8, 2)
+	var scale_tree = randf_range(2, 5)
 	tree.scale = Vector3(scale_tree, scale_tree, scale_tree)
 	
 	# tree position on block

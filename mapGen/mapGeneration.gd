@@ -93,6 +93,7 @@ func generate():
 	visualise_border()
 	
 	# spawn player
+	make_player_tile()
 	
 	# spawn stars
 	
@@ -187,6 +188,24 @@ func visualise_border():
 
 
 ## make tiles
+
+# make player 2x2 tile so they dont spawn randommly stuck
+func make_player_tile():
+	var size = 2
+	
+	var start_pos : Vector3i
+	start_pos.x = randi() % (border_size - size + 1)
+	start_pos.z = randi() % (border_size - size + 1)
+	
+	# since this first thing we make, eveything else is empty so we dont need 
+	# to recursivley check if tiles are used
+	# so make all 4 tiles player tiles
+	grid_map.set_cell_item(start_pos, 7)
+	grid_map.set_cell_item(start_pos + Vector3i(1, 0, 0), 7)
+	grid_map.set_cell_item(start_pos + Vector3i(0, 0, 1), 7)
+	grid_map.set_cell_item(start_pos + Vector3i(1, 0, 1), 7)
+	
+	$mcStar_anim.position = Vector3(start_pos.x, 1, start_pos.z)
 
 
 # make enemy tiles
