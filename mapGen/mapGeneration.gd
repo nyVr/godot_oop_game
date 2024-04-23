@@ -82,10 +82,22 @@ func generate():
 	# clear all arrays and map contents
 	forest_tiles.clear()
 	forest_positions.clear()
+	
 	bush_tiles.clear()
 	bush_positions.clear()
 	
+	enemy_tiles.clear()
 	enemy_positions.clear()
+	
+	player_tile.clear()
+	player_position.clear()
+	
+	lamp_tiles.clear()
+	lamp_positions.clear()
+	
+	star_tiles.clear()
+	star_positions.clear()
+	
 	clear_instantiations()
 	
 	# create border
