@@ -26,10 +26,10 @@ func set_border_size(val : int):
 
 
 # lamp and enemy count
-@export var enemy_count = 10 + (2*Global.endlessLevel)
-@export var lamp_count = 5 + (1*Global.endlessLevel)
+@export var enemy_count : int = 10 + (2*Global.endlessLevel)
+@export var lamp_count : int = 5 + (1*Global.endlessLevel)
 
-var star_count = 10
+var star_count : int = 10
 
 
 # to avoid recursion error
@@ -99,7 +99,9 @@ func generate():
 	
 	
 	# spawn enemies
-	
+	for i in enemy_count:
+		make_enemy_tile(giveup)
+	print("ENEMY POSITIONS: ", enemy_positions)
 	
 	# make forest tiles - world spawner spawns in scenes (for nav mesh)
 	for i in forest_count:
@@ -147,10 +149,13 @@ func _ready():
 	# recreate collision grounf and position
 	$pathfind/worldSpawner/groundShape.position = Vector3(colPos, 0.5, colPos)
 	$pathfind/worldSpawner/groundShape/groundCol.scale = Vector3(border_size, 1, border_size)
-	
+	$pathfind/worldSpawner/groundShape/groundMats.scale = Vector3(border_size, 1, border_size)
 	
 	print("generating...")
 	visualise_border()
+	for i in enemy_count:
+		make_enemy_tile(giveup)
+	
 	for i in forest_count:
 		make_forest_tiles(giveup)
 	print("FOREST POSITIONS: ", forest_positions)
@@ -170,13 +175,38 @@ func _physics_process(delta):
 
 
 func visualise_border():
-	grid_map.clear()
+	if grid_map != null:
+		grid_map.clear()
 	for i in range (-1, border_size+1):
 		grid_map.set_cell_item(Vector3i(i, 0, -1), 3)
 		grid_map.set_cell_item(Vector3i(i, 0, border_size), 3)
 		grid_map.set_cell_item(Vector3i(border_size, 0, i), 3)
 		grid_map.set_cell_item(Vector3i(-1, 0, i), 3)
 
+
+## make tiles
+
+
+# make enemy tiles
+func make_enemy_tile(rec):
+	if !rec > 0:
+		return
+	
+	var start_pos : Vector3i
+	start_pos.x = randi() % (border_size - 1)
+	start_pos.z = randi() % (border_size - 1)
+	
+	var pos : Vector3i = start_pos
+	
+	# check is position is empty
+	if grid_map.get_cell_item(pos) != -1:
+				make_enemy_tile(rec-1)
+				return
+	
+	# position is empty
+	grid_map.set_cell_item(pos, 4)
+	
+	enemy_positions.append(pos)
 
 
 # build forest ground
@@ -216,7 +246,7 @@ func make_forest_tiles(rec):
 	forest_positions.append(pos)
 
 
-
+# make bush tiles
 func make_bush_tiles(rec):
 	if !rec > 0:
 		return
@@ -253,6 +283,20 @@ func make_bush_tiles(rec):
 	bush_positions.append(pos)
 
 
+
+
+
+# make normal wall tiles
+func make_plain_wall_tiles():
+	pass
+
+
+# make broken wall tiles
+func make_brok_wall_tiles():
+	pass
+
+
+# fill in blank tiles
 func make_blank_tiles():
 	for row in range(-1, border_size):
 		for col in range(-1, border_size):
@@ -262,7 +306,9 @@ func make_blank_tiles():
 
 
 
+## clearer
 
+# clear all instances
 func clear_instantiations():
 	print("CLEARING 1")
 	for instance in instances:
@@ -270,7 +316,7 @@ func clear_instantiations():
 	instances.clear()
 
 
-
+# wait for nav mesh to finish baking
 func _on_pathfind_bake_finished():
 	spawn_enemy(Vector3(21, 0.9, 9.5))
 	make_blank_tiles()
