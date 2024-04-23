@@ -103,8 +103,8 @@ func _input(event):
 			if event.is_action_pressed("q"):
 				print("***ATTACK***")
 				hitbox.scale += Vector3(4.5, 4.5, 4.5)
-				hitLight.light_energy = 15
-				hitLight.light_volumetric_fog_energy = 15
+				hitLight.light_energy = 30
+				hitLight.light_volumetric_fog_energy = 30
 				attackOn = true
 				
 				atk_cooldown.start()
@@ -112,8 +112,8 @@ func _input(event):
 			elif event.is_action_released("q") or lanternHP <= 0:
 				print("***ATTACK RELEASE***")
 				hitbox.scale -= Vector3(4.5, 4.5, 4.5)
-				hitLight.light_energy = 0
-				hitLight.light_volumetric_fog_energy = 0
+				hitLight.light_energy = 1
+				hitLight.light_volumetric_fog_energy = 1
 				attackOn = false
 				
 				atk_cooldown.stop()
@@ -121,8 +121,8 @@ func _input(event):
 	# turn latern off if in dialogue
 	if inDialogue and attackOn:
 		hitbox.scale -= Vector3(4.5, 4.5, 4.5)
-		hitLight.light_energy = 0
-		hitLight.light_volumetric_fog_energy = 0
+		hitLight.light_energy = 1
+		hitLight.light_volumetric_fog_energy = 1
 		attackOn = false
 
 
@@ -134,8 +134,7 @@ func attackEnemy():
 		for body in bodies:
 			if body.is_in_group("enemy"):
 				print("ENEMY DETECTTED EMIITING SIGNAL")
-				#body._enemy_attacked(lanternDmg)
-				Global.emit_signal("attacked_enemy", lanternDmg)
+				body._enemy_attacked(lanternDmg)
 
 
 # got attacked

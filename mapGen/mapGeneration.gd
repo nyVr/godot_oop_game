@@ -79,6 +79,8 @@ var enemy_positions : PackedVector3Array = []
 
 var instances : Array[Node3D] = []
 
+var spawncount = 0 
+
 ## EDITOR RUN
 
 # generate on start 
@@ -156,7 +158,6 @@ func generate():
 
 
 ## RUNTIME
-
 
 
 # ready
@@ -255,10 +256,13 @@ func spawn_enemy(pos):
 	var enemy = enemyScene.instantiate()
 	pos.y = 1.5
 	
+	
 	# enemy position on block
 	enemy.position = pos
 	## add to instances for clear
 	instances.append(enemy)
+	spawncount += 1
+	print("SPAWN COUNT: ", spawncount)
 	## create
 	add_child(enemy)
 

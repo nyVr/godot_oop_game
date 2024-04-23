@@ -1420,7 +1420,7 @@ libraries = {
 }
 
 [node name="playerCam" type="Camera3D" parent="."]
-transform = Transform3D(0.642788, -0.541675, 0.541675, 0, 0.707107, 0.707107, -0.766044, -0.454519, 0.454519, 8, 10.446, 6)
+transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 11, 2)
 
 [node name="particls" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.999999, 0, 0, 0, 0.760961, 0.648798, 0, -0.648797, 0.76096, 0, 3.15377, -1.54999)

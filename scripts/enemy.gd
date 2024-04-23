@@ -41,7 +41,6 @@ func _ready():
 # calculate movement
 func _physics_process(delta):
 	if playerIn:
-		#print("PLAYER IN -- PHYSICS PROCESS")
 		var currLocation = global_transform.origin
 		var nextLocation = navAgent.get_next_path_position()
 		
@@ -93,7 +92,7 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity):
 	move_and_slide()
 
 
-## attack ai
+## ATTACK AI
 
 
 # to get rid of

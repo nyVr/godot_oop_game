@@ -82,7 +82,7 @@ func _physics_process(delta):
 			velocity.z = direction.z * SPEED
 			# rotation smoothed using lerp
 			character.rotation.y = lerp_angle(character.rotation.y, atan2(-velocity.x, - velocity.z), delta * angleAcc)
-			#characterCol.rotation.y = lerp_angle(characterCol.rotation.y, atan2(-velocity.x, - velocity.z), delta * angleAcc)
+			characterCol.rotation.y = lerp_angle(characterCol.rotation.y, atan2(-velocity.x, - velocity.z), delta * angleAcc)
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
