@@ -204,11 +204,16 @@ func make_enemy_tile(rec):
 	if grid_map.get_cell_item(pos) != -1:
 				make_enemy_tile(rec-1)
 				return
-	
 	# position is empty
 	grid_map.set_cell_item(pos, 4)
 	
+	# append position
 	enemy_positions.append(pos)
+	
+	# append to tiles
+	var enemyT : PackedVector3Array = []
+	enemyT.append(pos)
+	enemy_tiles.append(enemyT)
 
 
 # build forest ground
