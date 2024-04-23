@@ -84,6 +84,8 @@ func generate():
 	forest_positions.clear()
 	bush_tiles.clear()
 	bush_positions.clear()
+	
+	enemy_positions.clear()
 	clear_instantiations()
 	
 	# create border
@@ -214,6 +216,7 @@ func make_forest_tiles(rec):
 	if !rec > 0:
 		return
 	
+	# rand width and height between max and min size
 	var width = (randi() % (max_forest_size - min_forest_size)) + min_forest_size
 	var height = (randi() % (max_forest_size - min_forest_size)) + min_forest_size
 
