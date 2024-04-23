@@ -1107,7 +1107,6 @@ radius = 0.02
 height = 0.04
 
 [node name="mcStar_anim" type="CharacterBody3D" groups=["player"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_xq5pt")
 
 [node name="baseLight" type="OmniLight3D" parent="."]
@@ -1399,7 +1398,6 @@ grow_horizontal = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="hitbox" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="joeAtkArea" type="CollisionShape3D" parent="hitbox"]
 shape = SubResource("SphereShape3D_ki8pp")

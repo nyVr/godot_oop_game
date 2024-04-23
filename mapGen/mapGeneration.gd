@@ -9,8 +9,8 @@ extends Node3D
 
 @onready var grid_map : GridMap = $GridMap
 
-@onready var player = 1
-#$joe
+@onready var player = $mcStar_anim
+
 
 # to generate the mapp without running the scene
 @export var start : bool = false : set = set_start
@@ -28,6 +28,7 @@ func set_border_size(val : int):
 # lamp and enemy count
 @export var enemy_count = 10 + (2*Global.endlessLevel)
 @export var lamp_count = 5 + (1*Global.endlessLevel)
+
 var star_count = 10
 
 
@@ -129,6 +130,7 @@ func spawn_enemy(pos : Vector3):
 
 
 func _ready():
+	# clear collision ground and reset position
 	$pathfind/worldSpawner.position = Vector3(0, 0, 0)
 	$pathfind/worldSpawner/groundShape/groundCol.position = Vector3(0, 0, 0)
 	$pathfind/worldSpawner/groundShape/groundMats.position = Vector3(0, 0, 0)
@@ -142,6 +144,7 @@ func _ready():
 	
 	var colPos : int = int(border_size / 2) 
 	
+	# recreate collision grounf and position
 	$pathfind/worldSpawner/groundShape.position = Vector3(colPos, 0.5, colPos)
 	$pathfind/worldSpawner/groundShape/groundCol.scale = Vector3(border_size, 1, border_size)
 	
@@ -163,7 +166,7 @@ func _ready():
 	
 func _physics_process(delta):
 	get_tree().call_group("enemy", "updatePlayerLocation", player.global_transform.origin)
-	
+	pass
 
 
 func visualise_border():
@@ -173,7 +176,9 @@ func visualise_border():
 		grid_map.set_cell_item(Vector3i(i, 0, border_size), 3)
 		grid_map.set_cell_item(Vector3i(border_size, 0, i), 3)
 		grid_map.set_cell_item(Vector3i(-1, 0, i), 3)
-	
+
+
+
 # build forest ground
 func make_forest_tiles(rec):
 	if !rec > 0:
@@ -209,6 +214,8 @@ func make_forest_tiles(rec):
 	var avgZ : float = start_pos.x + (float(height)/2)
 	var pos : Vector3 = Vector3(avgX, 0, avgZ)
 	forest_positions.append(pos)
+
+
 
 func make_bush_tiles(rec):
 	if !rec > 0:
@@ -252,10 +259,7 @@ func make_blank_tiles():
 			var pos : Vector3i = Vector3i(col, 0, row)
 			if grid_map.get_cell_item(pos) == -1:
 				grid_map.set_cell_item(pos, 0)
-				
-				#if randf() < 0.005:
-					#print("ENEMY SPAWNED")
-					#spawn_enemy(pos)
+
 
 
 
