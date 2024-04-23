@@ -79,6 +79,8 @@ var enemy_positions : PackedVector3Array = []
 
 var instances : Array[Node3D] = []
 
+## EDITOR RUN
+
 # generate on start 
 func generate():
 	var level = 0
@@ -109,6 +111,8 @@ func generate():
 	# create border
 	print("generating...")
 	visualise_border()
+	
+	## CALL MAKE TILES
 	
 	# spawn player
 	make_player_tile()
@@ -149,45 +153,17 @@ func generate():
 		spawn_lamps(pos)
 	for pos in star_positions:
 		spawn_stars(pos)
-	
-
-
-## SPAWNERS
-
-# spawn enemy scene
-func spawn_enemy(pos : Vector3):
-	# create enemy + give height
-	var enemy = enemyScene.instantiate()
-	pos.y = 1.5
-	
-	# enemy position on block
-	enemy.position = pos
-	## add to instances for clear
-	instances.append(enemy)
-	## create
-	add_child(enemy)
-
-# spawn lamp scene
-func spawn_lamps(pos):
-	var lamp = lampScene.instantiate()
-	pos.y = 1
-	lamp.position = pos
-	instances.append(lamp)
-	add_child(lamp)
-
-# spawn star scene
-func spawn_stars(pos):
-	var star = starScene.instantiate()
-	pos.y = 2
-	star.position = pos
-	instances.append(star)
-	add_child(star)
 
 
 ## RUNTIME
 
+
+
 # ready
 func _ready():
+	lamp_count = 10
+	enemy_count = 15
+	star_count = 10
 	# clear collision ground and reset position
 	$pathfind/worldSpawner.position = Vector3(0, 0, 0)
 	$pathfind/worldSpawner/groundShape/groundCol.position = Vector3(0, 0, 0)
@@ -210,7 +186,7 @@ func _ready():
 	print("generating...")
 	visualise_border()
 
-		# spawn player
+	# spawn player
 	make_player_tile()
 	
 	print("STAR COUNT: ", star_count)
@@ -249,13 +225,10 @@ func _ready():
 		spawn_lamps(pos)
 	for pos in star_positions:
 		spawn_stars(pos)
+	print("SPAWNED EVERYTHING COMPLETE")
 
-	
-	
-	
 	$pathfind.bake_navigation_mesh(true)
 	print("BAKED MESH")
-
 
 # update player location for enemy
 func _physics_process(delta):
@@ -271,6 +244,40 @@ func visualise_border():
 		grid_map.set_cell_item(Vector3i(i, 0, border_size), 3)
 		grid_map.set_cell_item(Vector3i(border_size, 0, i), 3)
 		grid_map.set_cell_item(Vector3i(-1, 0, i), 3)
+
+
+
+## SPAWNERS
+
+# spawn enemy scene
+func spawn_enemy(pos):
+	# create enemy + give height
+	var enemy = enemyScene.instantiate()
+	pos.y = 1.5
+	
+	# enemy position on block
+	enemy.position = pos
+	## add to instances for clear
+	instances.append(enemy)
+	## create
+	add_child(enemy)
+
+# spawn lamp scene
+func spawn_lamps(pos):
+	var lamp = lampScene.instantiate()
+	pos.y = 1
+	lamp.position = pos
+	instances.append(lamp)
+	add_child(lamp)
+
+# spawn star scene
+func spawn_stars(pos):
+	var star = starScene.instantiate()
+	pos.y = 2
+	star.position = pos
+	instances.append(star)
+	add_child(star)
+
 
 
 ## TILE MAKERS

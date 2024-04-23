@@ -56,6 +56,8 @@ func generate():
 					spawn_bush(pos)
 
 
+## SPAWNERS
+
 # spawn trees on the forest/tree blocks
 func spawn_tree(pos: Vector3):
 	# create tree + give height
@@ -107,9 +109,12 @@ func spawn_broken_wall(_pos: Vector3):
 func spawn_normal_wall(_pos: Vector3):
 	pass
 
+
+## CLEARERS
+
+# clear array of instances
 func clear_instantiations():
 	print("CLEARING 1")
 	for instance in instances:
 		instance.queue_free()
 	instances.clear()
-
