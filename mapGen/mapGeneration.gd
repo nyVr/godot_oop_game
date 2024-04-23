@@ -26,8 +26,8 @@ func set_border_size(val : int):
 
 
 # lamp and enemy count
-@export var enemy_count : int = 10 + (2*Global.endlessLevel)
-@export var lamp_count : int = 5 + (1*Global.endlessLevel)
+@onready var enemy_count : int = 10 + (2*Global.endlessLevel)
+@onready var lamp_count : int = 5 + (1*Global.endlessLevel)
 
 var star_count : int = 10
 
@@ -79,8 +79,9 @@ var instances : Array[Node3D] = []
 
 # generate on start 
 func generate():
-	
+	var level = 0
 	star_count = 10
+	lamp_count = 5 + (1*level)
 	
 	# clear all arrays and map contents
 	forest_tiles.clear()
@@ -118,7 +119,7 @@ func generate():
 	
 	# spawn lamps
 	for i in lamp_count:
-		pass
+		make_lamp_tile(giveup)
 	print("LAMP POSITIONS: ", lamp_positions)
 	
 	# spawn enemies
@@ -253,7 +254,33 @@ func make_star_tile(rec):
 	var starT : PackedVector3Array = []
 	starT.append(pos)
 	star_tiles.append(starT)
+
+
+# make lamp tiles
+func make_lamp_tile(rec):
+	if !rec > 0:
+		return
 	
+	var start_pos : Vector3i
+	start_pos.x = randi() % (border_size - 1)
+	start_pos.z = randi() % (border_size - 1)
+	
+	var pos : Vector3i = start_pos
+	
+	# check is position is empty
+	if grid_map.get_cell_item(pos) != -1:
+		make_lamp_tile(rec-1)
+		return
+	# position is empty
+	grid_map.set_cell_item(pos, 6)
+	
+	# append position
+	lamp_positions.append(pos)
+	
+	# append to tiles
+	var lampT : PackedVector3Array = []
+	lampT.append(pos)
+	lamp_tiles.append(lampT)
 
 
 # make enemy tiles
@@ -356,9 +383,6 @@ func make_bush_tiles(rec):
 	var avgZ : float = start_pos.x + (float(height)/2)
 	var pos : Vector3 = Vector3(avgX, 0, avgZ)
 	bush_positions.append(pos)
-
-
-
 
 
 # make normal wall tiles

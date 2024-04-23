@@ -10,7 +10,7 @@ var isPaused = false
 
 var endlessUnlocked = false
 
-var endlessLevel = 0
+var endlessLevel = 1
 
 signal set_health(amount)
 
