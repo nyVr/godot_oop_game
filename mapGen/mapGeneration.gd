@@ -55,6 +55,8 @@ var player_tile_size : int = 2
 # scenes
 @onready var enemyScene : PackedScene = preload("res://scenes/enemy.tscn")
 @onready var lampScene : PackedScene = preload("res://scenes/lanterns.tscn")
+@onready var starScene : PackedScene = preload("res://scenes/dolls.tscn")
+
 
 # tile arrays
 var forest_tiles : Array[PackedVector3Array] = []
@@ -139,14 +141,25 @@ func generate():
 	
 	# fill in rest of gridmap
 	make_blank_tiles()
+	
+	# spawn everything
+	for pos in enemy_positions:
+		spawn_enemy(pos)
+	for pos in lamp_positions:
+		spawn_lamps(pos)
+	for pos in star_positions:
+		spawn_stars(pos)
+	
 
 
+## SPAWNERS
+
+# spawn enemy scene
 func spawn_enemy(pos : Vector3):
 	# create enemy + give height
-	print("spawning enemy")
 	var enemy = enemyScene.instantiate()
 	pos.y = 1.5
-	#
+	
 	# enemy position on block
 	enemy.position = pos
 	## add to instances for clear
@@ -154,7 +167,26 @@ func spawn_enemy(pos : Vector3):
 	## create
 	add_child(enemy)
 
+# spawn lamp scene
+func spawn_lamps(pos):
+	var lamp = lampScene.instantiate()
+	pos.y = 1
+	lamp.position = pos
+	instances.append(lamp)
+	add_child(lamp)
 
+# spawn star scene
+func spawn_stars(pos):
+	var star = starScene.instantiate()
+	pos.y = 2
+	star.position = pos
+	instances.append(star)
+	add_child(star)
+
+
+## RUNTIME
+
+# ready
 func _ready():
 	# clear collision ground and reset position
 	$pathfind/worldSpawner.position = Vector3(0, 0, 0)
@@ -177,27 +209,60 @@ func _ready():
 	
 	print("generating...")
 	visualise_border()
+
+		# spawn player
+	make_player_tile()
+	
+	print("STAR COUNT: ", star_count)
+	# spawn stars
+	for i in star_count:
+		make_star_tile(giveup)
+	print("STAR POSITIONS: ", star_positions)
+	
+	# spawn lamps
+	for i in lamp_count:
+		make_lamp_tile(giveup)
+	print("LAMP POSITIONS: ", lamp_positions)
+	
+	# spawn enemies
 	for i in enemy_count:
 		make_enemy_tile(giveup)
+	print("ENEMY POSITIONS: ", enemy_positions)
 	
+	# make forest tiles - world spawner spawns in scenes (for nav mesh)
 	for i in forest_count:
 		make_forest_tiles(giveup)
 	print("FOREST POSITIONS: ", forest_positions)
+	
+	# make bush tiles - world spawner spawns in scenes (for nav mesh)
 	for i in bush_count:
 		make_bush_tiles(giveup)
 	print("BUSH POSITIONS: ", bush_positions)
 	
+	# fill in rest of gridmap
+	make_blank_tiles()
+	
+	# spawn everything
+	for pos in enemy_positions:
+		spawn_enemy(pos)
+	for pos in lamp_positions:
+		spawn_lamps(pos)
+	for pos in star_positions:
+		spawn_stars(pos)
+
+	
+	
 	
 	$pathfind.bake_navigation_mesh(true)
 	print("BAKED MESH")
-	
-	
-	
+
+
+# update player location for enemy
 func _physics_process(delta):
 	get_tree().call_group("enemy", "updatePlayerLocation", player.global_transform.origin)
 	pass
 
-
+# visualise border
 func visualise_border():
 	if grid_map != null:
 		grid_map.clear()
@@ -208,7 +273,7 @@ func visualise_border():
 		grid_map.set_cell_item(Vector3i(-1, 0, i), 3)
 
 
-## make tiles
+## TILE MAKERS
 
 # make player 2x2 tile so they dont spawn randommly stuck
 func make_player_tile():
@@ -405,7 +470,8 @@ func make_blank_tiles():
 
 
 
-## clearer
+## CLEARERS
+
 
 # clear all instances
 func clear_instantiations():
@@ -413,9 +479,3 @@ func clear_instantiations():
 	for instance in instances:
 		instance.queue_free()
 	instances.clear()
-
-
-# wait for nav mesh to finish baking
-func _on_pathfind_bake_finished():
-	spawn_enemy(Vector3(21, 0.9, 9.5))
-	make_blank_tiles()
