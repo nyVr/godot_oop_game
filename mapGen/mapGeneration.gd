@@ -79,6 +79,9 @@ var instances : Array[Node3D] = []
 
 # generate on start 
 func generate():
+	
+	star_count = 10
+	
 	# clear all arrays and map contents
 	forest_tiles.clear()
 	forest_positions.clear()
@@ -89,8 +92,8 @@ func generate():
 	enemy_tiles.clear()
 	enemy_positions.clear()
 	
-	player_tile.clear()
-	player_position.clear()
+	#player_tile.clear()
+	#player_position.clear()
 	
 	lamp_tiles.clear()
 	lamp_positions.clear()
@@ -107,11 +110,16 @@ func generate():
 	# spawn player
 	make_player_tile()
 	
+	print("STAR COUNT: ", star_count)
 	# spawn stars
-	
+	for i in star_count:
+		make_star_tile(giveup)
+	print("STAR POSITIONS: ", star_positions)
 	
 	# spawn lamps
-	
+	for i in lamp_count:
+		pass
+	print("LAMP POSITIONS: ", lamp_positions)
 	
 	# spawn enemies
 	for i in enemy_count:
@@ -220,6 +228,34 @@ func make_player_tile():
 	$mcStar_anim.position = Vector3(start_pos.x, 1, start_pos.z)
 
 
+# make star tiles
+func make_star_tile(rec):
+	if !rec > 0:
+		return
+	
+	var start_pos : Vector3i
+	start_pos.x = randi() % (border_size - 1)
+	start_pos.z = randi() % (border_size - 1)
+	
+	var pos : Vector3i = start_pos
+	
+	# check is position is empty
+	if grid_map.get_cell_item(pos) != -1:
+		make_star_tile(rec-1)
+		return
+	# position is empty
+	grid_map.set_cell_item(pos, 5)
+	
+	# append position
+	star_positions.append(pos)
+	
+	# append to tiles
+	var starT : PackedVector3Array = []
+	starT.append(pos)
+	star_tiles.append(starT)
+	
+
+
 # make enemy tiles
 func make_enemy_tile(rec):
 	if !rec > 0:
@@ -233,8 +269,8 @@ func make_enemy_tile(rec):
 	
 	# check is position is empty
 	if grid_map.get_cell_item(pos) != -1:
-				make_enemy_tile(rec-1)
-				return
+		make_enemy_tile(rec-1)
+		return
 	# position is empty
 	grid_map.set_cell_item(pos, 4)
 	
