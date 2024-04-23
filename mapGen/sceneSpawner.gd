@@ -47,9 +47,9 @@ func generate():
 			if grid_map.get_cell_item(pos) == 0:
 				pass
 			elif grid_map.get_cell_item(pos) == 1:
-				if randf_range(0, 1) < 0.2:
+				if randf_range(0, 1) < 0.05:
 					spawn_tree(pos)
-				if randf_range(0, 1) < 0.15:
+				if randf_range(0, 1) < 0.1:
 					spawn_bush(pos)
 			elif grid_map.get_cell_item(pos) == 2:
 				if randf_range(0, 1) < 0.5:
@@ -84,7 +84,7 @@ func spawn_bush(pos: Vector3):
 	pos.y = 0.9
 	
 	# rand scale
-	var scale_bush = randf_range(0.8, 2)
+	var scale_bush = randf_range(2, 5)
 	bush.scale = Vector3(scale_bush, scale_bush, scale_bush)
 	
 	# bush position on block
