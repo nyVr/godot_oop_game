@@ -58,8 +58,13 @@ func _ready():
 	
 	
 	## instance of lamps
+	inst_lamps(Vector3(-29.6, 1, 20))
+	inst_lamps(Vector3(42.5, 1, 9))
+	inst_lamps(Vector3(-11, 1, -31.4))
+	inst_lamps(Vector3(-50.9, 1, -23.4))
 	
-	# pause mechanisms
+	
+	## pause mechanisms
 	pauseSc.hide()
 
 

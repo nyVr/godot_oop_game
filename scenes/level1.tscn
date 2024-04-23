@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b7atxuaof20fe"]
+[gd_scene load_steps=22 format=3 uid="uid://b7atxuaof20fe"]
 
 [ext_resource type="Script" path="res://scripts/level1.gd" id="1_2g3c5"]
 [ext_resource type="PackedScene" uid="uid://d2lr7ndyoi0x0" path="res://blender/plainWall.dae" id="2_wro87"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://dde3hpdyxsg0n" path="res://scenes/dolls.tscn" id="10_p8uv6"]
 [ext_resource type="PackedScene" uid="uid://dtfuxlkwcfsrt" path="res://scenes/bibz.tscn" id="11_pkifo"]
 [ext_resource type="PackedScene" uid="uid://bhasjjid0r6w3" path="res://scenes/UI/pause.tscn" id="12_uj3sy"]
-[ext_resource type="AudioStream" uid="uid://cfs0xqhu4lqy1" path="res://audio/hsynth_white_bat_IGM.mp3" id="13_xjxaa"]
 
 [sub_resource type="Shader" id="Shader_njq1a"]
 code = "
@@ -357,7 +356,6 @@ layout_mode = 2
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 process_mode = 3
-stream = ExtResource("13_xjxaa")
 volume_db = -5.0
 bus = &"music"
 

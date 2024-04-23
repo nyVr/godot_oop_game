@@ -672,7 +672,7 @@ visible = false
 [node name="Pause" parent="pauseCanv" instance=ExtResource("10_8by03")]
 
 [node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.6344, 0.5, 39.38)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.9474, 0.5, -23.4089)
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_7jfb1")
