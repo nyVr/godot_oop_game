@@ -681,3 +681,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.9474, 0.5, -23.4089)
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_7jfb1")
 volume_db = -10.0
+
+[connection signal="mc_died" from="mcStar_anim" to="." method="_on_mc_star_anim_mc_died"]

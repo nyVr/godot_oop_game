@@ -164,7 +164,7 @@ func _set_lanternHealth(value):
 
 # no joe dies call
 func charDeath():
-	get_tree().change_scene_to_file("res://scenes/UI/youDied.tscn")
+	emit_signal("mc_died")
 
 
 ## timeouts // signals

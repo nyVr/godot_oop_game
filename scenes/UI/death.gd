@@ -4,7 +4,7 @@ extends Control
 
 # restart the current scene
 func _on_button_pressed():
-	get_tree().change_scene_to_file(Global.current_scene)
+	get_tree().change_scene_to_file("res://mapGen/map.tscn")
 
 
 func _on_quit_pressed():

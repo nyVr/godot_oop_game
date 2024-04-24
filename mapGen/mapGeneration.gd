@@ -609,4 +609,4 @@ func _star_collected():
 
 func _on_mc_star_anim_mc_died():
 	Global.endlessLevel = 1
-	get_tree().change_scene_to_file("res://scenes/UI/mainMenu.tscn")
+	get_tree().change_scene_to_file("res://scenes/UI/youDiedEndlessVer.tscn")
