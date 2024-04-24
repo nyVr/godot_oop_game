@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://cacpnrqbyn4vh"]
+[gd_scene load_steps=13 format=3 uid="uid://cacpnrqbyn4vh"]
 
 [ext_resource type="Script" path="res://scenes/UI/tutorial.gd" id="1_f3fpr"]
+[ext_resource type="FontFile" uid="uid://beoqupkvxqtfg" path="res://sprites_fonts/Ruthligos.ttf" id="2_k6iyi"]
 
 [sub_resource type="Gradient" id="Gradient_yn448"]
 offsets = PackedFloat32Array(0.959627)
@@ -169,7 +170,7 @@ grow_horizontal = 2
 text = "⭒ Each level has 10 fallen stars (including endless).
 ⭒ Collect all 10 to move on.
 ⭒ Fallen stars make a chiming noise at intervals to
-assist inlocating them.
+assist in locating them.
 ⭒ Collecting fallen stars does not
  recharge your star.
 
@@ -220,20 +221,46 @@ stars energy.
 label_settings = SubResource("LabelSettings_sl6kj")
 horizontal_alignment = 1
 
-[node name="play" type="Button" parent="."]
+[node name="page5" type="TextureRect" parent="."]
 visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_252ug")
+
+[node name="gameTitle" type="Label" parent="page5"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -228.0
+offset_right = 228.0
+offset_bottom = 189.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.745098, 0.262745, 0.203922, 0.498039)
+theme_override_fonts/font = ExtResource("2_k6iyi")
+theme_override_font_sizes/font_size = 90
+text = "Star Seeker"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="play" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -49.0
-offset_top = -31.0
-offset_right = 49.0
-offset_bottom = 31.0
+offset_left = -81.0
+offset_top = -34.5
+offset_right = 81.0
+offset_bottom = 34.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.682353, 0.227451, 0.172549, 0.560784)
 theme_override_fonts/font = SubResource("SystemFont_a2ual")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxEmpty_e5ejk")
@@ -241,7 +268,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_y8elp")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_2t0dx")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_1rghb")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_dbity")
-text = "Play"
+text = "𓇻  Play"
 
 [node name="next" type="Button" parent="."]
 layout_mode = 1
@@ -255,6 +282,7 @@ offset_top = -4.0
 offset_bottom = 4.0
 grow_horizontal = 0
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.682353, 0.227451, 0.172549, 0.560784)
 theme_override_fonts/font = SubResource("SystemFont_a2ual")
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxEmpty_e5ejk")
@@ -273,6 +301,7 @@ offset_top = -15.5
 offset_right = 75.0
 offset_bottom = 15.5
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.682353, 0.227451, 0.172549, 0.560784)
 theme_override_fonts/font = SubResource("SystemFont_a2ual")
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxEmpty_e5ejk")
@@ -293,6 +322,7 @@ offset_left = -41.0
 offset_top = -31.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_override_colors/font_color = Color(0.682353, 0.227451, 0.172549, 0.560784)
 theme_override_fonts/font = SubResource("SystemFont_a2ual")
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxEmpty_e5ejk")
@@ -302,6 +332,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_1rghb")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_dbity")
 text = "Skip"
 
+[connection signal="pressed" from="play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="next" to="." method="_on_next_pressed"]
 [connection signal="pressed" from="prev" to="." method="_on_prev_pressed"]
 [connection signal="pressed" from="skip" to="." method="_on_skip_pressed"]
