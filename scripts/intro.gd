@@ -29,3 +29,5 @@ func _on_cutscene_animation_finished(anim_name):
 	# reached end of animaiton queue
 	if index < maxindex:
 		play_nims()
+	if anim_name == "cutsceneP4":
+		get_tree().change_scene_to_file("res://scenes/level1.tscn")
