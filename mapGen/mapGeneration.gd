@@ -21,19 +21,18 @@ func set_start(_val: bool):
 	generate()
 
 # border variable and setter - to make a border so player cant get by
-@export var border_size : int = 20 : set = set_border_size
+@export var border_size : int = 80 : set = set_border_size
 func set_border_size(val : int):
 	border_size = val
 	if Engine.is_editor_hint():
-		visualise_border()
+		visualise_border_gen()
 
 
 # lamp and enemy count
-@onready var enemy_count : int = 10 + (2*Global.endlessLevel)
-@onready var lamp_count : int = 5 + (1*Global.endlessLevel)
+@onready var enemy_count
+@onready var lamp_count
 
-var star_count : int = 10
-
+@onready var star_count : int = 10
 
 # to avoid recursion error
 @export  var giveup : int = 5
@@ -62,6 +61,9 @@ var player_tile_size : int = 2
 @onready var colScene : PackedScene = preload("res://mapGen/sceneGeneration/colonly.tscn")
 @onready var treeScene : PackedScene = preload("res://mapGen/sceneGeneration/dead_tree_01.tscn")
 @onready var bushScene : PackedScene = preload("res://mapGen/sceneGeneration/dead_bush_02.tscn")
+
+
+@onready var level = Global.endlessLevel
 
 # tile arrays
 var forest_tiles : Array[PackedVector3Array] = []
@@ -117,7 +119,7 @@ func generate():
 	
 	# create border
 	print("generating...")
-	visualise_border()
+	visualise_border_gen()
 	
 	## CALL MAKE TILES
 	
@@ -154,15 +156,28 @@ func generate():
 	make_blank_tiles()
 
 
+# visualise border for generate function ot avoid instant errors
+func visualise_border_gen():
+	if grid_map != null:
+		grid_map.clear()
+	for i in range (-1, border_size+1):
+		grid_map.set_cell_item(Vector3i(i, 0, -1), 3)
+		grid_map.set_cell_item(Vector3i(i, 0, border_size), 3)
+		grid_map.set_cell_item(Vector3i(border_size, 0, i), 3)
+		grid_map.set_cell_item(Vector3i(-1, 0, i), 3)
+
+
 ## RUNTIME
 
 # ready
 func _ready():
 	pauseSc.hide()
 	
-	lamp_count = 10
-	enemy_count = 15
+	lamp_count = 5 + (1*level)
+	enemy_count = 15 + (1*level)
 	star_count = 10
+	
+	print("LAMP COUNT", lamp_count, " ENEMY COUNT", enemy_count)
 	# clear collision ground and reset position
 	$pathfind/worldSpawner.position = Vector3(0, 0, 0)
 	$pathfind/worldSpawner/groundShape/groundCol.position = Vector3(0, 0, 0)
@@ -225,6 +240,7 @@ func _ready():
 	for pos in star_positions:
 		spawn_stars(pos)
 	
+	# spawn trees
 	for row in range(-1, border_size):
 		for col in range(-1, border_size):
 			var pos : Vector3i = Vector3i(col, 0, row)
@@ -237,9 +253,7 @@ func _ready():
 				if randf_range(0, 1) < 0.5:
 					spawn_bush(pos)
 	
-	
 	print("SPAWNED EVERYTHING COMPLETE")
-
 	$pathfind.bake_navigation_mesh(true)
 	print("BAKED MESH")
 
@@ -254,8 +268,6 @@ func _process(_delta):
 			pause()
 	else:
 		pass
-
-
 
 
 
@@ -277,7 +289,6 @@ func visualise_border():
 		spawn_collision(Vector3i(border_size, 0, i))
 		grid_map.set_cell_item(Vector3i(-1, 0, i), 3)
 		spawn_collision(Vector3i(-1, 0, i))
-
 
 
 ## SPAWNERS
@@ -574,8 +585,6 @@ func unpause():
 	Engine.time_scale = 1
 	get_tree().paused = false
 	pauseSc.hide()
-
-
 
 
 ## CLEARERS
