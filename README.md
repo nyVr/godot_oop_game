@@ -10,7 +10,7 @@ Class Group: A
 
 # Screenshots
 
-![mainMenu](res://images/mainMenu.PNG)
+![mainMenu](images/mainMenu.PNG)
 
 
 # Description for Project
