@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b7atxuaof20fe"]
+[gd_scene load_steps=28 format=3 uid="uid://b7atxuaof20fe"]
 
 [ext_resource type="Script" path="res://scripts/level1.gd" id="1_2g3c5"]
 [ext_resource type="PackedScene" uid="uid://d2lr7ndyoi0x0" path="res://blender/plainWall.dae" id="2_wro87"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://tgjdsvt30gt7" path="res://blender/deadTree01.dae" id="7_t6ptf"]
 [ext_resource type="PackedScene" uid="uid://bvldrvhbxl4ii" path="res://blender/deadBush02.dae" id="8_lu35u"]
 [ext_resource type="PackedScene" uid="uid://b61l0x0l37n4j" path="res://scenes/mc_star.tscn" id="9_thah5"]
-[ext_resource type="PackedScene" uid="uid://dde3hpdyxsg0n" path="res://scenes/dolls.tscn" id="10_p8uv6"]
 [ext_resource type="PackedScene" uid="uid://dtfuxlkwcfsrt" path="res://scenes/bibz.tscn" id="11_pkifo"]
 [ext_resource type="PackedScene" uid="uid://bhasjjid0r6w3" path="res://scenes/UI/pause.tscn" id="12_uj3sy"]
 
@@ -383,9 +382,6 @@ transform = Transform3D(1.98763, 0, -0.222105, 0, 2, 0, 0.222105, 0, 1.98763, 7.
 [node name="mcStar_anim" parent="." instance=ExtResource("9_thah5")]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 metadata/_edit_group_ = true
-
-[node name="stars" parent="." instance=ExtResource("10_p8uv6")]
-transform = Transform3D(0.635, 0.772512, 0, -0.736188, 0.605142, -0.303035, -0.234098, 0.192427, 0.952979, -0.0241737, 1.27446, 10.1309)
 
 [node name="bibz" parent="." instance=ExtResource("11_pkifo")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.26237, 0.92, -19.4395)
