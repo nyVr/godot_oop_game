@@ -25,11 +25,11 @@ every time they collect ten fallen stars.
 Amount of enemies increases with the level ups.
 
 # List of Assets/Resources
-## Music:
+### Music:
 
 https://www.youtube.com/watch?v=1vd_CE_Kvug&ab_channel=WhiteBatAudio
 
-## Assets:
+### Assets:
 Player - me
 
 Stars - me
