@@ -9,6 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://b7tjv03l5fi8l" path="res://scenes/health.tscn" id="6_xpt4q"]
 [ext_resource type="PackedScene" uid="uid://d0j8b5v0w71pc" path="res://scenes/lanternHP.tscn" id="7_3x1xe"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4g5r1"]
+radius = 0.943592
+height = 4.56333
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2mlrn"]
 resource_name = "Material.001"
 cull_mode = 2
@@ -240,11 +244,29 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4g5r1"]
-radius = 0.943592
-height = 4.56333
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_ki8pp"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jifo0"]
+emission_shape_scale = Vector3(0.5, 0.5, 0.5)
+emission_shape = 1
+emission_sphere_radius = 2.0
+direction = Vector3(0, 0, 0)
+initial_velocity_min = 0.05
+initial_velocity_max = 0.05
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lqoqg"]
+albedo_color = Color(1, 1, 0, 1)
+emission_enabled = true
+emission = Color(0.847059, 0.847059, 0.196078, 1)
+emission_energy_multiplier = 2.0
+backlight = Color(1, 0.662745, 0, 1)
+proximity_fade_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_xiia4"]
+material = SubResource("StandardMaterial3D_lqoqg")
+radius = 0.02
+height = 0.04
 
 [sub_resource type="Animation" id="Animation_bs162"]
 resource_name = "idle"
@@ -1084,28 +1106,6 @@ _data = {
 "walk": SubResource("Animation_ada53")
 }
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jifo0"]
-emission_shape_scale = Vector3(0.5, 0.5, 0.5)
-emission_shape = 1
-emission_sphere_radius = 2.0
-direction = Vector3(0, 0, 0)
-initial_velocity_min = 0.05
-initial_velocity_max = 0.05
-gravity = Vector3(0, 0, 0)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lqoqg"]
-albedo_color = Color(1, 1, 0, 1)
-emission_enabled = true
-emission = Color(0.847059, 0.847059, 0.196078, 1)
-emission_energy_multiplier = 2.0
-backlight = Color(1, 0.662745, 0, 1)
-proximity_fade_enabled = true
-
-[sub_resource type="SphereMesh" id="SphereMesh_xiia4"]
-material = SubResource("StandardMaterial3D_lqoqg")
-radius = 0.02
-height = 0.04
-
 [node name="mcStar_anim" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_xq5pt")
 
@@ -1115,8 +1115,12 @@ light_color = Color(1, 1, 0, 1)
 light_energy = 0.661
 light_volumetric_fog_energy = 5.0
 
+[node name="bodyCol" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 2.21514, 0.0876056)
+shape = SubResource("CapsuleShape3D_4g5r1")
+
 [node name="Armature" type="Node3D" parent="."]
-transform = Transform3D(-1.23435, -1.0791e-07, 0, 0, 0, -1.23435, 1.0791e-07, -1.23435, 0, 0, 0, 0)
+transform = Transform3D(-1.23435, -1.0791e-07, 0, 3.55271e-15, 5.96046e-08, -1.23435, 1.0791e-07, -1.23435, 0, 0, 0, -1.19209e-07)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="Armature"]
 bones/0/name = "mixamorig_Hips"
@@ -1371,9 +1375,23 @@ skin = SubResource("Skin_5m11k")
 mesh = SubResource("ArrayMesh_jcv3y")
 skin = SubResource("Skin_5m11k")
 
-[node name="bodyCol" type="CollisionShape3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 2.21514, 0.0876056)
-shape = SubResource("CapsuleShape3D_4g5r1")
+[node name="hitbox" type="Area3D" parent="."]
+
+[node name="joeAtkArea" type="CollisionShape3D" parent="hitbox"]
+shape = SubResource("SphereShape3D_ki8pp")
+
+[node name="joeAttack" type="OmniLight3D" parent="hitbox/joeAtkArea"]
+light_color = Color(0.894118, 0.737255, 0, 1)
+shadow_enabled = true
+distance_fade_enabled = true
+distance_fade_length = 20.0
+
+[node name="particls" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.999999, 0, 0, 0, 0.760961, 0.648798, 0, -0.648797, 0.76096, 0, 3.15377, -1.54999)
+amount = 50
+lifetime = 15.0
+process_material = SubResource("ParticleProcessMaterial_jifo0")
+draw_pass_1 = SubResource("SphereMesh_xiia4")
 
 [node name="bars" type="CanvasLayer" parent="."]
 
@@ -1397,41 +1415,23 @@ offset_bottom = 73.0
 grow_horizontal = 0
 metadata/_edit_use_anchors_ = true
 
-[node name="hitbox" type="Area3D" parent="."]
-
-[node name="joeAtkArea" type="CollisionShape3D" parent="hitbox"]
-shape = SubResource("SphereShape3D_ki8pp")
-
-[node name="joeAttack" type="OmniLight3D" parent="hitbox/joeAtkArea"]
-light_color = Color(0.894118, 0.737255, 0, 1)
-shadow_enabled = true
-distance_fade_enabled = true
-distance_fade_length = 20.0
-
 [node name="Timer" type="Timer" parent="."]
 
 [node name="atkCooldown" type="Timer" parent="."]
 
 [node name="jumpCD" type="Timer" parent="."]
 
+[node name="playerCam" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 11, 2)
+
+[node name="ears" type="AudioListener3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.34804, 0)
+current = true
+
 [node name="anims" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_6t0ff")
 }
-
-[node name="playerCam" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 11, 2)
-
-[node name="particls" type="GPUParticles3D" parent="."]
-transform = Transform3D(0.999999, 0, 0, 0, 0.760961, 0.648798, 0, -0.648797, 0.76096, 0, 3.15377, -1.54999)
-amount = 50
-lifetime = 15.0
-process_material = SubResource("ParticleProcessMaterial_jifo0")
-draw_pass_1 = SubResource("SphereMesh_xiia4")
-
-[node name="AudioListener3D" type="AudioListener3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.34804, 0)
-current = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="atkCooldown" to="." method="_on_atk_cooldown_timeout"]

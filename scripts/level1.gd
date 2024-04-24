@@ -12,21 +12,13 @@ class_name Level1
 
 var levelUp = false
 
-#
-func _physics_process(_delta):
-	get_tree().call_group("enemy", "updatePlayerLocation", player.global_transform.origin)
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# get scene for restart purposes
 	Global.current_scene = "res://scenes/main.tscn"
 	
 	$music.play()
-	
-	# instance of enemies
 
-
-	# instance of lamps
 	inst_lamps(Vector3(-5, 0.5, 0))
 
 	
@@ -46,18 +38,7 @@ func _process(_delta):
 	else:
 		pass
 
-func _input(_event):
-	pass
-
-
 ## instances
-
-
-# instantiate enemies
-func inst_enemy(pos):
-	var enemy = enemyScene.instantiate()
-	enemy.position = pos
-	add_child(enemy)
 
 func inst_lamps(pos):
 	var lamp = lampScene.instantiate()
@@ -65,12 +46,13 @@ func inst_lamps(pos):
 
 	add_child(lamp)
 
-## pause mechanisms
 
+## PAUSE MECH
 
 # stop game time when ESC pressed
 # using engine.time_scale because if use get_tree().pause = true then processing
 # will stop and can no longer detect input, meaning pause never be unpaused
+# so use esc to unpause
 func pause():
 	Global.isPaused = true
 	Engine.time_scale = 0
@@ -84,13 +66,13 @@ func unpause():
 	get_tree().paused = false
 	pauseSprite.hide()
 
-#
-func _on_resume_press():
-	if Global.isPaused:
-		Global.isPaused = false
-		Engine.time_scale = 1
-		get_tree().paused = false
-		$CanvasLayer/Pause.hide()
-	else:
-		pass
 
+## DIALOGUE END
+
+
+func _on_bibz_level_up():
+	$canvasAnim.play("sneakText")
+
+
+func _on_canvas_anim_animation_finished(anim_name):
+	get_tree().change_scene_to_file("res://scenes/level2.tscn")

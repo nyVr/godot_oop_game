@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b7atxuaof20fe"]
+[gd_scene load_steps=29 format=3 uid="uid://b7atxuaof20fe"]
 
 [ext_resource type="Script" path="res://scripts/level1.gd" id="1_2g3c5"]
 [ext_resource type="PackedScene" uid="uid://d2lr7ndyoi0x0" path="res://blender/plainWall.dae" id="2_wro87"]
@@ -121,6 +121,7 @@ agent_height = 1.0
 agent_max_climb = 0.05
 
 [sub_resource type="FogMaterial" id="FogMaterial_uxno1"]
+density = 0.3
 albedo = Color(0.243137, 0.0941176, 0.0431373, 1)
 emission = Color(0.152941, 0.0509804, 0.0117647, 1)
 
@@ -139,6 +140,58 @@ size = Vector3(50, 0.5, 50)
 [sub_resource type="BoxShape3D" id="BoxShape3D_odway"]
 size = Vector3(50, 0.5, 50)
 
+[sub_resource type="Gradient" id="Gradient_yibq4"]
+offsets = PackedFloat32Array(0.996894)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pnh3h"]
+gradient = SubResource("Gradient_yibq4")
+
+[sub_resource type="SystemFont" id="SystemFont_kctor"]
+font_names = PackedStringArray("Book Antiqua")
+font_italic = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_0gitf"]
+font = SubResource("SystemFont_kctor")
+font_size = 55
+
+[sub_resource type="Animation" id="Animation_g5mol"]
+resource_name = "sneakText"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sneakText/txt:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_byycl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sneakText/txt:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dekej"]
+_data = {
+"RESET": SubResource("Animation_byycl"),
+"sneakText": SubResource("Animation_g5mol")
+}
+
 [node name="level1" type="Node3D"]
 process_mode = 3
 script = ExtResource("1_2g3c5")
@@ -153,7 +206,7 @@ navigation_mesh = SubResource("NavigationMesh_8k8rt")
 
 [node name="fog" type="FogVolume" parent="nav/world"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.85996, 1.06673, 1.18452)
-size = Vector3(100, 1, 100)
+size = Vector3(100, 20, 100)
 material = SubResource("FogMaterial_uxno1")
 
 [node name="boundaryWalls" type="Node3D" parent="nav/world"]
@@ -172,49 +225,31 @@ transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -22.5947, 0, -2
 transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 14.5669, 0, -23.813)
 
 [node name="plainWall6" parent="nav/world/boundaryWalls" instance=ExtResource("2_wro87")]
-transform = Transform3D(-0.0149392, 0, 0.666152, 0, 0.551292, 0, -0.822857, 0, -0.0283067, -44.2678, 0.120051, -0.68946)
+transform = Transform3D(-0.0149392, 0, 0.666152, 0, 0.551292, 0, -0.822857, 0, -0.0283067, -23.0995, 0.120051, -0.689462)
 
 [node name="plainWall7" parent="nav/world/boundaryWalls" instance=ExtResource("2_wro87")]
-transform = Transform3D(-0.0216651, 0, 0.671593, 0, 0.551292, 0, -1.19332, 0, -0.0285379, -44.0429, 0.120051, 11.194)
+transform = Transform3D(-0.0216651, 0, 0.671593, 0, 0.551292, 0, -1.19332, 0, -0.0285379, -22.8746, 0.120051, 11.194)
 
 [node name="plainWall8" parent="nav/world/boundaryWalls" instance=ExtResource("2_wro87")]
-transform = Transform3D(-0.0149392, 0, 0.666152, 0, 0.551292, 0, -0.822857, 0, -0.0283067, -44.717, 0.120051, -18.9074)
+transform = Transform3D(-0.0149392, 0, 0.666152, 0, 0.551292, 0, -0.822857, 0, -0.0283067, -23.5487, 0.120051, -18.9074)
 
 [node name="plainWall9" parent="nav/world/boundaryWalls" instance=ExtResource("2_wro87")]
-transform = Transform3D(-0.0153086, 0, 0.999728, 0, 0.565216, 0, -0.653472, 0, -0.0234202, 44.3428, 0, -5.24103)
+transform = Transform3D(-0.0153086, 0, 0.999728, 0, 0.565216, 0, -0.653472, 0, -0.0234202, 17.038, 0, -5.24103)
 
 [node name="plainWall10" parent="nav/world/boundaryWalls" instance=ExtResource("2_wro87")]
-transform = Transform3D(-0.0153086, 0, 0.999728, 0, 0.565216, 0, -0.653472, 0, -0.0234202, 44.6266, 0, 6.87398)
+transform = Transform3D(-0.0153086, 0, 0.999728, 0, 0.565216, 0, -0.653472, 0, -0.0234202, 17.3218, 0, 6.87398)
 
 [node name="plainWall11" parent="nav/world/boundaryWalls" instance=ExtResource("2_wro87")]
-transform = Transform3D(-0.0153086, 0, 0.999728, 0, 0.565216, 0, -0.653472, 0, -0.0234202, 44.9124, 0, 19.0723)
+transform = Transform3D(-0.0153086, 0, 0.999728, 0, 0.565216, 0, -0.653472, 0, -0.0234202, 17.6076, 0, 19.0723)
 
 [node name="plainWall12" parent="nav/world/boundaryWalls" instance=ExtResource("2_wro87")]
-transform = Transform3D(-0.0153086, 0, 0.999728, 0, 0.565216, 0, -0.653472, 0, -0.0234202, 44.0556, 0, -17.5015)
+transform = Transform3D(-0.0153086, 0, 0.999728, 0, 0.565216, 0, -0.653472, 0, -0.0234202, 16.7508, 0, -17.5015)
 
 [node name="plainWall14" parent="nav/world/boundaryWalls" instance=ExtResource("2_wro87")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -20.8187, 0, 24.8723)
-
-[node name="plainWall15" parent="nav/world/boundaryWalls" instance=ExtResource("2_wro87")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -35.2173, 0, 24.8723)
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -15.8211, 0, 24.8723)
 
 [node name="plainWall16" parent="nav/world/boundaryWalls" instance=ExtResource("2_wro87")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 7.96618, 0, 24.8723)
-
-[node name="plainWall5" parent="nav/world/boundaryWalls" instance=ExtResource("2_wro87")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, -37.4666, 0, -23.813)
-
-[node name="plainWall28" parent="nav/world/boundaryWalls" instance=ExtResource("2_wro87")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 25.8498, 0, -23.813)
-
-[node name="plainWall31" parent="nav/world/boundaryWalls" instance=ExtResource("2_wro87")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 37.0359, 0, -23.813)
-
-[node name="plainWall34" parent="nav/world/boundaryWalls" instance=ExtResource("2_wro87")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 22.4842, 0, 24.8723)
-
-[node name="plainWall35" parent="nav/world/boundaryWalls" instance=ExtResource("2_wro87")]
-transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 37.4098, 0, 24.8723)
+transform = Transform3D(0.653651, 0, 0, 0, 0.565216, 0, 0, 0, 1, 12.9638, 0, 24.8723)
 
 [node name="wlight" type="DirectionalLight3D" parent="nav/world"]
 transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, -3.089, 100, 0)
@@ -233,7 +268,7 @@ mesh = SubResource("BoxMesh_uo6qh")
 shape = SubResource("BoxShape3D_odway")
 
 [node name="doorWall" parent="nav/world" instance=ExtResource("6_k1mv2")]
-transform = Transform3D(0.820971, 0, 0, 0, 0.565068, 0, 0, 0, 1.28408, 7.2353, 0.390994, -24.8234)
+transform = Transform3D(0.820971, 0, 0, 0, 0.565068, 0, 0, 0, 1.28408, 2.23771, 0.390994, -24.8234)
 
 [node name="trees" type="Node3D" parent="nav/world"]
 
@@ -241,25 +276,25 @@ transform = Transform3D(0.820971, 0, 0, 0, 0.565068, 0, 0, 0, 1.28408, 7.2353, 0
 transform = Transform3D(-1.25646, 0.0883763, -3.79651, 0.0277671, 3.99902, 0.083901, 3.79744, 2.23517e-08, -1.25677, -11.0209, 0, -7.60132)
 
 [node name="deadTree09" parent="nav/world/trees" instance=ExtResource("7_t6ptf")]
-transform = Transform3D(-3.16274, 0.87283, -2.28806, 0.676181, 3.90327, 0.554316, 2.35369, 0.0515036, -3.23381, -31.0573, 0, 5.56491)
+transform = Transform3D(-3.16274, 0.87283, -2.28806, 0.676181, 3.90327, 0.554316, 2.35369, 0.0515036, -3.23381, 11.6541, 0, 5.56491)
 
 [node name="deadTree08" parent="nav/world/trees" instance=ExtResource("7_t6ptf")]
-transform = Transform3D(-2.79196, 0.0358217, -0.78339, 0.0201311, 2.89929, 0.0608282, 0.783951, 0.0531239, -2.79152, -18.0901, 0, -3.84202)
+transform = Transform3D(-2.79196, 0.0358217, -0.78339, 0.0201311, 2.89929, 0.0608282, 0.783951, 0.0531239, -2.79152, -10.8304, 0, -2.1201)
 
 [node name="deadTree10" parent="nav/world/trees" instance=ExtResource("7_t6ptf")]
-transform = Transform3D(-2.36634, -0.0187396, 1.67633, 0.0201311, 2.89929, 0.0608282, -1.67632, 0.0612713, -2.36563, -27.4485, 0, 4.14825)
+transform = Transform3D(-2.36634, -0.0187396, 1.67633, 0.0201311, 2.89929, 0.0608282, -1.67632, 0.0612713, -2.36563, -9.92061, 0, 14.9726)
 
 [node name="deadTree11" parent="nav/world/trees" instance=ExtResource("7_t6ptf")]
-transform = Transform3D(-2.82298, -0.172269, -0.641194, -0.180142, 2.89436, 0.0154809, 0.639028, 0.0548993, -2.82818, -16.0978, 0, 8.16871)
+transform = Transform3D(-2.82298, -0.172269, -0.641194, -0.180142, 2.89436, 0.0154809, 0.639028, 0.0548993, -2.82818, -13.5653, 0, 5.86124)
 
 [node name="deadTree12" parent="nav/world/trees" instance=ExtResource("7_t6ptf")]
-transform = Transform3D(-2.5364, 0.945215, 1.04079, 1.05009, 2.70113, 0.105964, -0.934882, 0.469546, -2.70472, -16.0814, 0, 8.16871)
+transform = Transform3D(-2.5364, 0.945215, 1.04079, 1.05009, 2.70113, 0.105964, -0.934882, 0.469546, -2.70472, -10.2943, 0, 8.16871)
 
 [node name="deadTree06" parent="nav/world/trees" instance=ExtResource("7_t6ptf")]
 transform = Transform3D(-2.15343, 0, -1.26994, 0, 2.5, 0, 1.26994, 0, -2.15343, -0.249743, 0, -12.5692)
 
 [node name="deadTree07" parent="nav/world/trees" instance=ExtResource("7_t6ptf")]
-transform = Transform3D(-2.134, 0.16612, -1.29168, 0.142114, 2.49447, 0.08602, 1.29455, 0, -2.13873, -32.2418, 0, -12.5692)
+transform = Transform3D(-2.134, 0.16612, -1.29168, 0.142114, 2.49447, 0.08602, 1.29455, 0, -2.13873, 10.4696, 0, -12.5692)
 
 [node name="deadTree02" parent="nav/world/trees" instance=ExtResource("7_t6ptf")]
 transform = Transform3D(2.88465, 0, -2.62465, 0, 3.9, 0, 2.62465, 0, 2.88465, 13.4635, 0, -15.3685)
@@ -277,7 +312,7 @@ transform = Transform3D(2.61579, 0.405812, -0.271919, -0.320716, 3.30985, 0.0333
 transform = Transform3D(1.21023, 0.145384, 2.20679, 0.558448, 3.21832, -0.38617, -2.29222, 0.860832, 1.07105, -4.53583, 0, 4.12662)
 
 [node name="deadTree05" parent="nav/world/trees" instance=ExtResource("7_t6ptf")]
-transform = Transform3D(-2.23583, 0, -2.94806, 0, 3.7, 0, 2.94806, 0, -2.23583, 31.1305, 0, -4.29572)
+transform = Transform3D(-2.23583, 0, -2.94806, 0, 3.7, 0, 2.94806, 0, -2.23583, 11.7825, 0, 15.7056)
 
 [node name="bush" type="Node3D" parent="nav/world"]
 
@@ -343,6 +378,7 @@ transform = Transform3D(0.635, 0.772512, 0, -0.736188, 0.605142, -0.303035, -0.2
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.26237, 0.92, -19.4395)
 
 [node name="pauseMenu" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="MarginContainer" type="MarginContainer" parent="pauseMenu"]
 anchors_preset = 15
@@ -359,5 +395,41 @@ process_mode = 3
 volume_db = -5.0
 bus = &"music"
 
+[node name="sneakText" type="CanvasLayer" parent="."]
+
+[node name="txt" type="TextureRect" parent="sneakText"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_pnh3h")
+
+[node name="Label" type="Label" parent="sneakText/txt"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.5
+offset_top = -11.5
+offset_right = 100.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Sneaking past the gaurd..."
+label_settings = SubResource("LabelSettings_0gitf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="canvasAnim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dekej")
+}
+
+[connection signal="levelUp" from="bibz" to="." method="_on_bibz_level_up"]
 [connection signal="pauseWorld_dialogue" from="bibz" to="mcStar_anim" method="_on_bibz_pause_world_dialogue"]
 [connection signal="unpauseWorld_dialogue" from="bibz" to="mcStar_anim" method="_on_bibz_unpause_world_dialogue"]
+[connection signal="animation_finished" from="canvasAnim" to="." method="_on_canvas_anim_animation_finished"]

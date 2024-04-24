@@ -4,7 +4,7 @@ var inputReady = 0
 
 signal unpauseWorld_dialogue
 signal pauseWorld_dialogue
-
+signal levelUp
 
 # onready local
 func _ready():
@@ -33,3 +33,4 @@ func _on_area_3d_body_exited(body):
 
 func _on_chatbox_dialogue_finished():
 	emit_signal("unpauseWorld_dialogue")
+	emit_signal("levelUp")
