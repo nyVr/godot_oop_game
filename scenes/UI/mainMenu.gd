@@ -25,7 +25,7 @@ func _on_quit_pressed():
 
 func _on_endless_pressed():
 	if Global.endlessUnlocked:
-		pass
+		get_tree().change_scene_to_file("res://mapGen/map.tscn")
 	$unlockMsg.show()
 	msg1 = true
 	unlock_timer.wait_time = 2

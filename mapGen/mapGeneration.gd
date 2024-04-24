@@ -7,14 +7,6 @@ extends Node3D
 # player spawn first then stars then lamps then enemies
 # scenes, forest & bushes spawn after 
 
-
-@onready var grid_map : GridMap = $GridMap
-
-@onready var player = $mcStar_anim
-
-@onready var pauseSc = $pauseCanv/Pause
-
-
 # to generate the mapp without running the scene
 @export var start : bool = false : set = set_start
 func set_start(_val: bool):
@@ -26,13 +18,6 @@ func set_border_size(val : int):
 	border_size = val
 	if Engine.is_editor_hint():
 		visualise_border_gen()
-
-
-# lamp and enemy count
-@onready var enemy_count
-@onready var lamp_count
-
-@onready var star_count : int = 10
 
 # to avoid recursion error
 @export  var giveup : int = 5
@@ -49,10 +34,21 @@ func set_border_size(val : int):
 @export var bush_count : int = 5
 @export var bush_spacing : int = 2
 
+## READIES
 
-# player spawn on 2x2 randomly
-var player_tile_size : int = 2
+@onready var grid_map : GridMap = $GridMap
+@onready var player = $mcStar_anim
+@onready var pauseSc = $pauseCanv/Pause
+@onready var score = $scoreCanv/score
 
+# lamp and enemy count
+@onready var enemy_count
+@onready var lamp_count
+@onready var star_count : int = 10
+
+@onready var level = Global.endlessLevel
+
+@onready var starInCol = 0
 
 # scenes
 @onready var enemyScene : PackedScene = preload("res://scenes/enemy.tscn")
@@ -62,8 +58,6 @@ var player_tile_size : int = 2
 @onready var treeScene : PackedScene = preload("res://mapGen/sceneGeneration/dead_tree_01.tscn")
 @onready var bushScene : PackedScene = preload("res://mapGen/sceneGeneration/dead_bush_02.tscn")
 
-
-@onready var level = Global.endlessLevel
 
 # tile arrays
 var forest_tiles : Array[PackedVector3Array] = []
@@ -172,6 +166,8 @@ func visualise_border_gen():
 # ready
 func _ready():
 	pauseSc.hide()
+	
+	Global.connect("star_collected", _star_collected)
 	
 	lamp_count = 5 + (1*level)
 	enemy_count = 15 + (1*level)
@@ -596,3 +592,21 @@ func clear_instantiations():
 	for instance in instances:
 		instance.queue_free()
 	instances.clear()
+
+
+## WIN CONDITIONS
+
+func _star_collected():
+	starInCol += 1
+	var score_text = "Stars collected: " + str(Global.starsCount) + "/10"
+	score.text = score_text
+	if starInCol == 10:
+		Global.endlessLevel += 1
+		get_tree().change_scene_to_file("res://mapGen/map.tscn")
+
+
+## LOSE CONDITIONS
+
+func _on_mc_star_anim_mc_died():
+	Global.endlessLevel = 1
+	get_tree().change_scene_to_file("res://scenes/UI/mainMenu.tscn")

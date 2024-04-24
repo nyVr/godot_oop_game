@@ -14,6 +14,7 @@ extends CharacterBody3D
 
 # wip - work on enemy signal health deplete
 signal health_decrease(amountDmg)
+signal mc_died()
 
 ## vars
 # lantern 

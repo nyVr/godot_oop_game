@@ -12,12 +12,12 @@
 [ext_resource type="PackedScene" uid="uid://b61l0x0l37n4j" path="res://scenes/mc_star.tscn" id="11_7t5t6"]
 [ext_resource type="AudioStream" uid="uid://cfs0xqhu4lqy1" path="res://audio/hsynth_white_bat_IGM.mp3" id="12_7jfb1"]
 
-[sub_resource type="SystemFont" id="SystemFont_po0aw"]
+[sub_resource type="SystemFont" id="SystemFont_4ipx6"]
 font_names = PackedStringArray("Book Antiqua")
 
 [sub_resource type="LabelSettings" id="LabelSettings_kjn4d"]
 line_spacing = 0.0
-font = SubResource("SystemFont_po0aw")
+font = SubResource("SystemFont_4ipx6")
 font_size = 50
 font_color = Color(0.976471, 0.745098, 0.705882, 1)
 outline_size = 1
@@ -160,7 +160,7 @@ script = ExtResource("1_pgy4g")
 offset_right = 368.0
 offset_bottom = 67.0
 size_flags_horizontal = 4
-text = "Stars collected: 0"
+text = "Stars collected: 0/10"
 label_settings = SubResource("LabelSettings_kjn4d")
 metadata/_edit_use_anchors_ = true
 
