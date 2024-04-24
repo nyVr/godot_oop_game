@@ -12,6 +12,17 @@
 [ext_resource type="PackedScene" uid="uid://b61l0x0l37n4j" path="res://scenes/mc_star.tscn" id="11_7t5t6"]
 [ext_resource type="AudioStream" uid="uid://cfs0xqhu4lqy1" path="res://audio/hsynth_white_bat_IGM.mp3" id="12_7jfb1"]
 
+[sub_resource type="SystemFont" id="SystemFont_po0aw"]
+font_names = PackedStringArray("Book Antiqua")
+
+[sub_resource type="LabelSettings" id="LabelSettings_kjn4d"]
+line_spacing = 0.0
+font = SubResource("SystemFont_po0aw")
+font_size = 50
+font_color = Color(0.976471, 0.745098, 0.705882, 1)
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="Shader" id="Shader_kpjv8"]
 code = "
 // NOTE: Shader automatically converted from Godot Engine 4.2.1.stable's ProceduralSkyMaterial.
@@ -139,20 +150,27 @@ size = Vector3(50, 0.5, 50)
 [sub_resource type="BoxShape3D" id="BoxShape3D_e74f4"]
 size = Vector3(50, 0.5, 50)
 
-[sub_resource type="SystemFont" id="SystemFont_po0aw"]
-font_names = PackedStringArray("Book Antiqua")
-
-[sub_resource type="LabelSettings" id="LabelSettings_kjn4d"]
-line_spacing = 0.0
-font = SubResource("SystemFont_po0aw")
-font_size = 50
-font_color = Color(0.976471, 0.745098, 0.705882, 1)
-outline_size = 1
-outline_color = Color(0, 0, 0, 1)
-
 [node name="Level2" type="Node3D"]
 process_mode = 3
 script = ExtResource("1_pgy4g")
+
+[node name="scoreCanv" type="CanvasLayer" parent="."]
+
+[node name="score" type="Label" parent="scoreCanv"]
+offset_right = 368.0
+offset_bottom = 67.0
+size_flags_horizontal = 4
+text = "Stars collected: 0"
+label_settings = SubResource("LabelSettings_kjn4d")
+metadata/_edit_use_anchors_ = true
+
+[node name="mcStar_anim" parent="." instance=ExtResource("11_7t5t6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.36201, 0, 46.7511)
+
+[node name="pauseCanv" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Pause" parent="pauseCanv" instance=ExtResource("10_8by03")]
 
 [node name="sky" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_nsu2e")
@@ -656,26 +674,9 @@ transform = Transform3D(0.124125, 0, 0.410302, 0, 1, 0, -1.04653, 0, 0.0486641, 
 [node name="wall11" parent="NavigationRegion3D/world/mazeWalls" instance=ExtResource("7_pheu5")]
 transform = Transform3D(0.771453, 0, 0.281491, 0, 1, 0, -0.717983, 0, 0.302454, 35.0695, 0.23786, -40.1548)
 
-[node name="scoreCanv" type="CanvasLayer" parent="."]
-
-[node name="score" type="Label" parent="scoreCanv"]
-offset_right = 368.0
-offset_bottom = 67.0
-size_flags_horizontal = 4
-text = "Stars collected: 0"
-label_settings = SubResource("LabelSettings_kjn4d")
-metadata/_edit_use_anchors_ = true
-
-[node name="pauseCanv" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="Pause" parent="pauseCanv" instance=ExtResource("10_8by03")]
-
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.9474, 0.5, -23.4089)
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_7jfb1")
-
-[node name="mcStar_anim" parent="." instance=ExtResource("11_7t5t6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.36201, 0, 46.7511)
+volume_db = -10.0
