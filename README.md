@@ -4,7 +4,7 @@ Name: Noura Belkhatir
 
 Student Number: C22388271
 
-Class Group: A
+Class Group: A Team 7
 
 # Video
 
