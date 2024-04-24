@@ -12,7 +12,7 @@ Class Group: A
 
 ![mainMenu](images/mainMenu.PNG)
 
-![gamePlay](res://images/gameplay.PNG)
+![gamePlay](images/gameplay.PNG)
 
 
 # Description for Project
