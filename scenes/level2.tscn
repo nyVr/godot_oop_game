@@ -171,6 +171,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.36201, 0, 46.7511)
 layer = 2
 
 [node name="Pause" parent="pauseCanv" instance=ExtResource("10_8by03")]
+metadata/_edit_use_anchors_ = true
 
 [node name="sky" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_nsu2e")

@@ -1,8 +1,9 @@
 @tool
 extends Node3D
 
+
 @export var start : bool = false : set = set_start
-func set_start(val: bool):
+func set_start(_val: bool):
 	generate()
 
 @onready var map = $"../.."
@@ -15,6 +16,7 @@ func set_start(val: bool):
 @onready var brokenwallScene : PackedScene = preload("res://mapGen/sceneGeneration/brokenWall.tscn")
 
 
+
 var instances : Array[Node3D] = []
 
 
@@ -25,16 +27,16 @@ func _ready():
 	for row in range(-1, map.border_size):
 		for col in range(-1, map.border_size):
 			var pos : Vector3i = Vector3i(col, 0, row)
-			if grid_map.get_cell_item(pos) == 0:
-				pass
-			elif grid_map.get_cell_item(pos) == 1:
-				if randf_range(0, 1) < 0.2:
+			if grid_map.get_cell_item(pos) == 1:
+				if randf_range(0, 1) < 0.1:
 					spawn_tree(pos)
 				if randf_range(0, 1) < 0.15:
 					spawn_bush(pos)
 			elif grid_map.get_cell_item(pos) == 2:
 				if randf_range(0, 1) < 0.5:
 					spawn_bush(pos)
+			else:
+				pass
 
 
 # build world on generate
@@ -44,16 +46,16 @@ func generate():
 	for row in range(-1, map.border_size):
 		for col in range(-1, map.border_size):
 			var pos : Vector3i = Vector3i(col, 0, row)
-			if grid_map.get_cell_item(pos) == 0:
-				pass
-			elif grid_map.get_cell_item(pos) == 1:
-				if randf_range(0, 1) < 0.05:
-					spawn_tree(pos)
+			if grid_map.get_cell_item(pos) == 1:
 				if randf_range(0, 1) < 0.1:
+					spawn_tree(pos)
+				if randf_range(0, 1) < 0.15:
 					spawn_bush(pos)
 			elif grid_map.get_cell_item(pos) == 2:
 				if randf_range(0, 1) < 0.5:
 					spawn_bush(pos)
+			else:
+				pass
 
 
 ## SPAWNERS
@@ -118,3 +120,5 @@ func clear_instantiations():
 	for instance in instances:
 		instance.queue_free()
 	instances.clear()
+
+

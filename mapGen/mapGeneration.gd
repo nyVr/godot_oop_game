@@ -7,14 +7,17 @@ extends Node3D
 # player spawn first then stars then lamps then enemies
 # scenes, forest & bushes spawn after 
 
+
 @onready var grid_map : GridMap = $GridMap
 
 @onready var player = $mcStar_anim
 
+@onready var pauseSc = $pauseCanv/Pause
+
 
 # to generate the mapp without running the scene
 @export var start : bool = false : set = set_start
-func set_start(val: bool):
+func set_start(_val: bool):
 	generate()
 
 # border variable and setter - to make a border so player cant get by
@@ -56,6 +59,7 @@ var player_tile_size : int = 2
 @onready var enemyScene : PackedScene = preload("res://scenes/enemy.tscn")
 @onready var lampScene : PackedScene = preload("res://scenes/lanterns.tscn")
 @onready var starScene : PackedScene = preload("res://scenes/dolls.tscn")
+@onready var colScene : PackedScene = preload("res://mapGen/sceneGeneration/colonly.tscn")
 
 
 # tile arrays
@@ -147,21 +151,14 @@ func generate():
 	
 	# fill in rest of gridmap
 	make_blank_tiles()
-	
-	# spawn everything
-	for pos in enemy_positions:
-		spawn_enemy(pos)
-	for pos in lamp_positions:
-		spawn_lamps(pos)
-	for pos in star_positions:
-		spawn_stars(pos)
 
 
 ## RUNTIME
 
-
 # ready
 func _ready():
+	pauseSc.hide()
+	
 	lamp_count = 10
 	enemy_count = 15
 	star_count = 10
@@ -231,8 +228,24 @@ func _ready():
 	$pathfind.bake_navigation_mesh(true)
 	print("BAKED MESH")
 
+
+func _process(_delta):
+	if Input.is_action_just_pressed("esc"):
+		if Global.isPaused:
+			print("***UNPAUSE***")
+			unpause()
+		else:
+			print("***PAUSE***")
+			pause()
+	else:
+		pass
+
+
+
+
+
 # update player location for enemy
-func _physics_process(delta):
+func _physics_process(_delta):
 	get_tree().call_group("enemy", "updatePlayerLocation", player.global_transform.origin)
 	pass
 
@@ -242,9 +255,13 @@ func visualise_border():
 		grid_map.clear()
 	for i in range (-1, border_size+1):
 		grid_map.set_cell_item(Vector3i(i, 0, -1), 3)
+		spawn_collision(Vector3i(i, 0, -1))
 		grid_map.set_cell_item(Vector3i(i, 0, border_size), 3)
+		spawn_collision(Vector3i(i, 0, border_size))
 		grid_map.set_cell_item(Vector3i(border_size, 0, i), 3)
+		spawn_collision(Vector3i(border_size, 0, i))
 		grid_map.set_cell_item(Vector3i(-1, 0, i), 3)
+		spawn_collision(Vector3i(-1, 0, i))
 
 
 
@@ -282,6 +299,13 @@ func spawn_stars(pos):
 	instances.append(star)
 	add_child(star)
 
+# spawn collision walls
+func spawn_collision(pos):
+	var col = colScene.instantiate()
+	pos.y = 2
+	col.position = pos
+	instances.append(col)
+	add_child(col)
 
 
 ## TILE MAKERS
@@ -290,7 +314,7 @@ func spawn_stars(pos):
 func make_player_tile():
 	var size = 2
 	
-	var start_pos : Vector3i
+	var start_pos : Vector3i 
 	start_pos.x = randi() % (border_size - size + 1)
 	start_pos.z = randi() % (border_size - size + 1)
 	
@@ -478,6 +502,23 @@ func make_blank_tiles():
 			var pos : Vector3i = Vector3i(col, 0, row)
 			if grid_map.get_cell_item(pos) == -1:
 				grid_map.set_cell_item(pos, 0)
+
+
+## PAUSE
+
+func pause():
+	Global.isPaused = true
+	Engine.time_scale = 0
+	get_tree().paused = true
+	pauseSc.show()
+
+# start the time when ESC pressed again
+func unpause():
+	Global.isPaused = false
+	Engine.time_scale = 1
+	get_tree().paused = false
+	pauseSc.hide()
+
 
 
 
