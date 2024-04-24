@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://ctq1vlk2a3uy1"]
+[gd_scene load_steps=17 format=3 uid="uid://ctq1vlk2a3uy1"]
 
 [ext_resource type="Script" path="res://scenes/UI/optionsMenu.gd" id="1_vot60"]
 [ext_resource type="Texture2D" uid="uid://cdlroorm0hh8l" path="res://sprites_fonts/blank.png" id="2_q3380"]
 [ext_resource type="FontFile" uid="uid://beoqupkvxqtfg" path="res://sprites_fonts/Ruthligos.ttf" id="3_iqkdv"]
+[ext_resource type="PackedScene" uid="uid://d0so871h8ngt2" path="res://scenes/UI/volumeSlider.tscn" id="4_xqfli"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nenvb"]
 line_spacing = 0.0
@@ -44,12 +45,14 @@ grow_vertical = 2
 script = ExtResource("1_vot60")
 
 [node name="sprite" type="TextureRect" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_q3380")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -106,5 +109,114 @@ text = "⭒ Back"
 
 [node name="musicMM" type="AudioStreamPlayer" parent="."]
 
+[node name="volumeSliders" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q3380")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="volumeSliders"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -228.0
+offset_top = -230.0
+offset_right = 228.0
+offset_bottom = 230.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 15
+
+[node name="gameTitle" type="Label" parent="volumeSliders/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.745098, 0.262745, 0.203922, 0.498039)
+theme_override_fonts/font = ExtResource("3_iqkdv")
+theme_override_font_sizes/font_size = 90
+text = "Star Seeker"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="menuName" type="Label" parent="volumeSliders/VBoxContainer"]
+layout_mode = 2
+text = "Volume Menu"
+label_settings = SubResource("LabelSettings_nenvb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="masterlbl" type="Label" parent="volumeSliders/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.682353, 0.227451, 0.172549, 0.560784)
+theme_override_fonts/font = SubResource("SystemFont_duhhl")
+theme_override_font_sizes/font_size = 55
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4og4j")
+text = "⭒ Master"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="master" parent="volumeSliders/VBoxContainer" instance=ExtResource("4_xqfli")]
+layout_mode = 2
+bus_name = "Master"
+
+[node name="musiclbl" type="Label" parent="volumeSliders/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.682353, 0.227451, 0.172549, 0.560784)
+theme_override_fonts/font = SubResource("SystemFont_duhhl")
+theme_override_font_sizes/font_size = 55
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4og4j")
+text = "⭒ Music"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="music" parent="volumeSliders/VBoxContainer" instance=ExtResource("4_xqfli")]
+layout_mode = 2
+bus_name = "music"
+
+[node name="sfxlbl" type="Label" parent="volumeSliders/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.682353, 0.227451, 0.172549, 0.560784)
+theme_override_fonts/font = SubResource("SystemFont_duhhl")
+theme_override_font_sizes/font_size = 55
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4og4j")
+text = "⭒ SFX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sfx" parent="volumeSliders/VBoxContainer" instance=ExtResource("4_xqfli")]
+layout_mode = 2
+bus_name = "sfx"
+
+[node name="backVol" type="Button" parent="volumeSliders"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.5
+anchor_right = 0.09
+anchor_bottom = 0.5
+offset_top = -38.0
+offset_right = 161.0
+offset_bottom = 38.0
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.682353, 0.227451, 0.172549, 0.560784)
+theme_override_fonts/font = SubResource("SystemFont_duhhl")
+theme_override_font_sizes/font_size = 55
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gj2t7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_207xw")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_naun8")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_nme5w")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hp00m")
+text = "⭒ Back"
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/volume" to="." method="_on_volume_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="volumeSliders/backVol" to="." method="_on_back_vol_pressed"]
