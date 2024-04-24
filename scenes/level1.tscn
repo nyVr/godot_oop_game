@@ -199,6 +199,19 @@ script = ExtResource("1_2g3c5")
 [node name="sky" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bl2h8")
 
+[node name="pauseMenu" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="pauseMenu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pause" parent="pauseMenu/MarginContainer" instance=ExtResource("12_uj3sy")]
+layout_mode = 2
+
 [node name="nav" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_8k8rt")
 
@@ -376,19 +389,6 @@ transform = Transform3D(0.635, 0.772512, 0, -0.736188, 0.605142, -0.303035, -0.2
 
 [node name="bibz" parent="." instance=ExtResource("11_pkifo")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.26237, 0.92, -19.4395)
-
-[node name="pauseMenu" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="MarginContainer" type="MarginContainer" parent="pauseMenu"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Pause" parent="pauseMenu/MarginContainer" instance=ExtResource("12_uj3sy")]
-layout_mode = 2
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 process_mode = 3
