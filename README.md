@@ -17,6 +17,13 @@ Class Group: A
 
 # Description for Project
 
+Top-down esque game. Collect ten fallen stars to unlock endless mode.
+
+Endless mode uses procedural maps to constantly recreate the map and respawn the player
+every time they collect ten fallen stars.
+
+Amount of enemies increases with the level ups.
+
 # List of Assets/Resources
 ## Music:
 
