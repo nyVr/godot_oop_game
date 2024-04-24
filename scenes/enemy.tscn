@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://efjgw673wkm7"]
+[gd_scene load_steps=13 format=3 uid="uid://efjgw673wkm7"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_utle7"]
 
@@ -21,6 +21,23 @@ bg_color = Color(0.705882, 0.133333, 0.223529, 1)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_82n7r"]
 viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b67wm"]
+emission_shape_scale = Vector3(1.5, 1.5, 1.5)
+emission_shape = 1
+emission_sphere_radius = 2.0
+velocity_pivot = Vector3(2, 2, 2)
+direction = Vector3(2, 4, 2)
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j5cw1"]
+albedo_color = Color(0.54902, 0.0117647, 0.0941176, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_gd36d"]
+material = SubResource("StandardMaterial3D_j5cw1")
+radius = 0.05
+height = 0.1
 
 [node name="enemy" type="CharacterBody3D" groups=["enemy"]]
 script = ExtResource("1_utle7")
@@ -87,6 +104,12 @@ show_percentage = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.40943, 0)
 billboard = 1
 texture = SubResource("ViewportTexture_82n7r")
+
+[node name="particles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.760961, 0.648798, 0, -0.648798, 0.760961, 0, 0.448146, 0)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_b67wm")
+draw_pass_1 = SubResource("SphereMesh_gd36d")
 
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]

@@ -40,6 +40,8 @@ func set_border_size(val : int):
 @onready var player = $mcStar_anim
 @onready var pauseSc = $pauseCanv/Pause
 @onready var score = $scoreCanv/score
+@onready var total_score = $scoreCanv/totalScore
+
 
 # lamp and enemy count
 @onready var enemy_count
@@ -168,6 +170,11 @@ func _ready():
 	pauseSc.hide()
 	
 	Global.connect("star_collected", _star_collected)
+	
+	if level == 1:
+		Global.endlessStarCount = 0
+	var total_score_text = "Total: " + str(Global.endlessStarCount)
+	total_score.text = total_score_text
 	
 	lamp_count = 5 + (1*level)
 	enemy_count = 15 + (1*level)
@@ -603,6 +610,10 @@ func _star_collected():
 	starInCol += 1
 	var score_text = "Stars collected: " + str(Global.starsCount) + "/10"
 	score.text = score_text
+	
+	Global.endlessStarCount += 1
+	var total_score_text = "Total stars: " + str(Global.endlessStarCount)
+	total_score.text = total_score_text
 	if starInCol == 10:
 		Global.endlessLevel += 1
 		get_tree().change_scene_to_file("res://mapGen/map.tscn")

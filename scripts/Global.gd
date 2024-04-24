@@ -12,6 +12,8 @@ var endlessUnlocked = false
 
 var endlessLevel = 1
 
+var endlessStarCount = 0
+
 signal set_health(amount)
 
 signal player_attacked(attackDmg)
