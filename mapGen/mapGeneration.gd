@@ -60,7 +60,8 @@ var player_tile_size : int = 2
 @onready var lampScene : PackedScene = preload("res://scenes/lanterns.tscn")
 @onready var starScene : PackedScene = preload("res://scenes/dolls.tscn")
 @onready var colScene : PackedScene = preload("res://mapGen/sceneGeneration/colonly.tscn")
-
+@onready var treeScene : PackedScene = preload("res://mapGen/sceneGeneration/dead_tree_01.tscn")
+@onready var bushScene : PackedScene = preload("res://mapGen/sceneGeneration/dead_bush_02.tscn")
 
 # tile arrays
 var forest_tiles : Array[PackedVector3Array] = []
@@ -223,6 +224,20 @@ func _ready():
 		spawn_lamps(pos)
 	for pos in star_positions:
 		spawn_stars(pos)
+	
+	for row in range(-1, border_size):
+		for col in range(-1, border_size):
+			var pos : Vector3i = Vector3i(col, 0, row)
+			if grid_map.get_cell_item(pos) == 1:
+				if randf_range(0, 1) < 0.1:
+					spawn_tree(pos)
+				if randf_range(0, 1) < 0.15:
+					spawn_bush(pos)
+			elif grid_map.get_cell_item(pos) == 2:
+				if randf_range(0, 1) < 0.5:
+					spawn_bush(pos)
+	
+	
 	print("SPAWNED EVERYTHING COMPLETE")
 
 	$pathfind.bake_navigation_mesh(true)
@@ -307,6 +322,47 @@ func spawn_collision(pos):
 	instances.append(col)
 	add_child(col)
 
+# spawn trees on the forest/tree blocks
+func spawn_tree(pos):
+	# create tree + give height
+	var tree = treeScene.instantiate()
+	pos.y = 0.9
+	
+	# rand scale
+	var scale_tree = randf_range(0.8, 3)
+	tree.scale = Vector3(scale_tree, scale_tree, scale_tree)
+	
+	# tree position on block
+	tree.position = pos
+	# rand rotate
+	tree.rotate_y(randf_range(-20, 20))
+	tree.rotate_x(randf_range(-0.5, 0.5))
+	
+	# add to instances for clear
+	instances.append(tree)
+	# create
+	add_child(tree)
+
+# spawn bushes on the forest/bush blocks
+func spawn_bush(pos):
+	# create bush + give height
+	var bush = bushScene.instantiate()
+	pos.y = 1.5
+	
+	# rand scale
+	var scale_bush = randf_range(0.8, 3)
+	bush.scale = Vector3(scale_bush, scale_bush, scale_bush)
+	
+	# bush position on block
+	bush.position = pos
+	# rand rotate
+	bush.rotate_y(randf_range(-20, 20))
+	bush.rotate_x(randf_range(-0.5, 0.5))
+	
+	# add to instances for clear
+	instances.append(bush)
+	# create
+	add_child(bush)
 
 ## TILE MAKERS
 
