@@ -1,4 +1,4 @@
-# Star Seekeer
+# Star Seeker
 
 Name: Noura Belkhatir
 Student Number: C22388271

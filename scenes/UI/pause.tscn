@@ -1,8 +1,32 @@
-[gd_scene load_steps=15 format=3 uid="uid://bhasjjid0r6w3"]
+[gd_scene load_steps=24 format=3 uid="uid://bhasjjid0r6w3"]
 
 [ext_resource type="Script" path="res://scenes/UI/pause.gd" id="1_uenc1"]
 [ext_resource type="Texture2D" uid="uid://cdlroorm0hh8l" path="res://sprites_fonts/blank.png" id="2_r0mwp"]
 [ext_resource type="FontFile" uid="uid://beoqupkvxqtfg" path="res://sprites_fonts/Ruthligos.ttf" id="3_3xbva"]
+[ext_resource type="PackedScene" uid="uid://d0so871h8ngt2" path="res://scenes/UI/volumeSlider.tscn" id="4_s0n3o"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_anwml"]
+line_spacing = 0.0
+font = ExtResource("3_3xbva")
+font_size = 35
+font_color = Color(1, 0.447059, 0.337255, 1)
+outline_color = Color(0.298039, 0.298039, 0.298039, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_x84bg"]
+font_names = PackedStringArray("Book Antiqua")
+subpixel_positioning = 0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3j1h0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t1f4v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uyris"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uohp4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gw5gc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jqelb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fr0q3"]
 font = ExtResource("3_3xbva")
@@ -67,6 +91,119 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_r0mwp")
 
+[node name="volumeSliders" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -156.0
+offset_right = 64.0
+offset_bottom = 156.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_r0mwp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="volumeSliders"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -228.0
+offset_top = -230.0
+offset_right = 228.0
+offset_bottom = 230.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 15
+
+[node name="gameTitle" type="Label" parent="volumeSliders/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.745098, 0.262745, 0.203922, 0.498039)
+theme_override_fonts/font = ExtResource("3_3xbva")
+theme_override_font_sizes/font_size = 90
+text = "Star Seeker"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="menuName" type="Label" parent="volumeSliders/VBoxContainer"]
+layout_mode = 2
+text = "Volume Menu"
+label_settings = SubResource("LabelSettings_anwml")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="masterlbl" type="Label" parent="volumeSliders/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.682353, 0.227451, 0.172549, 0.560784)
+theme_override_fonts/font = SubResource("SystemFont_x84bg")
+theme_override_font_sizes/font_size = 55
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3j1h0")
+text = "⭒ Master"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="master" parent="volumeSliders/VBoxContainer" instance=ExtResource("4_s0n3o")]
+layout_mode = 2
+bus_name = "Master"
+
+[node name="musiclbl" type="Label" parent="volumeSliders/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.682353, 0.227451, 0.172549, 0.560784)
+theme_override_fonts/font = SubResource("SystemFont_x84bg")
+theme_override_font_sizes/font_size = 55
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3j1h0")
+text = "⭒ Music"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="music" parent="volumeSliders/VBoxContainer" instance=ExtResource("4_s0n3o")]
+layout_mode = 2
+bus_name = "music"
+
+[node name="sfxlbl" type="Label" parent="volumeSliders/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.682353, 0.227451, 0.172549, 0.560784)
+theme_override_fonts/font = SubResource("SystemFont_x84bg")
+theme_override_font_sizes/font_size = 55
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3j1h0")
+text = "⭒ SFX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sfx" parent="volumeSliders/VBoxContainer" instance=ExtResource("4_s0n3o")]
+layout_mode = 2
+bus_name = "sfx"
+
+[node name="backVol" type="Button" parent="volumeSliders"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.5
+anchor_right = 0.09
+anchor_bottom = 0.5
+offset_top = -38.0
+offset_right = 161.0
+offset_bottom = 38.0
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.682353, 0.227451, 0.172549, 0.560784)
+theme_override_fonts/font = SubResource("SystemFont_x84bg")
+theme_override_font_sizes/font_size = 55
+theme_override_styles/normal = SubResource("StyleBoxEmpty_t1f4v")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_uyris")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_uohp4")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gw5gc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jqelb")
+text = "⭒ Back"
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -120,6 +257,18 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_x8uer")
 text = " 𓇻  Controls
 "
 
+[node name="volume" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.682353, 0.227451, 0.172549, 0.560784)
+theme_override_fonts/font = SubResource("SystemFont_sdb6w")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ctl40")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_w8wgf")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_j4act")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_mcdf5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x8uer")
+text = " 𓇻  Volume"
+
 [node name="quit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.682353, 0.227451, 0.172549, 0.560784)
@@ -132,5 +281,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_mcdf5")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_x8uer")
 text = " 𓇻  Quit"
 
+[connection signal="pressed" from="volumeSliders/backVol" to="." method="_on_back_vol_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/volume" to="." method="_on_volume_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]
