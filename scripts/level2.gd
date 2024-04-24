@@ -141,7 +141,7 @@ func _star_collected():
 	score.text = score_text
 	if Global.starsCount == 10:
 		Global.endlessUnlocked = true
-		get_tree().change_scene_to_file("res://scenes/UI/mainMenu.tscn")
+		get_tree().change_scene_to_file("res://scenes/UI/youWin.tscn")
 
 
 func _on_mc_star_anim_mc_died():
