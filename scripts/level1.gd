@@ -75,4 +75,4 @@ func _on_bibz_level_up():
 
 
 func _on_canvas_anim_animation_finished(anim_name):
-	get_tree().change_scene_to_file("res://scenes/level2.tscn")
+	get_tree().change_scene_to_file("res://scenes/UI/tutorial.tscn")
