@@ -180,6 +180,7 @@ visible = false
 metadata/_edit_use_anchors_ = true
 
 [node name="GridMap" type="GridMap" parent="."]
+visible = false
 mesh_library = ExtResource("2_nsh1e")
 cell_size = Vector3(1, 1, 1)
 data = {
@@ -187,7 +188,6 @@ data = {
 }
 
 [node name="pathfind" type="NavigationRegion3D" parent="."]
-visible = false
 navigation_mesh = SubResource("NavigationMesh_20aa8")
 
 [node name="worldSpawner" type="Node3D" parent="pathfind"]

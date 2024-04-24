@@ -173,6 +173,9 @@ func _ready():
 	enemy_count = 15 + (1*level)
 	star_count = 10
 	
+	var lvlText = "Level: " + str(level)
+	$scoreCanv/level.text = lvlText
+	
 	print("LAMP COUNT", lamp_count, " ENEMY COUNT", enemy_count)
 	# clear collision ground and reset position
 	$pathfind/worldSpawner.position = Vector3(0, 0, 0)
