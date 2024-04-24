@@ -230,7 +230,7 @@ func _ready():
 
 
 func _process(_delta):
-	if Input.is_action_just_pressed("esc"):
+	if Input.is_action_just_pressed("ui_cancel"):
 		if Global.isPaused:
 			print("***UNPAUSE***")
 			unpause()

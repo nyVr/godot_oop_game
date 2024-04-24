@@ -40,6 +40,7 @@ radius = 0.05
 height = 0.1
 
 [node name="star" type="Area3D"]
+process_mode = 1
 transform = Transform3D(0.591868, -0.408851, -0.694646, 0.568361, 0.822779, 0, 0.57154, -0.394809, 0.719352, 0, 0, 0)
 script = ExtResource("1_nh6sh")
 metadata/_edit_group_ = true
