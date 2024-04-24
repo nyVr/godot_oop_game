@@ -67,12 +67,12 @@ func unpause():
 	pauseSprite.hide()
 
 
-## DIALOGUE END
+## DIALOGUE END MOVE ON LVL
 
 
 func _on_bibz_level_up():
 	$canvasAnim.play("sneakText")
 
-
-func _on_canvas_anim_animation_finished(anim_name):
+# fade out
+func _on_canvas_anim_animation_finished(_anim_name):
 	get_tree().change_scene_to_file("res://scenes/UI/tutorial.tscn")
