@@ -57,15 +57,18 @@ path_height_offset = 0.01
 avoidance_enabled = true
 radius = 1.0
 
+[node name="enAtk" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.63854, 0)
+light_color = Color(0.905882, 0, 0, 1)
+light_energy = 10.0
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 3.0
+
 [node name="enemyHitbox" type="Area3D" parent="."]
 
 [node name="enHBArea" type="CollisionShape3D" parent="enemyHitbox"]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
 shape = SubResource("SphereShape3D_8hev4")
-
-[node name="enAtk" type="OmniLight3D" parent="enemyHitbox/enHBArea"]
-light_color = Color(0, 0, 0, 1)
-light_energy = 2.0
 
 [node name="detectionArea" type="Area3D" parent="."]
 
