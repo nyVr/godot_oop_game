@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b7atxuaof20fe"]
+[gd_scene load_steps=34 format=3 uid="uid://b7atxuaof20fe"]
 
 [ext_resource type="Script" path="res://scripts/level1.gd" id="1_2g3c5"]
 [ext_resource type="PackedScene" uid="uid://d2lr7ndyoi0x0" path="res://blender/plainWall.dae" id="2_wro87"]
@@ -123,6 +123,14 @@ font_names = PackedStringArray("Book Antiqua")
 font = SubResource("SystemFont_smbca")
 font_size = 20
 
+[sub_resource type="SystemFont" id="SystemFont_qbneb"]
+font_names = PackedStringArray("Book Antiqua")
+
+[sub_resource type="LabelSettings" id="LabelSettings_yu6kk"]
+font = SubResource("SystemFont_qbneb")
+font_size = 35
+font_color = Color(0.976471, 0.745098, 0.705882, 1)
+
 [sub_resource type="NavigationMesh" id="NavigationMesh_8k8rt"]
 cell_height = 0.05
 agent_height = 1.0
@@ -236,6 +244,18 @@ grow_horizontal = 0
 grow_vertical = 2
 text = "Talk to the Gaurd straight ahead"
 label_settings = SubResource("LabelSettings_5lv85")
+
+[node name="level" type="CanvasLayer" parent="."]
+
+[node name="level" type="Label" parent="level"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+text = "Level: 0"
+label_settings = SubResource("LabelSettings_yu6kk")
 
 [node name="nav" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_8k8rt")

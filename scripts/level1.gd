@@ -16,6 +16,8 @@ var levelUp = false
 func _ready():
 	# get scene for restart purposes
 	Global.current_scene = "res://scenes/main.tscn"
+	var lvl_txt = "Level: 1 - Normal mode"
+	$level/level.text = lvl_txt
 	
 	$music.play()
 

@@ -23,6 +23,10 @@ func _ready():
 	# get scene for restart purposes
 	Global.current_scene = "res://scenes/level2.tscn"
 	
+	var lvl_txt = "Level: 2 - Normal mode"
+	$level/level.text = lvl_txt
+	
+	
 	# reset stars
 	Global.starsCount = 0
 	
