@@ -41,6 +41,7 @@ radius = 0.05
 height = 0.1
 
 [node name="enemy" type="CharacterBody3D" groups=["enemy"]]
+process_mode = 1
 script = ExtResource("1_utle7")
 
 [node name="collisionBody" type="CollisionShape3D" parent="."]

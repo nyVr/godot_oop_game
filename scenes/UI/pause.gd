@@ -25,3 +25,7 @@ func _on_back_vol_pressed():
 	$volumeSliders.hide()
 	$bg.show()
 	$MarginContainer.show()
+
+
+func _on_main_menu_pressed():
+	get_tree().change_scene_to_file("res://scenes/UI/mainMenu.tscn")

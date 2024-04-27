@@ -269,19 +269,35 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_mcdf5")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_x8uer")
 text = " 𓇻  Volume"
 
-[node name="quit" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="mainMenu" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.682353, 0.227451, 0.172549, 0.560784)
+theme_override_colors/font_color = Color(0.952941, 0.537255, 0.470588, 0.560784)
+theme_override_colors/font_hover_color = Color(0.952941, 0.537255, 0.470588, 0.560784)
 theme_override_fonts/font = SubResource("SystemFont_sdb6w")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ctl40")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_w8wgf")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_j4act")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_mcdf5")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_x8uer")
-text = " 𓇻  Quit"
+text = "⭒  Quit to menu
+"
+
+[node name="quit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.952941, 0.537255, 0.470588, 0.560784)
+theme_override_colors/font_hover_color = Color(0.952941, 0.537255, 0.470588, 0.560784)
+theme_override_fonts/font = SubResource("SystemFont_sdb6w")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ctl40")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_w8wgf")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_j4act")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_mcdf5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x8uer")
+text = "⭒ Quit"
 
 [connection signal="pressed" from="volumeSliders/backVol" to="." method="_on_back_vol_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/volume" to="." method="_on_volume_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/mainMenu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]
