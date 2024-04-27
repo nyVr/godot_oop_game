@@ -7,7 +7,7 @@ class_name EnemyAI
 @onready var enemy = $"."
 @onready var cooldown = $cd
 
-var SPEED1 = 4.0
+var SPEED1 = 4.5
 var SPEED2 = 2.0
 var playerIn = false
 var initLoc
