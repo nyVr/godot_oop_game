@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://ddasq5o3vywu8"]
+
+[ext_resource type="Script" path="res://scripts/leaderboard.gd" id="1_1gc7b"]
+[ext_resource type="Texture2D" uid="uid://cdlroorm0hh8l" path="res://sprites_fonts/blank.png" id="1_8nsdk"]
+[ext_resource type="FontFile" uid="uid://beoqupkvxqtfg" path="res://sprites_fonts/Ruthligos.ttf" id="2_s7u2m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nycer"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hgtb1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wcmap"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_py12o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_32c0t"]
+
+[node name="SubmitLeaderboard" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1gc7b")
+
+[node name="bg" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_8nsdk")
+
+[node name="playername" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -15.5
+offset_right = 320.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="submit" type="Button" parent="playername"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 2.0
+anchor_right = 0.587
+anchor_bottom = 2.0
+offset_left = -34.0
+offset_top = -15.5
+offset_right = 34.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.549527, 0.0127515, 0.0940455, 1)
+theme_override_colors/font_hover_color = Color(0.952941, 0.537255, 0.470588, 0.560784)
+theme_override_fonts/font = ExtResource("2_s7u2m")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nycer")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hgtb1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_wcmap")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_py12o")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_32c0t")
+text = "SUBMIT"
+
+[connection signal="pressed" from="playername/submit" to="." method="_on_submit_pressed"]

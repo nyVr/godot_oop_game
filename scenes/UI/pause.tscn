@@ -12,6 +12,7 @@ font_color = Color(1, 0.447059, 0.337255, 1)
 
 [sub_resource type="SystemFont" id="SystemFont_p5eb8"]
 font_names = PackedStringArray("Book Antiqua")
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_grky2"]
 font = SubResource("SystemFont_p5eb8")

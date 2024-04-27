@@ -85,14 +85,14 @@ text = "⭒ Retry"
 
 [node name="leaderboard" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.682353, 0.227451, 0.172549, 0.560784)
+theme_override_colors/font_color = Color(0.776471, 0.27451, 0.211765, 0.0745098)
 theme_override_fonts/font = SubResource("SystemFont_yvqj3")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxEmpty_xr84k")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_rutw7")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_5xblx")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_3uyb7")
-text = "⭒ Leaderboard"
+text = "⭒ Submit to Leaderboard "
 
 [node name="mainmenu" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

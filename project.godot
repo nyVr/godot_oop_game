@@ -16,6 +16,7 @@ config/features=PackedStringArray("4.2", "Mobile")
 [autoload]
 
 Global="*res://scripts/Global.gd"
+SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
 
 [editor_plugins]
 

@@ -128,8 +128,7 @@ text = "𓇻 Endless Mode
 
 [node name="leaderboard" type="Button" parent="buttons/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.682353, 0.227451, 0.172549, 0.560784)
-theme_override_colors/font_hover_color = Color(0.94902, 0.52549, 0.458824, 0.560784)
+theme_override_colors/font_color = Color(0.568627, 0.180392, 0.133333, 0.188235)
 theme_override_fonts/font = SubResource("SystemFont_tljwu")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxEmpty_3ue3p")
