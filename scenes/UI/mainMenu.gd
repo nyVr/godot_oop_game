@@ -6,8 +6,14 @@ var msg1 = false
 var msg2 = false
 
 func _ready():
+	if Global.isPaused:
+		Global.isPaused = false
+		Engine.time_scale = 1
+		get_tree().paused = false
 	$unlockMsg.hide()
 	$noSavedMsg.hide()
+	$sprite.show()
+	$buttons.show()
 	
 
 func _on_play_pressed():

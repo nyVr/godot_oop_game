@@ -60,6 +60,11 @@ Walls - me
 Lamps - https://sketchfab.com/3d-models/torch-d659eb741e4c48e09527f9fbb4104186
 
 
+### Textures:
+
+Floor - https://cc0-textures.com/
+
+
 ### Fonts:
 
 Titles: https://www.dafont.com/ruthligos.font
