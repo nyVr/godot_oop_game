@@ -8,7 +8,7 @@ signal levelUp
 
 # onready local
 func _ready():
-	pass
+	$etointeract/level.hide()
 
 # every frame
 func _process(_delta):
@@ -23,12 +23,14 @@ func _process(_delta):
 func _on_area_3d_body_entered(body):
 	if body.is_in_group("player"):
 		print("***INTERACTION AREA ENTERED***")
+		$etointeract/level.show()
 		inputReady = 1
 
 # joe leaves interaction area
 func _on_area_3d_body_exited(body):
 	if body.is_in_group("player"):
 		print("***INTERCACTION AREA LEFT***")
+		$etointeract/level.hide()
 
 
 func _on_chatbox_dialogue_finished():
