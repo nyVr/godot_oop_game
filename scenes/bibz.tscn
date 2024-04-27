@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtfuxlkwcfsrt"]
+[gd_scene load_steps=7 format=3 uid="uid://dtfuxlkwcfsrt"]
 
 [ext_resource type="Script" path="res://scripts/bibz.gd" id="1_1b1sm"]
 [ext_resource type="PackedScene" uid="uid://hi21hcrv1dwy" path="res://dialogue/chatbox.tscn" id="2_xpiw0"]
+[ext_resource type="PackedScene" uid="uid://7tdu0n6tq1sp" path="res://scenes/mc_torchless.tscn" id="3_mgoaw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1j8e4"]
 
@@ -21,6 +22,7 @@ script = ExtResource("1_1b1sm")
 shape = SubResource("BoxShape3D_1j8e4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+visible = false
 mesh = SubResource("BoxMesh_7so44")
 skeleton = NodePath("")
 
@@ -33,6 +35,9 @@ shape = SubResource("BoxShape3D_obstb")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Chatbox" parent="." instance=ExtResource("2_xpiw0")]
+
+[node name="main_char_anim" parent="." instance=ExtResource("3_mgoaw")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.669691, 0)
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
