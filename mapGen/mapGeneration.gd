@@ -169,6 +169,8 @@ func visualise_border_gen():
 func _ready():
 	pauseSc.hide()
 	
+	$music.play()	
+	
 	Global.connect("star_collected", _star_collected)
 	
 	if level == 1:
