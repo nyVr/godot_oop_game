@@ -38,6 +38,8 @@ Gameplay: https://www.youtube.com/watch?v=1vd_CE_Kvug&ab_channel=WhiteBatAudio
 
 Menus: https://www.youtube.com/watch?v=JiynONsMN1g
 
+Cutscene: https://www.youtube.com/watch?v=kTKpRL5_k_0
+
 
 ### Audio:
 Star chimes: https://pixabay.com/sound-effects/chimes-30058/

@@ -217,7 +217,6 @@ environment = SubResource("Environment_bl2h8")
 
 [node name="pauseMenu" type="CanvasLayer" parent="."]
 layer = 2
-visible = false
 
 [node name="MarginContainer" type="MarginContainer" parent="pauseMenu"]
 anchors_preset = 15
