@@ -9,8 +9,7 @@ func _ready():
 	$unlockMsg.hide()
 	$noSavedMsg.hide()
 	
-	
-	
+
 func _on_play_pressed():
 	get_tree().change_scene_to_file("res://scenes/intro.tscn")
 
@@ -50,3 +49,5 @@ func _on_unlock_timer_timeout():
 		msg2 = false
 	
 
+func _on_leaderboard_pressed():
+	pass # Replace with function body.

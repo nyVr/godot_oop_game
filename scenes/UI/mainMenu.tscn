@@ -103,7 +103,7 @@ theme_override_fonts/font = SubResource("SystemFont_tljwu")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxEmpty_3ue3p")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_5i5ny")
-text = " 𓇻 Start"
+text = " 𓇻 New game"
 
 [node name="continue" type="Button" parent="buttons/VBoxContainer"]
 layout_mode = 2
@@ -124,6 +124,17 @@ theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxEmpty_3ue3p")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_5i5ny")
 text = "𓇻 Endless Mode 
+"
+
+[node name="leaderboard" type="Button" parent="buttons/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.682353, 0.227451, 0.172549, 0.560784)
+theme_override_colors/font_hover_color = Color(0.94902, 0.52549, 0.458824, 0.560784)
+theme_override_fonts/font = SubResource("SystemFont_tljwu")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3ue3p")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_5i5ny")
+text = "𓇻 Leaderboard
 "
 
 [node name="options" type="Button" parent="buttons/VBoxContainer"]
@@ -199,6 +210,7 @@ vertical_alignment = 1
 [connection signal="pressed" from="buttons/VBoxContainer/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="buttons/VBoxContainer/continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="buttons/VBoxContainer/endless" to="." method="_on_endless_pressed"]
+[connection signal="pressed" from="buttons/VBoxContainer/leaderboard" to="." method="_on_leaderboard_pressed"]
 [connection signal="pressed" from="buttons/VBoxContainer/options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="buttons/VBoxContainer/quit" to="." method="_on_quit_pressed"]
 [connection signal="timeout" from="unlockTimer" to="." method="_on_unlock_timer_timeout"]
