@@ -2,7 +2,8 @@ extends Control
 
 
 
-
+func _ready():
+	$MMmusic.play()
 
 
 func _on_mainmenu_pressed():

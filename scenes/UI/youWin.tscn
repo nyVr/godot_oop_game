@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dx6d1qw3xpkxt"]
+[gd_scene load_steps=12 format=3 uid="uid://dx6d1qw3xpkxt"]
 
 [ext_resource type="Script" path="res://scenes/UI/youWin.gd" id="1_l4hsl"]
 [ext_resource type="Texture2D" uid="uid://cdlroorm0hh8l" path="res://sprites_fonts/blank.png" id="2_ngslj"]
 [ext_resource type="FontFile" uid="uid://beoqupkvxqtfg" path="res://sprites_fonts/Ruthligos.ttf" id="3_xl4aa"]
+[ext_resource type="AudioStream" uid="uid://4u67upa4cf4v" path="res://audio/MMMusic.mp3" id="4_u7t7h"]
 
 [sub_resource type="SystemFont" id="SystemFont_8umlc"]
 font_names = PackedStringArray("Impact")
@@ -112,6 +113,10 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_rutw7")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_5xblx")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_3uyb7")
 text = "⭒ Quit"
+
+[node name="MMmusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_u7t7h")
+bus = &"music"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/mainmenu" to="." method="_on_mainmenu_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/retry" to="." method="_on_restart_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://yv6tx3d7fj3b"]
+[gd_scene load_steps=29 format=3 uid="uid://yv6tx3d7fj3b"]
 
 [ext_resource type="Script" path="res://scripts/intro.gd" id="1_1jhrq"]
 [ext_resource type="PackedScene" uid="uid://tgjdsvt30gt7" path="res://blender/deadTree01.dae" id="2_6yxbl"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://dgphceem3w1tt" path="res://blender/main_char_anim.glb" id="5_nh0yb"]
 [ext_resource type="PackedScene" uid="uid://bvldrvhbxl4ii" path="res://blender/deadBush02.dae" id="7_8h7sx"]
 [ext_resource type="PackedScene" uid="uid://cn23mltvrmuvq" path="res://blender/jsstar.glb" id="7_s3hso"]
+[ext_resource type="AudioStream" uid="uid://dxtrny0fm60u6" path="res://audio/introMusic.mp3" id="10_wer83"]
+[ext_resource type="AudioStream" uid="uid://dq52cao7uh8b3" path="res://audio/shootingstar.mp3" id="11_5mrwc"]
 
 [sub_resource type="Shader" id="Shader_jrvam"]
 code = "
@@ -1339,6 +1341,12 @@ libraries = {
 }
 
 [node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_wer83")
+bus = &"music"
+
+[node name="star" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_5mrwc")
+bus = &"sfx"
 
 [connection signal="animation_finished" from="cutscene" to="." method="_on_cutscene_animation_finished"]
 

@@ -1,6 +1,12 @@
 extends Control
 
 
+func _ready():
+	var score_text = "Score: " + str(Global.endlessStarCount)
+	$MarginContainer/VBoxContainer/score.text = score_text
+	Global.endlessStarCount = 0
+	$bgMusic.play()
+
 
 # restart the current scene
 func _on_button_pressed():

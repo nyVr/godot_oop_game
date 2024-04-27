@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://cacpnrqbyn4vh"]
+[gd_scene load_steps=14 format=3 uid="uid://cacpnrqbyn4vh"]
 
 [ext_resource type="Script" path="res://scenes/UI/tutorial.gd" id="1_f3fpr"]
 [ext_resource type="FontFile" uid="uid://beoqupkvxqtfg" path="res://sprites_fonts/Ruthligos.ttf" id="2_k6iyi"]
+[ext_resource type="AudioStream" uid="uid://4u67upa4cf4v" path="res://audio/MMMusic.mp3" id="3_vx62u"]
 
 [sub_resource type="Gradient" id="Gradient_3djjs"]
 offsets = PackedFloat32Array(0.959627)
@@ -331,6 +332,9 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_2t0dx")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_1rghb")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_dbity")
 text = "Skip"
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_vx62u")
 
 [connection signal="pressed" from="play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="next" to="." method="_on_next_pressed"]

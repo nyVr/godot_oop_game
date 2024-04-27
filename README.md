@@ -34,7 +34,10 @@ Amount of enemies increases with the level ups.
 # List of Assets/Resources
 ### Music:
 
-https://www.youtube.com/watch?v=1vd_CE_Kvug&ab_channel=WhiteBatAudio
+Gameplay: https://www.youtube.com/watch?v=1vd_CE_Kvug&ab_channel=WhiteBatAudio
+
+Menus: https://www.youtube.com/watch?v=JiynONsMN1g
+
 
 ### Audio:
 Star chimes: https://pixabay.com/sound-effects/chimes-30058/

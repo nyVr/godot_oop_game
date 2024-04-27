@@ -11,6 +11,7 @@ extends Control
 
 func _ready():
 	update_btn_visibility()
+	$music.play()
 
 
 ## BUTTONS PRESSED

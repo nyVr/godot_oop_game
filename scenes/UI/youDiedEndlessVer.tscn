@@ -1,14 +1,25 @@
-[gd_scene load_steps=11 format=3 uid="uid://cxxm8olu3tnw3"]
+[gd_scene load_steps=15 format=3 uid="uid://cxxm8olu3tnw3"]
 
 [ext_resource type="Script" path="res://scenes/UI/death.gd" id="1_l1aiu"]
 [ext_resource type="Texture2D" uid="uid://cdlroorm0hh8l" path="res://sprites_fonts/blank.png" id="2_jq67t"]
 [ext_resource type="FontFile" uid="uid://beoqupkvxqtfg" path="res://sprites_fonts/Ruthligos.ttf" id="3_dcu7p"]
+[ext_resource type="AudioStream" uid="uid://4u67upa4cf4v" path="res://audio/MMMusic.mp3" id="4_wa5p6"]
 
-[sub_resource type="SystemFont" id="SystemFont_8umlc"]
+[sub_resource type="SystemFont" id="SystemFont_wmmuw"]
 font_names = PackedStringArray("Impact")
 
-[sub_resource type="LabelSettings" id="LabelSettings_pdxqk"]
-font = SubResource("SystemFont_8umlc")
+[sub_resource type="LabelSettings" id="LabelSettings_owdum"]
+font = SubResource("SystemFont_wmmuw")
+font_size = 60
+font_color = Color(0.717647, 0, 0.101961, 0.67451)
+outline_size = 5
+outline_color = Color(0.101961, 0.101961, 0.101961, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_vwj1i"]
+font_names = PackedStringArray("Book Antiqua")
+
+[sub_resource type="LabelSettings" id="LabelSettings_7x86f"]
+font = SubResource("SystemFont_vwj1i")
 font_size = 60
 font_color = Color(0.717647, 0, 0.101961, 0.67451)
 outline_size = 5
@@ -24,6 +35,8 @@ font_names = PackedStringArray("Book Antiqua")
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5xblx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3uyb7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5j5t7"]
 
 [node name="YouDied" type="Control"]
 layout_mode = 3
@@ -68,7 +81,14 @@ vertical_alignment = 1
 [node name="youDied" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "YOU DIED"
-label_settings = SubResource("LabelSettings_pdxqk")
+label_settings = SubResource("LabelSettings_owdum")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="score" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Final Score:"
+label_settings = SubResource("LabelSettings_7x86f")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -91,6 +111,7 @@ theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxEmpty_xr84k")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_rutw7")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_5xblx")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_5j5t7")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_3uyb7")
 text = "⭒ Submit to Leaderboard "
 
@@ -116,7 +137,10 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_5xblx")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_3uyb7")
 text = "⭒ Quit"
 
+[node name="bgMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_wa5p6")
+bus = &"music"
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/retry" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/leaderboard" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/mainmenu" to="." method="_on_mainmenu_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]

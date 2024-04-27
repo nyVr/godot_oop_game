@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://ctq1vlk2a3uy1"]
+[gd_scene load_steps=18 format=3 uid="uid://ctq1vlk2a3uy1"]
 
 [ext_resource type="Script" path="res://scenes/UI/optionsMenu.gd" id="1_vot60"]
 [ext_resource type="Texture2D" uid="uid://cdlroorm0hh8l" path="res://sprites_fonts/blank.png" id="2_q3380"]
 [ext_resource type="FontFile" uid="uid://beoqupkvxqtfg" path="res://sprites_fonts/Ruthligos.ttf" id="3_iqkdv"]
 [ext_resource type="PackedScene" uid="uid://d0so871h8ngt2" path="res://scenes/UI/volumeSlider.tscn" id="4_xqfli"]
+[ext_resource type="AudioStream" uid="uid://4u67upa4cf4v" path="res://audio/MMMusic.mp3" id="5_e7whs"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nenvb"]
 line_spacing = 0.0
@@ -109,8 +110,6 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_naun8")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_nme5w")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_hp00m")
 text = "⭒ Back"
-
-[node name="musicMM" type="AudioStreamPlayer" parent="."]
 
 [node name="volumeSliders" type="TextureRect" parent="."]
 layout_mode = 1
@@ -219,6 +218,10 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_naun8")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_nme5w")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_hp00m")
 text = "⭒ Back"
+
+[node name="musicMM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_e7whs")
+bus = &"music"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/volume" to="." method="_on_volume_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/back" to="." method="_on_back_pressed"]

@@ -5,6 +5,7 @@ func _ready():
 	$volumeSliders.hide()
 	$sprite.show()
 	$MarginContainer.show()
+	$musicMM.play()
 
 
 func _on_volume_pressed():

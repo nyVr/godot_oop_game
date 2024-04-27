@@ -14,6 +14,8 @@ var maxindex = animqueue.size()
 
 func _ready():
 	play_nims()
+	$music.play()
+	$star.play()
 
 # queue for animations
 func play_nims():

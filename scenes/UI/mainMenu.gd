@@ -14,6 +14,7 @@ func _ready():
 	$noSavedMsg.hide()
 	$sprite.show()
 	$buttons.show()
+	$MMmusic.play()
 	
 
 func _on_play_pressed():
