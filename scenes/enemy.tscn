@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://efjgw673wkm7"]
+[gd_scene load_steps=14 format=3 uid="uid://efjgw673wkm7"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_utle7"]
+[ext_resource type="AudioStream" uid="uid://cqhnkxnapv048" path="res://audio/windWhispers.mp3" id="2_0euxf"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_b2ldt"]
 
@@ -113,6 +114,12 @@ transform = Transform3D(1, 0, 0, 0, 0.760961, 0.648798, 0, -0.648798, 0.760961, 
 amount = 15
 process_material = SubResource("ParticleProcessMaterial_b67wm")
 draw_pass_1 = SubResource("SphereMesh_gd36d")
+
+[node name="sounds" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_0euxf")
+attenuation_model = 2
+volume_db = -20.0
+bus = &"sfx"
 
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]

@@ -27,6 +27,8 @@ func _ready():
 	enemy_bar.max_value = health
 	enemy_bar.hide()
 	
+	$sounds.play()
+	
 	# get initial location for later
 	initLoc = global_transform.origin
 	

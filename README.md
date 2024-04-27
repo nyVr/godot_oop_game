@@ -29,6 +29,17 @@ Amount of enemies increases with the level ups.
 
 https://www.youtube.com/watch?v=1vd_CE_Kvug&ab_channel=WhiteBatAudio
 
+### Audio:
+Star chimes: https://pixabay.com/sound-effects/chimes-30058/
+
+Wind: https://pixabay.com/sound-effects/wind-1-44149/
+
+Enemy sounds: https://pixabay.com/sound-effects/wind-shear-192375/
+
+
+
+
+
 ### Assets:
 Player - me
 
