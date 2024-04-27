@@ -12,8 +12,9 @@ func _on_quit_pressed():
 
 
 func _on_controls_pressed():
-	pass # Replace with function body.
-
+	$controlMenu.show()
+	$bg.hide()
+	$MarginContainer.hide()
 
 func _on_volume_pressed():
 	$bg.hide()
@@ -29,3 +30,10 @@ func _on_back_vol_pressed():
 
 func _on_main_menu_pressed():
 	get_tree().change_scene_to_file("res://scenes/UI/mainMenu.tscn")
+
+
+func _on_back_cntrl_pressed():
+	$controlMenu.hide()
+	$bg.show()
+	$MarginContainer.show()
+	

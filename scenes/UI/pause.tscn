@@ -1,22 +1,26 @@
-[gd_scene load_steps=24 format=3 uid="uid://bhasjjid0r6w3"]
+[gd_scene load_steps=27 format=3 uid="uid://bhasjjid0r6w3"]
 
 [ext_resource type="Script" path="res://scenes/UI/pause.gd" id="1_uenc1"]
 [ext_resource type="Texture2D" uid="uid://cdlroorm0hh8l" path="res://sprites_fonts/blank.png" id="2_r0mwp"]
 [ext_resource type="FontFile" uid="uid://beoqupkvxqtfg" path="res://sprites_fonts/Ruthligos.ttf" id="3_3xbva"]
 [ext_resource type="PackedScene" uid="uid://d0so871h8ngt2" path="res://scenes/UI/volumeSlider.tscn" id="4_s0n3o"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_anwml"]
-line_spacing = 0.0
+[sub_resource type="LabelSettings" id="LabelSettings_aib3q"]
 font = ExtResource("3_3xbva")
 font_size = 35
 font_color = Color(1, 0.447059, 0.337255, 1)
-outline_color = Color(0.298039, 0.298039, 0.298039, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_p5eb8"]
+font_names = PackedStringArray("Book Antiqua")
+
+[sub_resource type="LabelSettings" id="LabelSettings_grky2"]
+font = SubResource("SystemFont_p5eb8")
+font_size = 40
+font_color = Color(1, 0.662745, 0.619608, 0.447059)
 
 [sub_resource type="SystemFont" id="SystemFont_x84bg"]
 font_names = PackedStringArray("Book Antiqua")
 subpixel_positioning = 0
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3j1h0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t1f4v"]
 
@@ -27,6 +31,15 @@ subpixel_positioning = 0
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gw5gc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jqelb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_anwml"]
+line_spacing = 0.0
+font = ExtResource("3_3xbva")
+font_size = 35
+font_color = Color(1, 0.447059, 0.337255, 1)
+outline_color = Color(0.298039, 0.298039, 0.298039, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3j1h0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fr0q3"]
 font = ExtResource("3_3xbva")
@@ -74,15 +87,87 @@ size_flags_vertical = 3
 script = ExtResource("1_uenc1")
 
 [node name="controlMenu" type="TextureRect" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -156.0
+offset_right = 64.0
+offset_bottom = 156.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_r0mwp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="controlMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -228.0
+offset_top = -94.5
+offset_right = 228.0
+offset_bottom = 94.5
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="gameTitle2" type="Label" parent="controlMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.745098, 0.262745, 0.203922, 0.498039)
+theme_override_fonts/font = ExtResource("3_3xbva")
+theme_override_font_sizes/font_size = 90
+text = "Star Seeker"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="title" type="Label" parent="controlMenu/VBoxContainer"]
+layout_mode = 2
+text = "Controls"
+label_settings = SubResource("LabelSettings_aib3q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="instructions" type="Label" parent="controlMenu/VBoxContainer"]
+layout_mode = 2
+text = "W                         ↑
+S A D       or        ←↓→  
+⭒ to move
+⭒ Q to light star
+⭒ E to interact
+⭒ [SPACE] to jump
+⭒ [ESC] to pause/resume"
+label_settings = SubResource("LabelSettings_grky2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="backCntrl" type="Button" parent="controlMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.5
+anchor_right = 0.09
+anchor_bottom = 0.5
+offset_top = -38.0
+offset_right = 161.0
+offset_bottom = 38.0
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.682353, 0.227451, 0.172549, 0.560784)
+theme_override_fonts/font = SubResource("SystemFont_x84bg")
+theme_override_font_sizes/font_size = 55
+theme_override_styles/normal = SubResource("StyleBoxEmpty_t1f4v")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_uyris")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_uohp4")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gw5gc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jqelb")
+text = "⭒ Back"
+
 [node name="bg" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -205,6 +290,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_jqelb")
 text = "⭒ Back"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -296,6 +382,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_mcdf5")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_x8uer")
 text = "⭒ Quit"
 
+[connection signal="pressed" from="controlMenu/backCntrl" to="." method="_on_back_cntrl_pressed"]
 [connection signal="pressed" from="volumeSliders/backVol" to="." method="_on_back_vol_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/volume" to="." method="_on_volume_pressed"]

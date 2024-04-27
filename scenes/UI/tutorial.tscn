@@ -3,18 +3,18 @@
 [ext_resource type="Script" path="res://scenes/UI/tutorial.gd" id="1_f3fpr"]
 [ext_resource type="FontFile" uid="uid://beoqupkvxqtfg" path="res://sprites_fonts/Ruthligos.ttf" id="2_k6iyi"]
 
-[sub_resource type="Gradient" id="Gradient_yn448"]
+[sub_resource type="Gradient" id="Gradient_3djjs"]
 offsets = PackedFloat32Array(0.959627)
 colors = PackedColorArray(0.331495, 0, 0.0342225, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_252ug"]
-gradient = SubResource("Gradient_yn448")
+gradient = SubResource("Gradient_3djjs")
 
-[sub_resource type="SystemFont" id="SystemFont_p5eb8"]
+[sub_resource type="SystemFont" id="SystemFont_tx3c7"]
 font_names = PackedStringArray("Book Antiqua")
 
 [sub_resource type="LabelSettings" id="LabelSettings_sl6kj"]
-font = SubResource("SystemFont_p5eb8")
+font = SubResource("SystemFont_tx3c7")
 font_size = 40
 font_color = Color(1, 0.662745, 0.619608, 0.447059)
 
