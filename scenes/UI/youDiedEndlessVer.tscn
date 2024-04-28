@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://cxxm8olu3tnw3"]
 
-[ext_resource type="Script" path="res://scenes/UI/death.gd" id="1_l1aiu"]
+[ext_resource type="Script" path="res://scenes/UI/youDiedEndlessVer.gd" id="1_iumey"]
 [ext_resource type="Texture2D" uid="uid://cdlroorm0hh8l" path="res://sprites_fonts/blank.png" id="2_jq67t"]
 [ext_resource type="FontFile" uid="uid://beoqupkvxqtfg" path="res://sprites_fonts/Ruthligos.ttf" id="3_dcu7p"]
 [ext_resource type="AudioStream" uid="uid://4u67upa4cf4v" path="res://audio/MMMusic.mp3" id="4_wa5p6"]
@@ -45,7 +45,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_l1aiu")
+script = ExtResource("1_iumey")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1

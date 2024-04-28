@@ -180,7 +180,6 @@ label_settings = SubResource("LabelSettings_sl6kj")
 horizontal_alignment = 1
 
 [node name="page4" type="TextureRect" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -218,7 +217,9 @@ text = "⭒ The enemies are afraid of light; shine your
 light near enemies to attack them.
 ⭒ Continuously shining your light will deplete the
 stars energy.
-⭒ Recharge the star and light sources."
+⭒ Enemies make an annoying breathing sound that
+mask the chimes of the stars
+⭒ Recharge the star at light sources."
 label_settings = SubResource("LabelSettings_sl6kj")
 horizontal_alignment = 1
 

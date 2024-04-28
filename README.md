@@ -14,9 +14,39 @@ Class Group: A Team 19
 
 # Screenshots
 
+## Menus
+
+### Main menu
 ![mainMenu](images/mainMenu.PNG)
 
-![gamePlay](images/gameplay.PNG)
+### Normal death
+![youDied](images/youDiedNormal.PNG)
+
+### Endless death
+![youDiedEndless](images/youDiedEndless.PNG)
+
+### Win
+![youWin](images/youWin.PNG)
+
+
+## Gameplay
+
+![lvl1](images/lvl1.PNG)
+![lvl2](images/lvl2.PNG)
+
+
+## Tutorials
+
+![page1](images/tutorial1.PNG)
+![page2](images/tutorial2.PNG)
+![page3](images/tutorial3.PNG)
+![page4](images/tutorial4.PNG)
+![page5](images/tutorial5.PNG)
+
+
+
+
+Normal death
 
 
 # Description for Project
