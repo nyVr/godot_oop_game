@@ -58,3 +58,10 @@ func _on_unlock_timer_timeout():
 
 func _on_leaderboard_pressed():
 	pass # Replace with function body.
+
+
+func _on_fullsc_toggled(toggled_on):
+	if toggled_on == true:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)

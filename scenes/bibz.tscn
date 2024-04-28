@@ -13,6 +13,7 @@ size = Vector3(1.45313, 1, 1)
 
 [sub_resource type="SystemFont" id="SystemFont_t7eqj"]
 font_names = PackedStringArray("Book Antiqua")
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_3dxcc"]
 font = SubResource("SystemFont_t7eqj")

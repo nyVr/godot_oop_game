@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bhasjjid0r6w3"]
+[gd_scene load_steps=28 format=3 uid="uid://bhasjjid0r6w3"]
 
 [ext_resource type="Script" path="res://scenes/UI/pause.gd" id="1_uenc1"]
 [ext_resource type="Texture2D" uid="uid://cdlroorm0hh8l" path="res://sprites_fonts/blank.png" id="2_r0mwp"]
@@ -75,6 +75,9 @@ subpixel_positioning = 0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x8uer"]
 
+[sub_resource type="SystemFont" id="SystemFont_7vfwf"]
+font_names = PackedStringArray("Book Antiqua")
+
 [node name="Pause" type="Control"]
 process_mode = 2
 layout_mode = 3
@@ -88,6 +91,7 @@ size_flags_vertical = 3
 script = ExtResource("1_uenc1")
 
 [node name="controlMenu" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -168,7 +172,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_jqelb")
 text = "⭒ Back"
 
 [node name="bg" type="TextureRect" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -291,7 +294,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_jqelb")
 text = "⭒ Back"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -383,9 +385,19 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_mcdf5")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_x8uer")
 text = "⭒ Quit"
 
+[node name="fullsc" type="CheckButton" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.952941, 0.537255, 0.470588, 0.560784)
+theme_override_fonts/font = SubResource("SystemFont_7vfwf")
+theme_override_font_sizes/font_size = 27
+text = "Fullscreen"
+
 [connection signal="pressed" from="controlMenu/backCntrl" to="." method="_on_back_cntrl_pressed"]
 [connection signal="pressed" from="volumeSliders/backVol" to="." method="_on_back_vol_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/volume" to="." method="_on_volume_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/mainMenu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]
+[connection signal="toggled" from="MarginContainer/fullsc" to="." method="_on_fullsc_toggled"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ogcre7kellm3"]
+[gd_scene load_steps=19 format=3 uid="uid://ogcre7kellm3"]
 
 [ext_resource type="Script" path="res://scenes/UI/mainMenu.gd" id="1_06a7w"]
 [ext_resource type="Texture2D" uid="uid://cdlroorm0hh8l" path="res://sprites_fonts/blank.png" id="2_sbvkg"]
@@ -30,6 +30,9 @@ font_names = PackedStringArray("Book Antiqua")
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uwhcq"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uf70p"]
+
+[sub_resource type="SystemFont" id="SystemFont_u540u"]
+font_names = PackedStringArray("Book Antiqua")
 
 [sub_resource type="SystemFont" id="SystemFont_15bqd"]
 font_names = PackedStringArray("Impact")
@@ -157,6 +160,15 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_uwhcq")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_uf70p")
 text = "⭒ Quit"
 
+[node name="fullsc" type="CheckButton" parent="buttons"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.952941, 0.537255, 0.470588, 0.560784)
+theme_override_fonts/font = SubResource("SystemFont_u540u")
+theme_override_font_sizes/font_size = 27
+text = "Fullscreen"
+
 [node name="unlockMsg" type="Label" parent="."]
 visible = false
 layout_mode = 1
@@ -215,4 +227,5 @@ bus = &"music"
 [connection signal="pressed" from="buttons/VBoxContainer/leaderboard" to="." method="_on_leaderboard_pressed"]
 [connection signal="pressed" from="buttons/VBoxContainer/options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="buttons/VBoxContainer/quit" to="." method="_on_quit_pressed"]
+[connection signal="toggled" from="buttons/fullsc" to="." method="_on_fullsc_toggled"]
 [connection signal="timeout" from="unlockTimer" to="." method="_on_unlock_timer_timeout"]
