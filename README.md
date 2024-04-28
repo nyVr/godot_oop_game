@@ -31,10 +31,10 @@ This is youtube video
 ![youDied](images/youDiedNormal.PNG)
 
 ### Endless death
-![youDiedEndless](images/youDiedEndless.PNG)
+![youDiedEndless](images/youdiedEndless.PNG)
 
 ### Win
-![youWin](images/youWin.PNG)
+![youWin](images/youwin.PNG)
 
 ### Paused screen
 ![pause](images/paused_screen.PNG)
