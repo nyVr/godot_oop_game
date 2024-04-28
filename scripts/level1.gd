@@ -15,7 +15,7 @@ var levelUp = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# get scene for restart purposes
-	Global.current_scene = "res://scenes/main.tscn"
+	Global.current_scene = "res://scenes/level1.tscn"
 	var lvl_txt = "Level: 1 - Normal mode"
 	$level/level.text = lvl_txt
 	
