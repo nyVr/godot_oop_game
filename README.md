@@ -8,7 +8,7 @@ Class Group: A Team 19
 
 # itch.io link
 
-(wip)
+after exams 👍
 
 # Video
 
