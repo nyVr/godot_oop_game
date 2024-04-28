@@ -14,6 +14,8 @@ Class Group: A Team 19
 
 [![YouTube](images/face.PNG)](https://youtu.be/cn7bbWR2a0I)
 
+This is youtube video
+
 
 # Screenshots
 
@@ -37,7 +39,9 @@ Class Group: A Team 19
 ### Paused screen
 ![pause](images/paused_screen.PNG)
 
-
+### Cutscenes
+![cuts1](images/face.PNG)
+![cut2](images/cutscene2.PNG)
 
 ## Gameplay
 
@@ -48,12 +52,13 @@ Class Group: A Team 19
 ### Level 2
 ![lvl2](images/lvl2.PNG)
 
-
 ### Enemy particles
 ![enemyp](images/enemyParticles.PNG)
+![enemyp](images/enemyp2.PNG)
 
 ### Star particles
 ![starp](images/starParticles.PNG)
+![starp](images/starp2.PNG)
 
 
 ## Tutorials
