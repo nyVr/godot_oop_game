@@ -19,6 +19,9 @@ Class Group: A Team 19
 ### Main menu
 ![mainMenu](images/mainMenu.PNG)
 
+### Options menu
+![lvl1](images/lvl1.PNG)
+
 ### Normal death
 ![youDied](images/youDiedNormal.PNG)
 
@@ -28,11 +31,26 @@ Class Group: A Team 19
 ### Win
 ![youWin](images/youWin.PNG)
 
+### Paused screen
+![pause](images/paused_screen.PNG)
+
+
 
 ## Gameplay
 
+### Level 1
 ![lvl1](images/lvl1.PNG)
+![lore](images/loreeee.PNG)
+
+### Level 2
 ![lvl2](images/lvl2.PNG)
+
+
+### Enemy particles
+![enemyp](images/enemyParticles.PNG)
+
+### Star particles
+![starp](images/starParticles.PNG)
 
 
 ## Tutorials
@@ -44,9 +62,6 @@ Class Group: A Team 19
 ![page5](images/tutorial5.PNG)
 
 
-
-
-Normal death
 
 
 # Description for Project
