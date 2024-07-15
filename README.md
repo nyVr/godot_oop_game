@@ -8,7 +8,7 @@ Class Group: A Team 19
 
 # itch.io link
 
-after exams 👍
+eventually 👍
 
 # Video
 
@@ -80,8 +80,6 @@ Endless mode uses procedural maps to constantly recreate the map and respawn the
 every time they collect ten fallen stars.
 
 Amount of enemies increases with the level ups.
-
-# Instructions
 
 
 # List of Assets/Resources
