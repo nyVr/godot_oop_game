@@ -1,10 +1,6 @@
 # Star Seeker
 
-Name: Noura Belkhatir
-
-Student Number: C22388271
-
-Class Group: A Team 19
+This repo is a clone of the original from my [student account](https://github.com/nrn5).
 
 # itch.io link
 
